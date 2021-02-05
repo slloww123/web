@@ -6,11 +6,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Sroll&nbsp;Down</title>
 	<link rel="icon" type="image/svg+xml" href="https://www.flaticon.com/svg/static/icons/svg/3260/3260130.svg">
-	<!-- <link rel="shortcut icon" type="image/svg+xml" href="https://www.flaticon.com/svg/static/icons/svg/3260/3260130.svg"> -->
+	<link rel="shortcut icon" type="image/svg+xml"
+		href="https://www.flaticon.com/svg/static/icons/svg/3260/3260130.svg">
 	<style>
 		body {
-			margin: 0px;
-			height: 100%;
+			margin: auto;
 			background-color: #000000;
 			color: #FFFFFF;
 			font-size: 25px;
@@ -51,24 +51,28 @@
 			}
 		}
 
-		#more {
+		#play {
+			width: 100%;
 			margin: 0px;
+		}
+
+		#more {
 			width: 100%;
 			text-decoration: none;
-			color: #FFFFFF;
 			background-color: #000000;
 			border: 3px solid #FFFFFF;
 			border-radius: 30px;
 		}
 
 		#more:active {
-			background-color: #ffffff;
 			color: #000000;
 			text-decoration: underline;
+			background-color: #FFFFFF;
 		}
 
 		#more:hover {
 			color: #ffffff;
+			text-decoration: underline;
 			background-color: #ffffff91;
 			border: 3px solid #ffffffa2;
 		}
@@ -78,14 +82,13 @@
 		iframe {
 			width: 100%;
 			overflow: hidden;
-			border: 0px;
 			margin: 0px;
 		}
 
-		/* video,
+		video,
 		iframe {
 			height: 100%;
-		} */
+		}
 	</style>
 	<script async type="text/javascript" src="url.js"></script>
 	<script async type="text/javascript">
@@ -94,17 +97,14 @@
 		var video = { max: 44543, min: 0 };
 		//窗口可视范围高度
 		var clientHeight = window.innerHeight || Math.min(document.documentElement.clientHeight, document.body.clientHeight);
-		document.querySelector('style').innerHTML += 'video,iframe { height: ' + clientHeight + 'px; }';
 		function append() {
-			for (i = 0; i < 2; i++) {
+			for (i = 0; i < 4; i++) {
 				var image_var = "Image" + Math.floor(Math.random() * (image.max - image.min + 1) + image.min);
 				var video_var = "Video" + Math.floor(Math.random() * (video.max - video.min + 1) + video.min);
 				if (stat == 0) {
 					for (let index = 0; index < (window[image_var]).length; index++) {
 						const element = (window[image_var])[index];
-						const iv = document.createElement("img");
-						iv.src = element;
-						document.querySelector('body').insertBefore(iv,document.getElementById('more'));
+						document.getElementById("play").innerHTML += ('<br><img src="' + element + '">');
 						console.log(image_var + '\n');
 					};
 					stat = 1;
@@ -112,19 +112,15 @@
 					if ((window[video_var]).indexOf("m3u8") == -1) {
 						for (let index = 0; index < (window[video_var]).length; index++) {
 							const element = (window[video_var])[index];
-							const iv = document.createElement("iframe");
-							iv.src = 'http://api.17365i.com/Player/dplayer.php?url=' + element + '&rel=0';
-							// document.getElementById("play").innerHTML += ('<br><iframe seamless frameborder=\'0\' allowfullscreen src="http://api.17365i.com/Player/dplayer.php?url=' + element + '&rel=0&autoplay=0"></iframe>');
-							document.querySelector('body').insertBefore(iv,document.getElementById('more'));
+							document.getElementById("play").innerHTML += ('<br><iframe seamless frameborder=\'0\' allowfullscreen src="http://api.17365i.com/Player/dplayer.php?url=' + element + '&rel=0&autoplay=0"></iframe>');
+							document.querySelector('iframe:last-child').style['height'] = clientHeight + 'px';
 							console.log(video_var + '\n');
 						};
 					} else {
 						for (let index = 0; index < (window[video_var]).length; index++) {
 							const element = (window[video_var])[index];
-							const iv = document.createElement("video");
-							iv.src = element;
-							// document.getElementById("play").innerHTML += ('<br><video controls src="' + element + '"></video>');
-							document.querySelector('body').insertBefore(iv,document.getElementById('more'));
+							document.getElementById("play").innerHTML += ('<br><video controls src="' + element + '"></video>');
+							document.querySelector('video:last-child').style['height'] = clientHeight + 'px';
 							console.log(video_var + '\n');
 						};
 					};
@@ -139,13 +135,12 @@
 			var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
 			//窗口可视范围高度
 			var clientHeight = window.innerHeight || Math.min(document.documentElement.clientHeight, document.body.clientHeight);
-			if ((clientHeight + scrollTop) >= (scrollHeight * 0.8)) {
+			if ((clientHeight + scrollTop) >= (scrollHeight * 0.9)) {
 				append();
 			};
 		};
 		window.onload = function () {
 			document.querySelector('div').style['display'] = 'none';
-			append();
 		};
 	</script>
 </head>
@@ -155,9 +150,11 @@
 	<div>
 		<div></div>
 	</div>
-	<h1>Sroll Down</h1>
-	<img src="index.jpg" data-old-src="https://cdn-origin.cool-style.com.tw/cool/2019/09/68798452_172903837085856_5192877268999856599_n.jpg">
-	<button id="more" onClick="append();">More</button>
+	<div id="play">
+		<h1>Sroll Down</h1>
+		<img src="index.jpg" data-old-src="https://cdn-origin.cool-style.com.tw/cool/2019/09/68798452_172903837085856_5192877268999856599_n.jpg">
+	</div>
+	<div id="more" onClick="append();">More</div>
 </body>
 
 </html>
