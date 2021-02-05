@@ -1,0 +1,75 @@
+<html>
+ <head> 
+  <title>Gmail send by javascript</title> 
+  <meta charset="utf-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1"> 
+  <script async>
+    /* SmtpJS.com - v3.0.0 */
+    var Email = {
+      send: function (a) {
+        return new Promise(function (n, e) {
+          a.nocache = Math.floor(1e6 * Math.random() + 1), a.Action = "Send";
+          var t = JSON.stringify(a);
+          Email.ajaxPost("https://smtpjs.com/v3/smtpjs.aspx?", t, function (e) {
+            n(e)
+          })
+        })
+      },
+      ajaxPost: function (e, n, t) {
+        var a = Email.createCORSRequest("POST", e);
+        a.setRequestHeader("Content-type", "application/x-www-form-urlencoded"), a.onload = function () {
+          var e = a.responseText;
+          null != t && t(e)
+        }, a.send(n)
+      },
+      ajax: function (e, n) {
+        var t = Email.createCORSRequest("GET", e);
+        t.onload = function () {
+          var e = t.responseText;
+          null != n && n(e)
+        }, t.send()
+      },
+      createCORSRequest: function (e, n) {
+        var t = new XMLHttpRequest;
+        return "withCredentials" in t ? t.open(e, n, !0) : "undefined" != typeof XDomainRequest ? (t = new XDomainRequest).open(e, n) : t = null, t
+      }
+    };
+    function send_email() {
+      Email.send({
+        SecureToken: "789dbf3c-6622-430b-9c83-ef72320ad842",
+        To: "s16071@tiaccwhf.edu.hk",
+        From: "s16071@tiaccwhf.edu.hk",
+        Subject: document.getElementById('email_subject').value,
+        Body: document.getElementById('email_body').value
+      }).then(
+        message => alert('information stauts:'+message)
+      );
+    }
+  </script>
+  <style>
+  				body{
+  				text-align:center;
+  				color:#ffffff;
+  				background-color:#000000;
+  				}
+  				input{
+  				color:#ffffff;
+  				background-color:#000000;
+  				border:3px solid #ffffff;
+  				border-radius:10px;
+  				height:100px;
+  				width:100%;
+  				}
+  </style>
+ </head> 
+ <body> 
+  <form method="POST">
+    Subject: 
+   <input id="email_subject" type="text"> 
+   <br>body: 
+   <input id="email_body" type="text"> 
+   <br> 
+   <input type="button" value="send" style="width:auto;height:auto;" onclick="send_email();"> 
+  </form> 
+ </body>
+</html>

@@ -1,0 +1,349 @@
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Auto_Wiseman</title>
+	<style type="text/css">
+		body {
+			background-color: #000000;
+			color: #ffffff;
+			margin: auto;
+			overflow: auto;
+		}
+
+		textarea {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			border: 0px;
+			top: 0px;
+			right: 0px;
+			left: 0px;
+			resize: none;
+			background-color: #000000;
+			color: #ffffff;
+			overflow: auto;
+		}
+	</style>
+</head>
+
+<body>
+	<textarea>
+# coding=utf-8
+# score=int(driver.execute_script('return document.querySelectorAll("div[class=\'table-responsive\']>table[class=\'table table-striped\']>tbody>tr>td[class=\'align-middle text-center\']")[8].innerText'))
+
+
+Class = "4c" #@param ["4a", "4b", "4c", "4d", "5a", "5b", "5c", "5d", "6a", "6b", "6c", "6d"]
+Class_number = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21"]
+from google.colab import output
+from re import findall
+try:
+	from selenium import webdriver
+except:
+  !apt -qq update
+	!apt-get -q -qq install chromium-chromedriver
+	!pip3 -q install selenium -ignore-installed
+	from selenium import webdriver
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+# from selenium.webdriver.common.keys import Keys #.value=
+from selenium.webdriver.support.ui import Select
+from selenium.common.exceptions import TimeoutException,NoSuchElementException,ElementNotInteractableException,JavascriptException
+output.clear()
+for Class_number in Class_number:
+	# 在此修改你的賬號(小寫) e.g.5a30
+	information=Class+Class_number
+	# 設定等待元素時間上限(單位秒)
+	wait = WebDriverWait(driver,10)
+	# 設置Chrome啓動設置
+	options = webdriver.ChromeOptions()
+	# 無界面運行
+	options.add_argument('--headless')
+	# 以最高权限运行
+	options.add_argument('--no-sandbox')
+	# 避免崩潰
+	options.add_argument('--disable-dev-shm-usage')
+	# 開啓Chrome並加入基礎設置
+	driver = webdriver.Chrome(options=options)
+	# 登入Wiseman
+	driver.get('https://lms.wiseman.com.hk/lms/user/login.do?username=tiaccwhf.%s&password=2020'%information)
+	# 等待頁面加載完畢
+	wait.until(EC.presence_of_element_located((By.XPATH,'//div[@class="card"]/div[@class="card-body"]/div[@class="text-right"]/h1[@class="font-light mb-0 d-inline-block d-md-block"]')))
+	student_name=str(driver.find_element_by_xpath('//div[@class="profile-text"]/a[@class="dropdown-toggle link u-dropdown"]').get_attribute('textContent'))#//*[@id="main-wrapper"]/aside/div/div[1]/div/div[2]/a
+	before_score=int(str(driver.find_element_by_xpath('//div[@class="card-body"]/div[@class="text-right"]/h1').get_attribute('textContent')).replace(' ',''))#//*[@id="main-wrapper"]/div/div/div[2]/div[1]/div/div/div/h1
+	print('Welcome! %s\nYour Score:%d'%(student_name,before_score))
+	# 進入課程列表
+	driver.get('https://lms.wiseman.com.hk/lms/user/secure/course/eb/select_theme/lessons.shtml')
+	# 獲取所有鏈接和標題
+	uncomplete=[]
+	print('開始捕獲所有課程',end='\r')
+	for i in driver.find_elements_by_xpath('//div[@class="table-responsive"]/table[@class="table table-striped"]/tbody/tr'):
+		# 如果分數欄是'-'即未完成
+		if '-' in i.find_element_by_xpath('.//td[@class="align-middle text-center"]').get_attribute('innerHTML'):
+			# 檢測是否存在鏈接(循環,因findall函數返回值=列表)
+			for link in findall(r'"/lms.*"',i.find_element_by_xpath('.//td[@class="align-middle"]/span').get_attribute('innerHTML')):#/lms/user/secure/course/eb/select_theme/selectLesson.*from=lesson
+				# 獲取標題
+				title=i.find_element_by_xpath('.//td[@class="align-middle"]/span').text
+				# 獲取鏈接
+				link='https://lms.wiseman.com.hk%s'%(link.replace('"',''))
+				# 加入列表
+				uncomplete.append({'title':title,'link':link})
+				print('標題:%s'%(title))
+	lessons_length=len(uncomplete)
+	print('未完成課程總數:%d'%lessons_length)
+	now_lessons=0
+	# 在列表範圍内循環
+	for i in uncomplete:
+		now_lessons+=1
+		print('\n執行課程[%d/%d]:%s'%(now_lessons,lessons_length,i['title']))
+		# 進入鏈接
+		driver.get(i['link'])
+		# 避免斷網后自動關閉頁面
+		driver.execute_script('doCourseAPIKeepAlive=function(){return false};')
+		# 等待窗口加載
+		wait.until(EC.presence_of_element_located((By.XPATH,'//*[@id="course"]')))
+		# 進入窗口
+		driver.switch_to.frame("course")
+		try:
+			# 等待頁面加載完畢
+			wait.until(EC.presence_of_element_located((By.XPATH,'//div[@class="head course-head"]/div[@class="course-head-text"]')))
+		except TimeoutException as identifier:
+			#print('頁面加載失敗,處理中',identifier,end='\r')
+			print('頁面加載失敗,處理中',end='\r')
+		# 檢測是否需要點擊
+		try:
+			wait.until(EC.presence_of_element_located((By.XPATH,'//label[@id="select-group-1"]')))
+			driver.find_element_by_xpath('//label[@id="select-group-1"]').click()
+			driver.execute_script('document.getElementById("select-group-1").click();')
+			print('Press "Challenge"',end='\r')
+			driver.find_element_by_xpath('//button[@data-text="START"]').send_keys(Keys.ENTER)
+			print('Press "START"',end='\r')
+			# 刷新頁面
+			driver.refresh()
+			# 避免斷網后自動關閉頁面
+			driver.execute_script('doCourseAPIKeepAlive=function(){return false};')
+			# 等待窗口加載
+			wait.until(EC.presence_of_element_located((By.XPATH,'//*[@id="course"]')))
+			# 進入窗口
+			driver.switch_to.frame("course")
+			# 等待頁面加載完畢
+			wait.until(EC.presence_of_element_located((By.XPATH,'//div[@class="head course-head"]/div[@class="course-head-text"]')))
+		except (NoSuchElementException,TimeoutException) as identifier:
+			print('無需點擊Challenge',end='\r')
+		print('Incomplete',end='\r')
+		# 直接斷網
+		driver.set_network_conditions(offline=True, latency=5, throughput=500 * 1024)
+		###########################
+		# Wrong page loop循環 #
+		###########################
+		#檢測是否存在Submit后無按Next情況
+		try:
+			# 點擊下一題
+			wait.until(EC.presence_of_element_located((By.XPATH,'//button[@data-text="NEXT"]')))
+			driver.find_element_by_xpath('//button[@data-text="NEXT"]').click()
+		except (TimeoutException,ElementNotInteractableException) as identifier:
+			print('\r无NEXT異常',end='\r')
+		# 獲取問題數量并作循環
+		total_questions=len(driver.find_elements_by_xpath('//label[@water-level="1"]'))
+		now_question=0
+		# 用來裝答案的容器
+		answears=[]
+		for questions in driver.find_elements_by_xpath('//label[@water-level="1"]'):
+			now_question+=1
+			print('[%d/%d]:%s'%(now_question,total_questions,driver.find_element_by_xpath('//div[@class="text ng-star-inserted"]').text))
+			# Press "SUBMIT"
+			wait.until(EC.presence_of_element_located((By.XPATH,'//button[@data-text="SUBMIT"]')))
+			driver.find_element_by_xpath('//button[@data-text="SUBMIT"]').send_keys(Keys.ENTER)
+			try:
+				# 選擇題
+				wait.until(EC.presence_of_element_located((By.XPATH,'//label[@class="correct-answer"]')))
+				# 用來裝選擇題答案的容器
+				answear=[]
+				for i in driver.find_elements_by_xpath('//label[@class="correct-answer"]'):
+					# 獲取選項
+					id_num=i.get_attribute('for')
+					# 加入選擇題答案容器
+					answear.append(id_num)
+					# 輸出答案文字
+					if id_num == 'input-1-0-0-0':
+						print('A:%s'%i.text)
+					elif id_num == 'input-1-0-0-1':
+						print('B:%s'%i.text)
+					elif id_num == 'input-1-0-0-2':
+						print('C:%s'%i.text)
+					elif id_num == 'input-1-0-0-3':
+						print('D:%s'%i.text)
+					else:
+						print('%s:%s'%(id_num,i.text))
+				# 加入總答案容器
+				answears.append(answear)
+			except TimeoutException as identifier:
+				try:
+					# 文字題
+					wait.until(EC.presence_of_element_located((By.XPATH,'//span[@class="fix-answer ng-star-inserted"]')))
+					# 用來裝選擇題答案的容器
+					answear=[]
+					# 獲取文字題答案元素
+					inputElements=driver.find_elements_by_xpath('//span[@class="fix-answer ng-star-inserted"]')
+					# 輸入框總數
+					length=len(inputElements)
+					# 在答案範圍内循環
+					for i in inputElements:
+						# 獲取文字題答案
+						typing=str(i.text)
+						# 如果多餘一個答案
+						if ' / ' in typing:
+							# 文字分割
+							typing=typing.split(' / ')
+							# 如果輸入框僅有一個
+							if length==1:
+								# 只需要寫入單個
+								answear.append(typing[0])
+								print('%s'%typing[0])
+								# 停止循環
+								break
+							# 如果輸入框多餘一個
+							else:
+								# 檢測有無重複
+								if typing[0].lower()==typing[1].lower():
+									# 去重複,選取不同單詞的第一項
+									norepeat=set()# set函數擁有去重效果
+									for l in typing:
+										# 將文字全小寫
+										ll=l.lower()
+										# 如果set集合裏無新文字
+										if ll not in norepeat:
+											# 加入帶set
+											norepeat.add(ll)
+											# 加入選擇題答案容器
+											answear.append(l)
+											print('%s'%l)
+								# 若無重複項
+								else:
+									# 逐個單詞加入
+									for i in typing:
+										# 加入選擇題答案容器
+										answear.append(i)
+										print('%s'%i)
+						# 如果僅有一個答案
+						else:
+							print('%s'%typing)
+							# 加入文字題答案容器
+							answear.append(typing)
+					# 加入總答案容器
+					answears.append(answear)
+				except TimeoutException as identifier:
+					# 既 無選擇題 亦 無文字題
+					# 待下個部分,直接Submit以作處理
+					print('無答案,直接提交',end='\r')
+			try:
+				# 點擊下一題
+				wait.until(EC.presence_of_element_located((By.XPATH,'//button[@data-text="NEXT"]')))
+				# driver.implicitly_wait(3)
+				# questions.click()
+				driver.find_element_by_xpath('//button[@data-text="NEXT"]').click()
+			except TimeoutException as identifier:
+				print('獲取到達最後一題',end='\r')
+				answear=['']
+				# 加入總答案容器
+				answears.append(answear)
+			print(answears,end='\r')
+			print('\rAlready got all of the questions',end='\r')
+		# 刷新頁面
+		driver.refresh()
+		# 重新聯網
+		driver.set_network_conditions(offline=False, latency=5, throughput=500 * 1024)
+		# 二次刷新頁面
+		driver.refresh()
+		# 等待窗口加載
+		wait.until(EC.presence_of_element_located((By.XPATH,'//*[@id="course"]')))
+		# 進入窗口
+		driver.switch_to.frame("course")
+		# 等待頁面加載完畢
+		wait.until(EC.presence_of_element_located((By.XPATH,'//label[@water-level="1"]')))
+		###########################
+		#Correct page loop循環 #
+		###########################
+		try:
+			# 點擊下一題
+			wait.until(EC.presence_of_element_located((By.XPATH,'//button[@data-text="NEXT"]')))
+			driver.find_element_by_xpath('//button[@data-text="NEXT"]').click()
+		except (TimeoutException,ElementNotInteractableException) as identifier:
+			print('\r无NEXT異常',end='\r')
+		submit=False
+		# 在答案範圍內循環
+		for i in answears:
+			num=0
+			# 在小答案範圍內循環
+			for answear in i:
+				# 選擇題
+				if 'input-1-0-0-' in answear:
+					try:
+						driver.execute_script('document.getElementById("%s").click()'%answear)
+						# if answear == 'input-1-0-0-0':
+						#	print('A')
+						# elif answear == 'input-1-0-0-1':
+						#	print('B')
+						# elif answear == 'input-1-0-0-2':
+						#	print('C')
+						# elif answear == 'input-1-0-0-3':
+						#	print('D')
+						# else:
+						#	print('selecting %s'%answear)
+					except JavascriptException as identifier:
+						print('輕微異常,選擇失敗,處理中',end='\r')
+				# 無答案
+				elif answear=='':
+					# 無內容，既 無選擇題 亦 無文字題
+					# 待下個部分,直接Submit以作處理
+					# print('To Submit',end='\r')
+					submit=True
+				# 文字題
+				else:
+					try:
+						# 檢測文字輸入框數量並在内循環
+						driver.find_elements_by_xpath("//input[@type='text']")[num].send_keys(answear)
+						# print('%d:%s'%(num,answear))
+						num+=1
+					except (NoSuchElementException,IndexError,AttributeError) as identifier:
+						try:
+							# 文字單選題
+							sele=Select(driver.find_element_by_xpath('//select[@class="ng-untouched ng-pristine ng-valid ng-star-inserted"]'))
+							sele.select_by_visible_text(answear)
+							# print('%s'%answear)
+						except NoSuchElementException as identifier:
+							print('輕微異常,答題失敗,跳過中',end='\r')
+			try:
+				wait.until(EC.presence_of_element_located((By.XPATH,'//button[@data-text="SUBMIT"]')))
+				driver.find_element_by_xpath('//button[@data-text="SUBMIT"]').send_keys(Keys.ENTER)
+			except ElementNotInteractableException as identifier:
+				pass
+			if submit!=True:
+				try:
+					# 點擊下一題
+					wait.until(EC.presence_of_element_located((By.XPATH,'//button[@data-text="NEXT"]')))
+					driver.find_element_by_xpath('//button[@data-text="NEXT"]').click()
+				except TimeoutException as identifier:
+					pass
+	# 進入課程列表
+	driver.get('https://lms.wiseman.com.hk/lms/user/secure/course/eb/select_theme/lessons.shtml')
+	# 等待分數提交到服務器完畢再獲取分數(此步用意在於拖延時間)
+	wait.until(EC.presence_of_element_located((By.XPATH,'//div[@class="table-responsive"]/table[@class="table table-striped"]/tbody/tr')))
+	# 進入分數頁面
+	driver.get('https://lms.wiseman.com.hk/lms/user/secure/course/eb/select_theme/dashboard.shtml')
+	# 等待頁面加載完畢
+	wait.until(EC.presence_of_element_located((By.XPATH,'//div[@class="card-body"]/div[@class="text-right"]/h1')))
+	# 完成后的分數
+	after_score=int(str(driver.find_element_by_xpath('//div[@class="card-body"]/div[@class="text-right"]/h1').get_attribute('textContent')).replace(' ',''))
+	# 登出Wiseman
+	driver.get('https://lms.wiseman.com.hk/lms/user/logout.do')
+	driver.quit()
+	print('%s\n先前分數:%d,現時分數:%d;增加了%d分,增幅約%d%%\n點擊下方鏈接查看%s的課程完成情況\nhttps://lms.wiseman.com.hk/lms/user/login.do?username=tiaccwhf.%s&password=2020'%(student_name,before_score,after_score,(after_score-before_score),(((after_score-before_score)/before_score)*100) if before_score != 0 else (((after_score-before_score)/1)*100),student_name,information))
+# ‎First program since Monday, ‎August ‎31, ‎2020, ‏‎10:07:25 AM
+# This colab Since 2020/11/06
+</textarea>
+</body>
+
+</html>

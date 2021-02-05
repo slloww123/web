@@ -1,1 +1,102 @@
+<!DOCTYPE html>
+<html>
 
+<head>
+  <title>Gmail send by javascript</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="vocabulary.js"></script>
+  <script async>
+    // speak API
+    var synth = window.speechSynthesis;
+    // synth.lang = 'en-US';
+    var synth_array =new SpeechSynthesisUtterance()
+    //生成从minNum到maxNum的随机数
+    function randomNum(minNum, maxNum) {
+      switch (arguments.length) {
+        case 1:
+          return parseInt(Math.random() * minNum + 1, 10);
+          break;
+        case 2:
+          return parseInt(Math.random() * (maxNum - minNum + 1) + minNum, 10);
+          break;
+        default:
+          return 0;
+          break;
+      }
+    }
+    // SmtpJS.com - v3.0.0
+    var Email = {
+      send: function (a) {
+        return new Promise(function (n, e) {
+          a.nocache = Math.floor(1e6 * Math.random() + 1), a.Action = "Send";
+          var t = JSON.stringify(a);
+          Email.ajaxPost("https://smtpjs.com/v3/smtpjs.aspx?", t, function (e) {
+            n(e)
+          })
+        })
+      },
+      // ajaxPost: function (e, n, t) {
+      //	 var a = Email.createCORSRequest("POST", e);
+      //	 a.setRequestHeader("Content-type", "application/x-www-form-urlencoded"), a.onload = function () {
+      //		 var e = a.responseText;
+      //		 null != t && t(e)
+      //	 }, a.send(n)
+      // },
+      // ajax: function (e, n) {
+      //	 var t = Email.createCORSRequest("GET", e);
+      //	 t.onload = function () {
+      //		 var e = t.responseText;
+      //		 null != n && n(e)
+      //	 }, t.send()
+      // },
+      // createCORSRequest: function (e, n) {
+      //	 var t = new XMLHttpRequest;
+      //	 return "withCredentials" in t ? t.open(e, n, !0) : "undefined" != typeof XDomainRequest ? (t = new XDomainRequest).open(e, n) : t = null, t
+      // }
+    };
+    // Email.send({
+    //	 SecureToken: "789dbf3c-6622-430b-9c83-ef72320ad842",
+    //	 To: "52101314lyn@gmail.com",
+    //	 From: "s16071@tiaccwhf.edu.hk",
+    //	 Subject: "",
+    //	 Body: ""
+    // }).then(
+    //	 message => alert('information stauts:' + message)
+    // );
+    var voca_list_length = vocabulary.length-1;
+    var random_vocabulary = String(vocabulary[randomNum(0, voca_list_length)]);
+    function update_vocabulary() {
+      vocabulary += String(document.querySelector('body > form > input[type=text]:nth-child(2)').value);
+      document.querySelector("body > div").innerHTML=vocabulary[vocabulary.length-1];
+      voca_list_length = vocabulary.length-1;
+    };
+    function play_vocabulary() {
+      document.querySelector("body > div").innerHTML=random_vocabulary;
+      synth_array.text=random_vocabulary;
+      synth.speak(synth_array);
+    };
+    function check_vocabulary() {
+      var vocabulary_value = document.querySelector("body > form > input[type=text]:nth-child(5)").value;
+      if (vocabulary_value != random_vocabulary) {
+        play_vocabulary();
+      } else {
+        random_vocabulary = String(vocabulary[randomNum(0, voca_list_length)]);
+        play_vocabulary();
+      };
+      document.querySelector("body > form > input[type=text]:nth-child(5)").value = "";
+    };
+  </script>
+</head>
+
+<body>
+  <form method="POST">
+    Add vocabulary:<br>
+    <input type="text" onchange="update_vocabulary();"><br>
+    Input what you hearing:<br>
+    <input type="text" onchange="check_vocabulary();"><br>
+  </form>
+  <div></div>
+</body>
+
+</html>
