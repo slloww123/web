@@ -120,7 +120,7 @@
 							// document.getElementById("play").innerHTML += ('<br><iframe seamless frameborder=\'0\' allowfullscreen src="http://api.17365i.com/Player/dplayer.php?url=' + element + '&rel=0&autoplay=0"></iframe>');
 							document.querySelector('body').insertBefore(iv,document.getElementById('more'));
 							const dp = new DPlayer({
-								container: document.querySelector('.dplayer:last-child'),
+								container: document.querySelector('div[class="dplayer"]:last-child'),
 								video: {
 									url: element,
 								},
