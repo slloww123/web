@@ -87,6 +87,7 @@
 			height: 100%;
 		} */
 	</style>
+	<script src="https://cdn.jsdelivr.net/npm/dplayer@1.26.0/dist/DPlayer.min.js"></script>
 	<script async type="text/javascript" src="url.js"></script>
 	<script async type="text/javascript">
 		var stat = 1
@@ -112,10 +113,18 @@
 					if ((window[video_var]).indexOf("m3u8") == -1) {
 						for (let index = 0; index < (window[video_var]).length; index++) {
 							const element = (window[video_var])[index];
-							const iv = document.createElement("iframe");
-							iv.src = 'https://api.17365i.com/Player/dplayer.php?url=' + element + '&rel=0';
+							const iv = document.createElement("div");
+							iv.class = 'dplayer';
+							// const iv = document.createElement("iframe");
+							// iv.src = 'https://api.17365i.com/Player/dplayer.php?url=' + element + '&rel=0';
 							// document.getElementById("play").innerHTML += ('<br><iframe seamless frameborder=\'0\' allowfullscreen src="http://api.17365i.com/Player/dplayer.php?url=' + element + '&rel=0&autoplay=0"></iframe>');
 							document.querySelector('body').insertBefore(iv,document.getElementById('more'));
+							const dp = new DPlayer({
+								container: document.querySelector('.dplayer:last-child'),
+								video: {
+									url: element,
+								},
+							});
 							console.log(video_var + '\n');
 						};
 					} else {
