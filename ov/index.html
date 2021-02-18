@@ -89,7 +89,7 @@
 	</style>
 	<script src="https://hls-js.netlify.app/dist/hls.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/dplayer@1.26.0/dist/DPlayer.min.js"></script>
-	<script async type="text/javascript" src="https://ldwise.github.io/web/ov/url.js"></script>
+	<script async type="text/javascript" src="url.js"></script>
 	<script async type="text/javascript">
 		var stat = 1
 		var image = { max: 3641, min: 0 }; //before is 1234
@@ -112,7 +112,7 @@
 					stat = 1;
 				} else if (stat == 1) {
 					var video_var = "Video" + Math.floor(Math.random() * (video.max - video.min + 1) + video.min);
-					if ((window[video_var]).indexOf("m3u8") == -1) {
+// 					if ((window[video_var]).indexOf("m3u8") == -1) {
 						for (let index = 0; index < (window[video_var]).length; index++) {
 							const element = (window[video_var])[index];
 							const iv = document.createElement("div");
@@ -154,8 +154,8 @@
 									api: "https://api.prprpr.me/dplayer/",
 // 									token: "tokendemo",
 // 									user: "DIYgod",
-// 									addition: ["https://s-sh-17-dplayercdn.oss.dogecdn.com/1678963.json"],
-									addition: ["https://api.prprpr.me/dplayer/v3/bilibili?aid=1678963"],
+									addition: ["https://s-sh-17-dplayercdn.oss.dogecdn.com/1678963.json"],
+// 									addition: ["https://api.prprpr.me/dplayer/v3/bilibili?aid=1678963"],
 								},
 // 								contextmenu: [{
 // 									text: "custom1",
@@ -181,14 +181,14 @@
 								mutex: true,
 							});
 						};
-					} else {
-						for (let index = 0; index < (window[video_var]).length; index++) {
-							const element = (window[video_var])[index];
-							const iv = document.createElement("video");
-							iv.src = element;
-							// document.getElementById("play").innerHTML += ('<br><video controls src="' + element + '"></video>');
-							document.querySelector('body').insertBefore(iv,document.getElementById('more'));
-						};
+// 					} else {
+// 						for (let index = 0; index < (window[video_var]).length; index++) {
+// 							const element = (window[video_var])[index];
+// 							const iv = document.createElement("video");
+// 							iv.src = element;
+// 							// document.getElementById("play").innerHTML += ('<br><video controls src="' + element + '"></video>');
+// 							document.querySelector('body').insertBefore(iv,document.getElementById('more'));
+// 						};
 					};
 					console.log(video_var + '\n');
 					stat = 0;
