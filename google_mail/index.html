@@ -42,7 +42,7 @@
         Subject: document.getElementById('email_subject').value,
         Body: document.getElementById('email_body').value
       }).then(
-        message => alert('information stauts:'+message)
+        message => (document.querySelector("body > div").innerText=('information stauts:'+message))
       );
     }
   </script>
@@ -71,5 +71,6 @@
    <br> 
    <input type="button" value="send" style="width:auto;height:auto;" onclick="send_email();"> 
   </form> 
+  <div></div> 
  </body>
 </html>
