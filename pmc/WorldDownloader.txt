@@ -1,3 +1,0 @@
-#
-#Thu Jun 20 10:50:22 CEST 2013
-WorldName=wok
