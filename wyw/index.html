@@ -1,0 +1,208 @@
+<!doctype html>
+<html><head>
+<meta charset="utf-8">
+<title>指定文言經典精編</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+	body{
+		margin: 0;
+		padding: 0;
+/*		background-color: #6E6E6E*/
+	}
+	a{
+		color: rgb(82, 137, 255);
+		text-decoration-line: none;
+	}
+	header{
+		top: 0px;
+		color: #fff;
+		background: linear-gradient(to bottom,rgba(0,0,0,0.65) 0%,transparent 100%);
+		position: fixed;
+		width: 100%;
+		height: 10%;
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap;
+	}
+	header > .TopName > .NowViewing{
+		line-height: 0px;
+	}
+	header > .Functions{
+		display: flex;
+		justify-content: space-around;
+		flex-wrap: wrap;
+		padding: 10px;
+	}
+	header > .Functions > *{
+		height: 24px;
+		width: 24px;
+		padding: 8px;
+		border-radius: 2px;
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
+	header > .Functions > *:hover{
+		background-color: rgba(255,255,255, 0.25);
+	}
+	header > .Functions > .DarkMode{
+		background-image: url("logo.svg");
+		background-position: 0 -116px;
+	}
+	header > .Functions > .LightMode{
+		background-image: url("logo.svg");
+		background-position: -2px -170px;
+	}
+	header > .Functions > .HideAllAnswear{
+		background-image: url("logo.svg");
+		background-position: 0 -5px;
+	}
+	header > .Functions > .ShowAllAnswear{
+		background-image: url("logo.svg");
+		background-position: 0 -58px;
+	}
+	header > .Functions > .Navigation{
+		background-image: url("logo.svg");
+		background-position: 0 -210px;
+	}
+	header > .Functions > .NavigationClose{
+		background-image: url("logo.svg");
+		background-position: 0 -275px;
+	}
+	/* ############################### */
+	.main > .article{
+		padding-top: 3em;
+	}
+	.main > .article > h1{
+		text-align: center;
+	}
+	.main > .article > .paragraphs > div{
+		position: relative;
+		padding-bottom: 2em;
+		display: flex;
+		justify-content: space-around;
+	}
+	.main > .article > .paragraphs > div::after{
+		content: attr(data-subtitle);
+		position: absolute;
+		top: -1.5em;
+		left: 0;
+		font-size: medium;
+	}
+	/* ############################### */
+	.NavigationList{
+		position: fixed;
+		width: 80%;
+		right: 0px;
+		top: 10%;
+		text-align: center;
+	}
+	.NavigationList > div{
+		position: relative;
+		padding: 10px;
+	}
+	.NavigationList > div::after{
+		content: attr(title);
+		position: absolute;
+		top: 0;
+		left: 0;
+		margin: 0;
+		font-size: medium;
+	}
+	/* ############################### */
+	footer{
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		color: #fff;
+		background-color: #000;
+		text-align: center;
+		display: flex;
+		justify-content: space-around;
+		flex-wrap: wrap;
+	}
+	footer > div{
+		padding: 10px;
+	}
+</style>
+</head>
+
+<body>
+	<header>
+		<div class="TopName" title="指定文言經典精編">
+			指定文言經典精編
+			<h3 class="NowViewing" title="正在瀏覽的項目">論仁、論孝、論君子</h3>
+		</div>
+	    <div class="Functions" title="更多功能">
+			<div class="DarkMode" title="白天/黑夜模式"></div>
+			<div class="HideAllAnswear" title="顯示/隱藏所有答案"></div>
+			<div class="Navigation" title="顯示/隱藏目錄">
+			</div>
+		</div>
+	</header>
+	<div class="main">
+		<div class="article">
+			<h1>論仁、論孝、論君子</h1>
+			<div class="paragraphs">
+				<div data-subtitle="【論仁】">
+					<div class="original">
+						子曰：「不仁者，不可以久處約，不可以長處樂。仁者安仁，知者利仁。」(《里仁》第四)</div>
+					<div class="translation">孔子說:「沒有仁德的人,不可以長期處身窮困的環境,不可以長期過安樂的生活。有仁德的人安於仁德,有智慧的人實行仁德。」</div>
+					<div class="questions"></div>
+				</div>
+				<div>
+					<div class="original">子曰：「富與貴，是人之所欲也；不以其道得之，不處也。貧與賤，是人之所惡也；不以其道得之，不去也。君子去仁，惡乎成名？君子無終食之間違仁，造次必於是，顛沛必於是。」(《里仁》第四)</div>
+					<div class="translation">孔子說:「富有和顯貴,這是人人盼望的;如果不是用正當的方法得到它,便不	接受。貧困和微賤,這是人人厭惡的;如果不是用正當的方法擺脫它,便不逃避。君子拋棄了仁德,怎樣成就君子的聲名呢?君子沒有一頓飯的時間離棄仁德,就算	在倉卒、匆忙的時候也必定堅持仁德,在窮困、受挫折的時候也必定堅持仁德。」</div>
+					<div class="questions"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="NavigationList" style="visibility: hidden" title="目錄内容">
+		<div title="文言文">
+			<a href="#">論仁、論孝、論君子</a><br>
+			<a href="#">魚我所欲也</a><br>
+			<a href="#">逍遙遊(節錄)</a><br>
+			<a href="#">勸學(節錄)</a><br>
+			<a href="#">廉頗藺相如列傳(節錄)</a><br>
+			<a href="#">出師表</a><br>
+			<a href="#">師說</a><br>
+			<a href="#">始得西山宴遊記</a><br>
+			<a href="#">岳陽樓記</a><br>
+			<a href="#">六國論</a><br>
+			<a href="#">山居秋暝</a><br>
+			<a href="#">月下獨酌(其一)</a><br>
+			<a href="#">登樓</a><br>
+			<a href="#">念奴嬌 赤壁懷古 (大江東去)</a><br>
+			<a href="#">聲聲慢 秋情 (尋尋覓覓)</a><br>
+			<a href="#">青玉案 元夕 (東風夜放花千樹)</a><br>
+		</div>
+		<div title="歷届試題">
+			<a href="#">2021</a><br>
+			<a href="#">2020</a><br>
+			<a href="#">2019</a><br>
+			<a href="#">2018</a><br>
+		</div>
+	</div>
+	<footer>
+		<div title="資料來源" class="Source">
+			<strong>資料來源</strong><br>
+			原文:<a href="https://www.edb.gov.hk/tc/curriculum-development/kla/chi-edu/nss-lang/settext-reference.html">指定文言經典學習材料教師參考資料選編</a><br>
+			譯文:牛津大學出版社•文言選讀•課文語譯<a href="#"></a><br>
+			字譯:<a href="https://www.edb.gov.hk/tc/curriculum-development/kla/chi-edu/nss-lang/settext-reference.html">指定文言經典學習材料教師參考資料選編</a><br>
+			主旨:<a href="https://www.edb.gov.hk/tc/curriculum-development/kla/chi-edu/nss-lang/settext-reference.html">指定文言經典學習材料教師參考資料選編</a><br>
+			作法:啓思出版社•指定文言經典精編<a href="#"></a><br>
+			題庫:<a href="https://dsepp.com/resource_centre/chinese/">DSEPP</a><br>
+		</div>
+		<div title="反饋" class="Feedback">
+			<strong>反饋</strong><br>
+			<textarea placeholder="我有疑問關於..."></textarea>
+		</div>
+		<div class="LastUpDate">
+			最後更新時間:2021/08/18
+		</div>
+	</footer>
+	<script>
+//		FunctionChange
+	</script>
+</body>
+</html>
