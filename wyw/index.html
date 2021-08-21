@@ -142,12 +142,12 @@
 			background-color: rgb(128, 128, 128);
 			position: absolute;
 			top: -2em;
-			left: -2em;
+			left: 0;
 			text-align: center;
 			padding: 5px;
 			border-width: 0;
 			border-radius: 5px;
-			white-space: nowrap;
+			word-break: keep-all;
 		}
 
 		.main>.article>.paragraphs>.original span:hover::after {
@@ -170,7 +170,7 @@
 		}
 
 		.NavigationList a {
-			color: rgba(0, 0, 0, 1);
+			color: rgba(255, 255, 255, 1);
 		}
 
 		.NavigationList>div {
@@ -289,7 +289,7 @@
 			<div class="questions"></div>
 			</div>
 			<div class="paragraphs" data-subtitle="論君子">
-			<div class="original"><div class="sentences" data-sentences="1-p9-1">子曰：「</div><div class="sentences" data-sentences="1-p9-2"><span data-mean="有德之人">君子</span><span data-mean="不莊重">不重</span>則不威;</div><div class="sentences" data-sentences="1-p9-3"><span data-mean="「學則不固」有兩解：一、即使讀書，所學也不會牢固；二，學了就不會閉塞淺陋。">學則不固</span>。</div><div class="sentences" data-sentences="1-p9-4">主忠信。</div><div class="sentences" data-sentences="1-p9-5">無友不如己者。</div><div class="sentences" data-sentences="1-p9-6"><span data-mean="過錯">過</span>則勿<span data-mean="害怕、畏懼">憚</span>改。</div><div class="sentences" data-sentences="1-p9-7">」(《學而》第一)</div></div>
+			<div class="original"><div class="sentences" data-sentences="1-p9-1">子曰：「</div><div class="sentences" data-sentences="1-p9-2"><span data-mean="有德之人">君子</span><span data-mean="不莊重">不重</span>則不威;</div><div class="sentences" data-sentences="1-p9-3"><span data-mean="即使讀書，所學也不會牢固;學了就不會閉塞淺陋。">學則不固</span>。</div><div class="sentences" data-sentences="1-p9-4">主忠信。</div><div class="sentences" data-sentences="1-p9-5">無友不如己者。</div><div class="sentences" data-sentences="1-p9-6"><span data-mean="過錯">過</span>則勿<span data-mean="害怕、畏懼">憚</span>改。</div><div class="sentences" data-sentences="1-p9-7">」(《學而》第一)</div></div>
 			<div class="translation"><div class="sentences" data-sentences="1-p9-1">孔子說:「</div><div class="sentences" data-sentences="1-p9-2">君子不莊重,就沒有威嚴,</div><div class="sentences" data-sentences="1-p9-3">所學的也不穩固。</div><div class="sentences" data-sentences="1-p9-4">(行事)以忠誠和信實為主,</div><div class="sentences" data-sentences="1-p9-5">不要結交(品德)比不上自己的人。</div><div class="sentences" data-sentences="1-p9-6">有了過錯,就不要害怕改正。</div><div class="sentences" data-sentences="1-p9-7">」</div></div>
 			<div class="questions"></div>
 			</div>
@@ -403,12 +403,23 @@
 			$('.NavigationList a').css({
 				'color': $('body').css('color'),
 			});
+			if ($('div[title="顯示/隱藏所有答案"]').attr('class') === 'HideAllAnswear') {
+				$('.main>.article>.paragraphs>.original span').css({
+					'color': $('body').css('color'),
+				})
+			};
 		});
 		// HideAllAnswear/ShowAllAnswear
 		$('div[title="顯示/隱藏所有答案"]').click(function () {
 			if ($(this).attr('class') === 'HideAllAnswear') {
+				$('.main>.article>.paragraphs>.original span').css({
+					'color': 'rgba(255, 0, 0, 1)',
+				})
 				$(this).attr('class', 'ShowAllAnswear');
 			} else {
+				$('.main>.article>.paragraphs>.original span').css({
+					'color': $('body').css('color'),
+				})
 				$(this).attr('class', 'HideAllAnswear');
 			};
 		});
