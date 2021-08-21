@@ -10,17 +10,17 @@
 		body {
 			margin: 0;
 			padding: 0;
-			color: #000000;
-			background-color: #ffffff;
+			color: rgba(0, 0, 0, 1);
+			background-color: rgba(255, 255, 255, 1);
 		}
 
 		a {
-			color: #ffffff;
+			color: rgba(255, 255, 255, 1);
 		}
 
 		header {
 			top: 0px;
-			color: #fff;
+			color: rgba(255, 255, 255, 1);
 			background: linear-gradient(to bottom, rgba(0, 0, 0, 0.65) 0%, transparent 100%);
 			position: fixed;
 			width: 100%;
@@ -115,20 +115,22 @@
 			font-size: medium;
 		}
 
-		.main>.article>div>.paragraphs div{
+		.main>.article>div>.paragraphs div {
 			display: inline;
 		}
+
 		.main>.article>div>.paragraphs>.original>span {
 			position: relative;
 			cursor: pointer;
 		}
 
 		.main>.article>div>.paragraphs>.original>span:hover {
-			background-color: goldenrod;
+			background-color: rgb(216, 163, 30);
 		}
-		.main>.article>div>.paragraphs>.original>span::after{
-			color: #ffffff;
-			background-color: gray;
+
+		.main>.article>div>.paragraphs>.original>span::after {
+			color: rgba(255, 255, 255, 1);
+			background-color: rgb(128, 128, 128);
 			position: absolute;
 			top: -2em;
 			left: -2em;
@@ -138,6 +140,7 @@
 			border-radius: 5px;
 			white-space: nowrap;
 		}
+
 		.main>.article>div>.paragraphs>.original>span:hover::after {
 			content: attr(data-mean);
 		}
@@ -148,17 +151,17 @@
 			width: 80%;
 			right: 0px;
 			top: 10%;
-			color: #000000;
-			background-color: #ffffff;
+			color: rgba(0, 0, 0, 1);
+			background-color: rgba(255, 255, 255, 1);
 			text-align: center;
 			display: none;
 			border-width: 0;
 			border-radius: 2em;
-			box-shadow: 0 0 1em #000000;
+			box-shadow: 0 0 1em currentColor;
 		}
 
 		.NavigationList a {
-			color: #000000;
+			color: rgba(0, 0, 0, 1);
 		}
 
 		.NavigationList>div {
@@ -172,15 +175,15 @@
 			top: 1em;
 			left: 1em;
 			margin: 0;
-			font-size: medium;
+			font-size: 1em;
 		}
 
 		/* ############################### */
 		footer {
 			bottom: 0;
 			width: 100%;
-			color: #fff;
-			background-color: #000;
+			color: rgba(255, 255, 255, 1);
+			background-color: rgba(0, 0, 0, 1);
 			text-align: center;
 			display: flex;
 			justify-content: space-around;
@@ -233,13 +236,18 @@
 			<div>
 				<div class="paragraphs" data-subtitle="【論仁】">
 					<div class="original">
-						<div class="sentences" data-sentences="1-p1-1">子曰：「</div>不仁者，不可以久處<span data-mean="窮困、貧困">約</span>，不可以長處樂。仁者安仁，知者利仁。」(《里仁》第四)</div>
+						<div class="sentences" data-sentences="1-p1-1">子曰：「</div>不仁者，不可以久處<span
+							data-mean="窮困、貧困">約</span>，不可以長處樂。仁者安仁，知者利仁。」(《里仁》第四)
+					</div>
 					<div class="translation">
-						<div class="sentences" data-sentences="1-p1-1">孔子說:「</div>沒有仁德的人,不可以長期處身窮困的環境,不可以長期過安樂的生活。有仁德的人安於仁德,有智慧的人實行仁德。」</div>
+						<div class="sentences" data-sentences="1-p1-1">孔子說:「</div>
+						沒有仁德的人,不可以長期處身窮困的環境,不可以長期過安樂的生活。有仁德的人安於仁德,有智慧的人實行仁德。」
+					</div>
 					<div class="questions"></div>
 				</div>
 				<div class="paragraphs" data-subtitle="">
-					<div class="original">子曰：「富與貴，是人之所欲也；不以其道得之，不處也。貧與賤，是人之所惡也；不以其道得之，不去也。君子去仁，惡乎成名？君子無終食之間違仁，造次必於是，顛沛必於是。」(《里仁》第四)</div>
+					<div class="original">
+						子曰：「富與貴，是人之所欲也；不以其道得之，不處也。貧與賤，是人之所惡也；不以其道得之，不去也。君子去仁，惡乎成名？君子無終食之間違仁，造次必於是，顛沛必於是。」(《里仁》第四)</div>
 					<div class="translation">
 						孔子說:「富有和顯貴,這是人人盼望的;如果不是用正當的方法得到它,便不接受。貧困和微賤,這是人人厭惡的;如果不是用正當的方法擺脫它,便不逃避。君子拋棄了仁德,怎樣成就君子的聲名呢?君子沒有一頓飯的時間離棄仁德,就算在倉卒、匆忙的時候也必定堅持仁德,在窮困、受挫折的時候也必定堅持仁德。」
 					</div>
@@ -267,33 +275,33 @@
 			<div class="SendFeedback" title="發送反饋"></div>
 		</div>
 		<div class="LastUpDate">
-			最後更新時間:2021/08/18
+			最後更新時間: 2021/08/18
 		</div>
 	</footer>
 	<div class="NavigationList" title="目錄内容">
 		<div title="文言文">
-			<a href="#論仁、論孝、論君子">論仁、論孝、論君子</a><br>
-			<a href="#魚我所欲也">魚我所欲也</a><br>
-			<a href="#">逍遙遊(節錄)</a><br>
-			<a href="#">勸學(節錄)</a><br>
-			<a href="#">廉頗藺相如列傳(節錄)</a><br>
-			<a href="#">出師表</a><br>
-			<a href="#">師說</a><br>
-			<a href="#">始得西山宴遊記</a><br>
-			<a href="#">岳陽樓記</a><br>
-			<a href="#">六國論</a><br>
-			<a href="#">山居秋暝</a><br>
-			<a href="#">月下獨酌(其一)</a><br>
-			<a href="#">登樓</a><br>
-			<a href="#">念奴嬌 赤壁懷古 (大江東去)</a><br>
-			<a href="#">聲聲慢 秋情 (尋尋覓覓)</a><br>
-			<a href="#">青玉案 元夕 (東風夜放花千樹)</a><br>
+			<a href="#論仁、論孝、論君子" title="論仁、論孝、論君子">論仁、論孝、論君子</a><br>
+			<a href="#魚我所欲也" title="魚我所欲也">魚我所欲也</a><br>
+			<a href="#" title="逍遙遊(節錄)">逍遙遊(節錄)</a><br>
+			<a href="#" title="勸學(節錄)">勸學(節錄)</a><br>
+			<a href="#" title="廉頗藺相如列傳(節錄)">廉頗藺相如列傳(節錄)</a><br>
+			<a href="#" title="出師表">出師表</a><br>
+			<a href="#" title="師說">師說</a><br>
+			<a href="#" title="始得西山宴遊記">始得西山宴遊記</a><br>
+			<a href="#" title="岳陽樓記">岳陽樓記</a><br>
+			<a href="#" title="六國論">六國論</a><br>
+			<a href="#" title="山居秋暝">山居秋暝</a><br>
+			<a href="#" title="月下獨酌(其一">月下獨酌(其一)</a><br>
+			<a href="#" title="登樓">登樓</a><br>
+			<a href="#" title="念奴嬌 赤壁懷古 (大江東去)">念奴嬌 赤壁懷古 (大江東去)</a><br>
+			<a href="#" title="聲聲慢 秋情 (尋尋覓覓)">聲聲慢 秋情 (尋尋覓覓)</a><br>
+			<a href="#" title="青玉案 元夕 (東風夜放花千樹)">青玉案 元夕 (東風夜放花千樹)</a><br>
 		</div>
 		<div title="歷届試題">
-			<a href="#">2021</a><br>
-			<a href="#">2020</a><br>
-			<a href="#">2019</a><br>
-			<a href="#">2018</a><br>
+			<a href="#2021" title="2021">2021</a><br>
+			<a href="#2020" title="2020">2020</a><br>
+			<a href="#2019" title="2019">2019</a><br>
+			<a href="#2018" title="2018"></a><br>
 		</div>
 	</div>
 	<script>
@@ -302,31 +310,22 @@
 		$('div[title="白天/黑夜模式"]').click(function () {
 			if ($(this).attr('class') === 'LightMode') {
 				$('body').css({
-					'background-color': '#000000',
-					'color': '#ffffff'
-				});
-				$('.NavigationList').css({
-					'box-shadow': '0 0 1em #ffffff',
-				});
-				$('.NavigationList a').css({
-					'color': '#ffffff',
+					'color': 'rgba(255, 255, 255, 1)',
+					'background-color': 'rgba(0, 0 , 0, 1)',
 				});
 				$(this).attr('class', 'DarkMode');
 			} else {
 				$('body').css({
-					'background-color': '#ffffff',
-					'color': '#000000'
-				});
-				$('.NavigationList').css({
-					'box-shadow': '0 0 1em #000000',
-				});
-				$('.NavigationList a').css({
-					'color': '#000000',
+					'color': 'rgba(0, 0 , 0, 1)',
+					'background-color': 'rgba(255, 255, 255, 1)',
 				});
 				$(this).attr('class', 'LightMode');
 			};
-			$('div[title="目錄内容"]').css({
+			$('.NavigationList').css({
 				'background-color': $('body').css('background-color'),
+				'color': $('body').css('color'),
+			});
+			$('.NavigationList a').css({
 				'color': $('body').css('color'),
 			});
 		});
@@ -351,19 +350,15 @@
 				});
 				$(this).attr('class', 'Navigation');
 			};
-			$('div[title="目錄内容"]').css({
-				'background-color': $('body').css('background-color'),
-				'color': $('body').css('color'),
-			});
 		});
 		// Sentences HighLight
 		$('div.sentences').hover(function () {
-			$('div[data-sentences="'+$(this).attr('data-sentences')+'"]').css({
-				'background-color':'darkgoldenrod',
+			$('div[data-sentences="' + $(this).attr('data-sentences') + '"]').css({
+				'background-color': 'rgb(184, 135, 11)',
 			});
-		},function () {
-			$('div[data-sentences="'+$(this).attr('data-sentences')+'"]').css({
-				'background-color':'unset',
+		}, function () {
+			$('div[data-sentences="' + $(this).attr('data-sentences') + '"]').css({
+				'background-color': 'unset',
 			});
 		});
 	</script>
