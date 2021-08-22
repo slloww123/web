@@ -126,33 +126,34 @@
 
 		.main>.article>.paragraphs>.original span {
 			position: relative;
-			cursor: pointer;
 			text-align: center;
-			text-decoration-line: underline;
-			text-decoration-color: rgb(32, 178, 171);
 		}
 
 		.main>.article>.paragraphs>.original span:hover {
+			cursor: pointer;
 			color: rgb(255, 255, 255);
 			background-color: rgb(32, 178, 171);
 		}
 
-		.main>.article>.paragraphs>.original span::after {
+		.main>.article>.paragraphs>.original span:hover::before {
+			content: '';
+			position: absolute;
+			top: -10px;
+			left: calc(50% - 10px);
+			border: 10px solid transparent;
+			border-top-color: rgb(128, 128, 128);
+		}
+		.main>.article>.paragraphs>.original span:hover::after {
+			content: attr(data-mean);
 			color: rgba(255, 255, 255, 1);
 			background-color: rgb(128, 128, 128);
 			position: absolute;
-			bottom: 1.25em;
-			left: 0;
-			text-align: center;
+			bottom: calc(100% + 10px);
+			left: -1em;
 			padding: 5px;
 			border-width: 0;
 			border-radius: 5px;
 			word-break: keep-all;
-			z-index: 5;
-		}
-
-		.main>.article>.paragraphs>.original span:hover::after {
-			content: attr(data-mean);
 		}
 
 		/* ############################### */
