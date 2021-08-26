@@ -1,16 +1,66 @@
 <!DOCTYPE html>
+
 <head>
     <meta charset="utf-8">
+    <title>Main Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            color: rgba(0,0,0,0.87);
+            background-color: rgba(0, 0, 0, 0.75);
+            font-family: 'Roboto',Helvetica,Arial,sans-serif;
+        }
+
+        ul,
+        li {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        li {
+            display: flex;
+            flex-direction: column;
+            height: 18.375rem;
+            margin: 1.5rem;
+            position: relative;
+            text-align: left;
+            width: 18.75rem;
+            background-color: rgb(255, 255, 255);
+            border: 0.0625rem solid #dadce0;
+            -webkit-border-radius: 0.5rem;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            padding: 1.5rem;
+        }
+
+        li > a {
+            color: rgb(255, 255, 255);
+            background-color: rgb(0, 0, 0);
+            border: 0.0625rem solid #dadce0;
+            -webkit-border-radius: 0.5rem;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            font-size: 3rem;
+        }
+    </style>
 </head>
+
 <body>
-  <ul>
-    <li><a href='google_mail'>google_mail</a></li>
-    <li><a href='ov'>ov</a></li>
-    <li><a href='speak'>speak</a></li>
-    <li><a href='tiktov'>tiktov</a></li>
-    <li><a href='video'>video</a></li>
-    <li><a href='wiseman'>wiseman</a></li>
-    <li><a href='wyw'>wyw</a></li>
-  </ul>
+    <ul>
+        <li><a href='google_mail'>google_mail</a></li>
+        <li><a href='ov'>ov</a></li>
+        <li><a href='speak'>speak</a></li>
+        <li><a href='tiktov'>tiktov</a></li>
+        <li><a href='video'>video</a></li>
+        <li><a href='wiseman'>wiseman</a></li>
+        <li><a href='wyw'>wyw</a></li>
+    </ul>
 </body>
+
 </html>
