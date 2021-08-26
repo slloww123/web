@@ -10,8 +10,12 @@
 		body {
 			margin: 0;
 			padding: 0;
+			font-family: 'Google Sans',Roboto,Arial,sans-serif;
 			color: rgba(255, 255, 255, 1);
 			background-color: rgba(0, 0, 0, 1);
+			-webkit-user-select:none;
+			-webkit-touch-callout:none;
+			-moz-user-select: none;
 		}
 
 		a {
@@ -382,6 +386,7 @@
 		</div>
 	</div>
 	<script>
+		document.body.oncopy = function(){event.returnValue=false;};
 		// FunctionChange
 		// Dark/NightMode
 		$('div[title="白天/黑夜模式"]').click(function () {
