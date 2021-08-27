@@ -142,53 +142,53 @@
         <div title="close">X</div>
         <div title="left"><</div>
         <div title="right">></div>
-        </div>
-        <ul>
-        </ul>
-        <script>
-            loadmore(20);
-            $('img').click(function () {
-                const num = this.alt;
-                const imgs = links[num];
+    </div>
+    <ul>
+    </ul>
+    <script>
+        loadmore(20);
+        $('ul').on( "click", 'img', function () {
+            const num = this.alt;
+            const imgs = links[num];
+            $('.big_viwer').css({
+                'background-image': 'url("' + imgs[0] + '")',
+                'display': 'unset',
+            });
+            $('.big_viwer').attr('data-alt', num);
+            $('.big_viwer').attr('data-now', 0);
+            for (let i = 0; i < imgs.length; i++) {
+                const element = imgs[i];
+                const newimg = new Image();
+                newimg.src = element;
+            }
+        });
+        $('.big_viwer').on( "click", 'div[title="close"]', function () {
+            $('.big_viwer').css({
+                'background-image': 'url("")',
+                'display': 'none',
+            });
+        });
+        $('.big_viwer').on( "click", 'div[title="left"]', function () {
+            const linkst = links[$('.big_viwer').attr('data-alt')];
+            const now = Number($('.big_viwer').attr('data-now'));
+            if (now > 0) {
                 $('.big_viwer').css({
-                    'background-image': 'url("' + imgs[0] + '")',
-                    'display': 'unset',
+                    'background-image': 'url("' + linkst[now - 1] + '")',
                 });
-                $('.big_viwer').attr('data-alt', num);
-                $('.big_viwer').attr('data-now', 0);
-                for (let i = 0; i < imgs.length; i++) {
-                    const element = imgs[i];
-                    const newimg = new Image();
-                    newimg.src = element;
-                }
-            });
-            $('.big_viwer>div[title="close"]').click(function () {
+                $('.big_viwer').attr('data-now', now - 1);
+            };
+        });
+        $('.big_viwer').on( "click", 'div[title="right"]', function () {
+            const linkst = links[$('.big_viwer').attr('data-alt')];
+            const now = Number($('.big_viwer').attr('data-now'));
+            if (now < linkst.length - 1) {
                 $('.big_viwer').css({
-                    'background-image': 'url("")',
-                    'display': 'none',
+                    'background-image': 'url("' + linkst[now + 1] + '")',
                 });
-            });
-            $('.big_viwer>div[title="left"]').click(function () {
-                const linkst = links[$('.big_viwer').attr('data-alt')];
-                const now = Number($('.big_viwer').attr('data-now'));
-                if (now > 0) {
-                    $('.big_viwer').css({
-                        'background-image': 'url("' + linkst[now - 1] + '")',
-                    });
-                    $('.big_viwer').attr('data-now', now - 1);
-                };
-            });
-            $('.big_viwer>div[title="right"]').click(function () {
-                const linkst = links[$('.big_viwer').attr('data-alt')];
-                const now = Number($('.big_viwer').attr('data-now'));
-                if (now < linkst.length - 1) {
-                    $('.big_viwer').css({
-                        'background-image': 'url("' + linkst[now + 1] + '")',
-                    });
-                    $('.big_viwer').attr('data-now', now + 1);
-                };
-            });
-        </script>
+                $('.big_viwer').attr('data-now', now + 1);
+            };
+        });
+    </script>
 </body>
 
 </html>
