@@ -131,33 +131,47 @@
 		.main>.article>.paragraphs>.original span {
 			position: relative;
 			text-align: center;
+			color: rgba(255, 0, 0, 1),
 		}
 
 		.main>.article>.paragraphs>.original span:hover {
-			cursor: pointer;
-			color: rgb(255, 255, 255);
-			background-color: rgb(32, 178, 171);
+			cursor: help;
 		}
 
-		.main>.article>.paragraphs>.original span:hover::before {
-			content: '';
+		.main>.article>.paragraphs>.original span::before,
+		.main>.article>.paragraphs>.original span::after{
 			position: absolute;
+			display: none;
+		}
+		
+		.main>.article>.paragraphs>.original span::before{
+			content: '';
 			top: -10px;
 			left: calc(50% - 10px);
 			border: 10px solid transparent;
 			border-top-color: rgb(128, 128, 128);
 		}
-		.main>.article>.paragraphs>.original span:hover::after {
+		
+		
+		.main>.article>.paragraphs>.original span::after {
 			content: attr(data-mean);
 			color: rgba(255, 255, 255, 1);
 			background-color: rgb(128, 128, 128);
-			position: absolute;
 			bottom: calc(100% + 10px);
 			left: -1em;
 			padding: 5px;
 			border-width: 0;
 			border-radius: 5px;
 			word-break: keep-all;
+		}
+		
+		.main>.article>.paragraphs>.original span:hover::before,
+		.main>.article>.paragraphs>.original span:hover::after,
+		.main>.article>.paragraphs>.original span:active::before,
+		.main>.article>.paragraphs>.original span:active::after,
+		.main>.article>.paragraphs>.original span:focus::before,
+		.main>.article>.paragraphs>.original span:focus::after {
+			display: inline-block;
 		}
 
 		/* ############################### */
@@ -245,7 +259,7 @@
 			<h3 class="NowViewing" title="正在瀏覽的項目">論仁、論孝、論君子</h3>
 		</div>
 		<div class="Functions" title="更多功能">
-			<div class="HideAllAnswear" title="顯示/隱藏所有答案"></div>
+			<div class="ShowAllAnswear" title="顯示/隱藏所有答案"></div>
 			<div class="DarkMode" title="白天/黑夜模式"></div>
 			<div class="Navigation" title="顯示/隱藏目錄"></div>
 		</div>
