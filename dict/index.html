@@ -60,7 +60,7 @@
 		$.get('./index.md',function (data) {
 			// build html DOM
             // match md list style
-            vocas = data.match(/- \w+/gi);
+            var vocas = data.match(/- \w+/gi);
             // vocas list loop
             for (let index = 0; index < vocas.length; index++) {
                 // each voca
