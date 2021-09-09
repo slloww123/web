@@ -54,7 +54,7 @@
 <body>
     <header></header>
     <main>
-        <iframe id="dictpage" src="https://dictionary.cambridge.org/dictionary/english-chinese-traditional/"></iframe>
+        <iframe name="dictpage" src="https://dictionary.cambridge.org/dictionary/english-chinese-traditional/"></iframe>
     </main>
     <footer></footer>
     <!-- <script type="text/javascript" charset="utf-8"> -->
@@ -69,9 +69,9 @@
                 // each voca
                 const voca = vocas[index];
                 // each word form voca
-                const src = voca.replace(/^- (\w+)$/g,'https://dictionary.cambridge.org/dictionary/english-chinese-traditional/$1');
+                voca = voca.replace(/^- (\w+)$/g,'$1');
                 // add element on header
-                $('header').append('<a target="dictpage" href="'+src+'">')
+                $('header').append('<a target="dictpage" href="https://dictionary.cambridge.org/dictionary/english-chinese-traditional/'+voca+'">'+voca+'</a>')
             }
 		});
     </script>
