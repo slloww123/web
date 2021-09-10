@@ -69,8 +69,18 @@
             for (let index = 0; index < vocas.length; index++) {
                 // each voca
                 const voca = vocas[index];
+                // create element
+                const a = document.createElement('a');
+                // set herf, target, text
+                a.setAttribute({
+                    'target': 'dictpage',
+                    'href': 'https://dictionary.cambridge.org/dictionary/english-chinese-traditional/'+voca,
+                    'textContent': voca,
+                });
+                // text
+                // a.createTextNode(voca);
                 // add element on header
-                $('header').append('<a target="dictpage" href="https://dictionary.cambridge.org/dictionary/english-chinese-traditional/'+voca+'">'+voca+'</a>')
+                document.querySelector('body > header').appendChild(a);
             }
 		});
     </script>
