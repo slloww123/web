@@ -64,13 +64,11 @@
 		$.get('./vocas.md',function (data) {
 			// build html DOM
             // match md list style
-            var vocas = data.match(/- \w+/gi);
+            var vocas = data.match(/\w+/gi);
             // vocas list loop
             for (let index = 0; index < vocas.length; index++) {
                 // each voca
                 const voca = vocas[index];
-                // each word form voca
-                voca = voca.replace(/^- (\w+)$/g,'$1');
                 // add element on header
                 $('header').append('<a target="dictpage" href="https://dictionary.cambridge.org/dictionary/english-chinese-traditional/'+voca+'">'+voca+'</a>')
             }
