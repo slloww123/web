@@ -27,7 +27,6 @@
 - distinguish
 - empowered
 - patronized
-- rewarded
 - measure
 - unsympathetic
 - assess
@@ -35,7 +34,6 @@
 - attitude
 - process
 - strategy
-- reassess
 - maintenance
 - properly
 - reach
