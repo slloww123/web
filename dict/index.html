@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
     <meta charset="utf-8">
-    <title>Dictionary</title>
+    <title>dict_list</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://releases.jquery.com/git/jquery-git.js"></script>
     <style type="text/css">
@@ -26,20 +26,36 @@
             /* bottom: 0; */
             display: flex;
             flex-wrap: wrap;
-            width: 6rem;
+            justify-content: center;
+            width: 6.7rem;
             /* height: 100%; */
             /* overflow-x: hidden; */
             /* overflow-y: auto; */
         }
 
         .viewer > header > a {
+            position: relative;
             text-align: center;
             border-width: .0625rem;
             border-style: solid;
-            border-color: #dadce0;
+            border-color: rgb(218 220 224);
             -webkit-border-radius: .5rem;
             border-radius: .5rem;
             padding: .5rem;
+        }
+
+        .viewer > header > a[data-index]::after{
+            content: attr(data-index);
+            z-index: -1;
+            background-color: rgba(128 128 128 / 50%);
+            position: absolute;
+            color: rgba(0 0 0 / 0);
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: 0 auto;
+            /* font-size: 2rem; */
         }
 
         .viewer > header > a:hover,
@@ -88,7 +104,7 @@
                 console.log('XMLHttpRequest is Done!');
             };
         });
-        request.open('GET', './vocas.md', false);
+        request.open('GET', 'vocas.md', false);
         request.send();
         // build html DOM
         // match md list style
@@ -99,12 +115,16 @@
             const voca = vocas[index];
             // create element
             const a = document.createElement('a');
-            // set herf, target, text
+            // set index for recognize easily
+            if (index % 5 === 0) {
+                a.setAttribute('data-index', index);
+            }
+            // set target
             a.setAttribute('target', 'dictpage');
+            // set herf
             a.setAttribute('href', 'https://dictionary.cambridge.org/dictionary/english-chinese-traditional/'+voca+'#caldcnt-1-1');
+            // set text
             a.textContent = voca;
-            // text
-            // a.createTextNode(voca);
             // add element on header
             document.querySelector('.viewer > header').appendChild(a);
         };
