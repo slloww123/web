@@ -97,18 +97,21 @@
     <script type="text/javascript" charset="utf-8">
     // <script charset="utf-8">
 		// get md file and import
-        // read text from URL location
-        let request = new XMLHttpRequest();
-        request.addEventListener("load", function () {
-            if (request["readyState"] === 4 && request["status"] === 200) {
-                console.log('XMLHttpRequest is Done!');
-            };
-        });
-        request.open('GET', 'vocas.md', false);
-        request.send();
+        function getdata(url='https://ldwise.github.io/web/dict/vocas.md') {
+            // read text from URL location
+            const request = new XMLHttpRequest();
+            request.addEventListener("load", function () {
+                if (request["readyState"] === 4 && request["status"] === 200) {
+                    console.log('XMLHttpRequest is Done!');
+                };
+            });
+            request.open('GET', url, false);
+            request.send();
+            return request["responseText"];
+        };
         // build html DOM
         // match md list style
-        let vocas = request["responseText"].match(/\w+/gi);
+        let vocas = getdata('vocas.md').match(/\w+/gi);
         // vocas list loop
         for (let index = 0; index < vocas.length; index++) {
             // each voca
