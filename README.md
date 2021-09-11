@@ -1,3 +1,3 @@
 # web
 ---
-It's @LDwise githu-page.
+It's @ldwise githu-page.
