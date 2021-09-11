@@ -1,3 +1,3 @@
 # web
 ---
-It's @ldwise githu-page.
+It's [@LDwise](https://github.com/LDwise) githu-page.
