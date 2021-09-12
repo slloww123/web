@@ -2,473 +2,485 @@
 <html>
 
 <head>
-	<meta charset="utf-8">
-	<title>指定文言經典精編</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<style>
-		body {
-			margin: 0;
-			padding: 0;
-			font-family: 'Google Sans',Roboto,Arial,sans-serif;
-			color: rgba(255, 255, 255, 1);
-			background-color: rgba(0, 0, 0, 1);
-			-webkit-user-select:none;
-			-webkit-touch-callout:none;
-			-moz-user-select: none;
-		}
+    <meta charset="utf-8">
+    <title>wyw</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://releases.jquery.com/git/jquery-git.js"></script>
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+            font-family: 'Roboto', Helvetica, Arial, sans-serif;
+        }
 
-		a {
-			color: rgba(255, 255, 255, 1);
-		}
+        .none {
+            display: none;
+        }
 
-		header {
-			top: 0px;
-			color: rgba(255, 255, 255, 1);
-			background: linear-gradient(to bottom, rgba(0, 0, 0, 0.65) 0%, transparent 120%);
-			position: fixed;
-			z-index: 10;
-			width: 100%;
-			height: 10%;
-			display: flex;
-			justify-content: space-between;
-			flex-wrap: wrap;
-		}
+        header {
+            height: 5rem;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.65) 0%, transparent 120%);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
 
-		header>.TopName>.NowViewing {
-			line-height: 0px;
-		}
+        header>button.head_tools {
+            margin: .5rem;
+            padding: .5rem;
+        }
 
-		header>.Functions {
-			display: flex;
-			justify-content: space-around;
-			flex-wrap: wrap;
-			padding: 10px;
-		}
+        .article_list {
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+        }
 
-		header>.Functions>* {
-			cursor: pointer;
-			height: 24px;
-			width: 24px;
-			padding: 8px;
-			border-width: 0;
-			border-radius: 0.5em;
-			background-repeat: no-repeat;
-			background-size: cover;
-			background-image: url("logo.svg");
-		}
+        .article_list>a {
+            font-size: 1.375rem;
+            font-weight: 400;
+            text-align: center;
+            border-width: 0.0625rem;
+            border-style: solid;
+            border-color: #dadce0;
+            -webkit-border-radius: 0.5rem;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin: 1rem;
+        }
 
-		header>.Functions>*:hover {
-			background-color: rgba(255, 255, 255, 0.25);
-		}
+        .article_list>a:hover {
+            box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);
+        }
 
-		header>.Functions>.DarkMode {
-			background-position: 0 0px;
-		}
+        .title>h1 {
+            text-align: center;
+        }
 
-		header>.Functions>.LightMode {
-			background-position: 0 -46px;
-		}
+        .title>.author {
+            display: flex;
+            justify-content: flex-end;
+        }
 
-		header>.Functions>.HideAllAnswear {
-			background-position: 0 -89px;
-		}
+        .passage_header {
+            display: flex;
+            justify-content: space-between;
+        }
 
-		header>.Functions>.ShowAllAnswear {
-			background-position: 0 -134px;
-		}
+        .btn_relate {
+            /* background-image: url('https://ssl.gstatic.com/docs/common/viewer/v3/v-sprite38.svg')!important;
+            background-position: 0 -1784px;
+            background-repeat: no-repeat; */
+            background: none;
+            border: none;
+            border-radius: .5rem;
+            cursor: pointer;
+            outline: none;
+            padding: 0 .5rem;
+            /* width: 24px;
+            height: 24px; */
+        }
 
-		header>.Functions>.Navigation {
-			background-position: 0 -180px;
-		}
+        .btn_relate:hover {
+            background-color: rgba(128, 128, 128, 0.39);
+        }
 
-		header>.Functions>.NavigationClose {
-			background-position: 0 -225px;
-		}
+        .btn_relate>svg {
+            width: 100%;
+            height: 100%;
+        }
 
-		/* ############################### */
-		.main>.article {
-			padding-top: 3em;
-		}
+        .sentences {
+            display: flex;
+            justify-content: space-around;
+        }
 
-		.main>.article>h1 {
-			position: relative;
-			text-align: center;
-		}
+        .sentences>div {
+            padding: 1rem;
+        }
 
-		.main>.article>h1::after {
-			content: attr(data-author);
-			position: absolute;
-			bottom: -1.5em;
-			right: 1em;
-			font-size: medium;
-		}
+        .sentences .span_hover {
+            background-color: rgb(153, 205, 50);
+        }
 
-		.main>.article>.paragraphs {
-			cursor: default;
-			position: relative;
-			padding-bottom: 2em;
-			display: flex;
-			justify-content: space-around;
-		}
+        .sentences>.original span[data-mean] {
+            position: relative;
+            color: rgb(255, 56, 56);
+        }
 
-		.main>.article>.paragraphs::after {
-			content: attr(data-subtitle);
-			position: absolute;
-			top: -1.5em;
-			left: 1em;
-			font-size: medium;
-		}
+        .sentences>.original span[data-mean]:hover {
+            background-color: rgb(157, 230, 255);
+        }
 
-		.main>.article>.paragraphs>div {
-			padding: 1em;
-			box-shadow: 0 0 0.25em currentColor;
-		}
-		.main>.article>.paragraphs div {
-			display: inline;
-		}
+        .sentences>.original span[data-mean]:hover::after {
+            position: absolute;
+            color: rgb(255, 255, 255);
+            display: inline-block;
+            z-index: 100;
+            content: attr(data-mean);
+            text-align: center;
+            word-break: keep-all;
+            left: -1rem;
+            bottom: 100%;
+            margin-bottom: 6px;
+            padding: .5em .75em;
+            border-radius: 6px;
+            background-color: gray;
+        }
 
-		.main>.article>.paragraphs>.original span {
-			position: relative;
-			text-align: center;
-			color: rgba(255, 0, 0, 1);
-		}
+        .sentences>.original span[data-mean]:hover::before {
+            position: absolute;
+            color: rgb(255, 255, 255);
+            display: inline-block;
+            z-index: 100;
+            content: "";
+            border: 6px solid transparent;
+            top: -7px;
+            right: 50%;
+            margin-right: -6px;
+            border-top-color: gray;
+        }
 
-		.main>.article>.paragraphs>.original span:hover {
-			cursor: help;
-		}
+        /* ############################### */
+        footer {
+            bottom: 0;
+            width: 100%;
+            color: rgba(255, 255, 255, 1);
+            background-color: rgba(0, 0, 0, 1);
+            text-align: center;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
 
-		.main>.article>.paragraphs>.original span::before,
-		.main>.article>.paragraphs>.original span::after{
-			position: absolute;
-			display: none;
-		}
-		
-		.main>.article>.paragraphs>.original span::before{
-			content: '';
-			top: -10px;
-			left: calc(50% - 10px);
-			border: 10px solid transparent;
-			border-top-color: rgb(128, 128, 128);
-		}
-		
-		
-		.main>.article>.paragraphs>.original span::after {
-			content: attr(data-mean);
-			color: rgba(255, 255, 255, 1);
-			background-color: rgb(128, 128, 128);
-			bottom: calc(100% + 10px);
-			left: -1em;
-			padding: 5px;
-			border-width: 0;
-			border-radius: 5px;
-			word-break: keep-all;
-		}
-		
-		.main>.article>.paragraphs>.original span:hover::before,
-		.main>.article>.paragraphs>.original span:hover::after,
-		.main>.article>.paragraphs>.original span:active::before,
-		.main>.article>.paragraphs>.original span:active::after,
-		.main>.article>.paragraphs>.original span:focus::before,
-		.main>.article>.paragraphs>.original span:focus::after {
-			display: inline-block;
-		}
+        footer a {
+            color: white;
+        }
 
-		/* ############################### */
-		.NavigationList {
-			position: fixed;
-			width: 80%;
-			right: 0px;
-			top: 10%;
-			color: rgba(255, 255, 255, 1);
-			background-color: rgba(0, 0, 0, 1);
-			text-align: center;
-			display: none;
-			border-width: 0;
-			border-radius: 2em;
-			box-shadow: 0 0 1em currentColor;
-		}
+        footer>div {
+            padding: 10px;
+        }
 
-		.NavigationList a {
-			color: rgba(255, 255, 255, 1);
-		}
+        footer>div.Feedback>textarea {
+            width: 100%;
+            height: 5rem;
+            grid-row: span;
+        }
 
-		.NavigationList>div {
-			position: relative;
-			padding: 10px;
-		}
+        footer>div.Feedback>.SendFeedback {
+            cursor: pointer;
+            margin: 0 auto;
+            height: 24px;
+            width: 24px;
+            padding: 8px;
+            border-width: 0;
+            border-radius: 0.5em;
+            background-repeat: no-repeat;
+            /* background-size: cover; */
+            background-image: url('https://ssl.gstatic.com/docs/common/viewer/v3/v-sprite38.svg');
+            background-position: 0 -3242px;
+            background-position-x: center;
+        }
 
-		.NavigationList>div::after {
-			content: attr(title);
-			position: absolute;
-			top: 1em;
-			left: 1em;
-			margin: 0;
-			font-size: 1em;
-		}
+        footer>div.Feedback>.SendFeedback:hover {
+            background-color: rgba(255, 255, 255, 0.25);
+        }
 
-		/* ############################### */
-		footer {
-			bottom: 0;
-			width: 100%;
-			color: rgba(255, 255, 255, 1);
-			background-color: rgba(0, 0, 0, 1);
-			text-align: center;
-			display: flex;
-			justify-content: space-around;
-			flex-wrap: wrap;
-		}
-
-		footer>div {
-			padding: 10px;
-		}
-
-		footer>div.Feedback>textarea{
-			width: 100%;
-			height: fit-content;
-			grid-row: span;
-		}
-		footer>div.Feedback>.SendFeedback {
-			cursor: pointer;
-			margin: 0 auto;
-			height: 24px;
-			width: 24px;
-			padding: 8px;
-			border-width: 0;
-			border-radius: 0.5em;
-			background-repeat: no-repeat;
-			background-size: cover;
-			background-image: url("logo.svg");
-			background-position: -2px -360px;
-		}
-
-		footer>div.Feedback>.SendFeedback:hover {
-			background-color: rgba(255, 255, 255, 0.25);
-		}
-
-		footer>div.Feedback>.SendFeedback:active {
-			background-position: -2px -406px;
-		}
-	</style>
+        /* footer>div.Feedback>.SendFeedback:active {
+            background-position: 0 -3242px;
+        } */
+    </style>
 </head>
 
 <body>
-	<header>
-		<div class="TopName" title="指定文言經典精編">
-			指定文言經典精編
-			<h3 class="NowViewing" title="正在瀏覽的項目">論仁、論孝、論君子</h3>
-		</div>
-		<div class="Functions" title="更多功能">
-			<div class="ShowAllAnswear" title="顯示/隱藏所有答案"></div>
-			<div class="DarkMode" title="白天/黑夜模式"></div>
-			<div class="Navigation" title="顯示/隱藏目錄"></div>
-		</div>
-	</header>
-	<div class="main">
-		<!-- ------------------------------------------------------------- -->
-		<div class="article">
-			<h1 id="論仁、論孝、論君子" data-author="論語">論仁、論孝、論君子</h1>
-			<div class="paragraphs" data-subtitle="論仁">
-			<div class="original"><div class="sentences" data-sentences="1-p1-1">子曰：「</div><div class="sentences" data-sentences="1-p1-2">不仁者,</div><div class="sentences" data-sentences="1-p1-3">不可以久處<span data-mean="窮困、貧困">約</span>,</div><div class="sentences" data-sentences="1-p1-4">不可以長處樂。</div><div class="sentences" data-sentences="1-p1-5">仁者安仁,</div><div class="sentences" data-sentences="1-p1-6">知者<span data-mean="利用">利</span>仁。</div><div class="sentences" data-sentences="1-p1-7">」(《里仁》第四)</div></div>
-			<div class="translation"><div class="sentences" data-sentences="1-p1-1">孔子說:「</div><div class="sentences" data-sentences="1-p1-2">沒有仁德的人,</div><div class="sentences" data-sentences="1-p1-3">不可以長期處身窮困的環境,</div><div class="sentences" data-sentences="1-p1-4">不可以長期過安樂的生活。</div><div class="sentences" data-sentences="1-p1-5">有仁德的人安於仁德,</div><div class="sentences" data-sentences="1-p1-6">有智慧的人實行仁德。</div><div class="sentences" data-sentences="1-p1-7">」</div></div>
-			<div class="questions"></div>
-			</div>
-			<div class="paragraphs" data-subtitle="">
-			<div class="original"><div class="sentences" data-sentences="1-p2-1">子曰：「</div><div class="sentences" data-sentences="1-p2-2">富與貴,</div><div class="sentences" data-sentences="1-p2-3">是人之所欲也;</div><div class="sentences" data-sentences="1-p2-4">不以其道得之,</div><div class="sentences" data-sentences="1-p2-5">不<span data-mean="接受">處</span>也。</div><div class="sentences" data-sentences="1-p2-6">貧與賤,</div><div class="sentences" data-sentences="1-p2-7">是人之所惡也;</div><div class="sentences" data-sentences="1-p2-8">不以其道<span data-mean="得以拋掉它（貧困）">得之</span>,</div><div class="sentences" data-sentences="1-p2-9">不<span data-mean="離棄">去</span>也。</div><div class="sentences" data-sentences="1-p2-10">君子去仁,</div><div class="sentences" data-sentences="1-p2-11"><span data-mean="疑問代詞，怎麼、如何">惡</span>乎成名?</div><div class="sentences" data-sentences="1-p2-12">君子無<span data-mean="吃完一餐飯的時間">終食之間</span>違仁,</div><div class="sentences" data-sentences="1-p2-13"><span data-mean="在倉卒匆忙時一定與仁德同在">造次必於是</span>,</div><div class="sentences" data-sentences="1-p2-14"><span data-mean="顛沛流離">顛沛</span>必於是。</div><div class="sentences" data-sentences="1-p2-15">」(《里仁》第四)</div></div>
-			<div class="translation"><div class="sentences" data-sentences="1-p2-1">孔子說:「</div><div class="sentences" data-sentences="1-p2-2">富有和顯貴,</div><div class="sentences" data-sentences="1-p2-3">這是人人盼望的;</div><div class="sentences" data-sentences="1-p2-4">如果不是用正當的方法得到它,</div><div class="sentences" data-sentences="1-p2-5">便不接受。</div><div class="sentences" data-sentences="1-p2-6">貧困和微賤,</div><div class="sentences" data-sentences="1-p2-7">這是人人厭惡的;</div><div class="sentences" data-sentences="1-p2-8">如果不是用正當的方法擺脫它,</div><div class="sentences" data-sentences="1-p2-9">便不逃避。</div><div class="sentences" data-sentences="1-p2-10">君子拋棄了仁德,</div><div class="sentences" data-sentences="1-p2-11">怎樣成就君子的聲名呢?</div><div class="sentences" data-sentences="1-p2-12">君子沒有一頓飯的時間離棄仁德,</div><div class="sentences" data-sentences="1-p2-13">就算在倉卒、匆忙的時候也必定堅持仁德,</div><div class="sentences" data-sentences="1-p2-14">在窮困、受挫折的時候也必定堅持仁德。</div><div class="sentences" data-sentences="1-p2-15">」</div></div>
-			<div class="questions"></div>
-			</div>
-			<div class="paragraphs" data-subtitle="">
-			<div class="original"><div class="sentences" data-sentences="1-p3-1">顏淵問仁。</div><div class="sentences" data-sentences="1-p3-2">子曰：「</div><div class="sentences" data-sentences="1-p3-3">克己復禮為仁。</div><div class="sentences" data-sentences="1-p3-4">一日克己復禮,</div><div class="sentences" data-sentences="1-p3-5">天下歸仁焉。</div><div class="sentences" data-sentences="1-p3-6">為仁由己,</div><div class="sentences" data-sentences="1-p3-7">而由人乎哉?</div><div class="sentences" data-sentences="1-p3-8">」</div><div class="sentences" data-sentences="1-p3-9">顏淵曰：「</div><div class="sentences" data-sentences="1-p3-10">請問其<span data-mean="綱目、要目">目</span>。</div><div class="sentences" data-sentences="1-p3-11">」</div><div class="sentences" data-sentences="1-p3-12">子曰：「</div><div class="sentences" data-sentences="1-p3-13">非禮勿視,</div><div class="sentences" data-sentences="1-p3-14">非禮勿聽,</div><div class="sentences" data-sentences="1-p3-15">非禮勿言,</div><div class="sentences" data-sentences="1-p3-16">非禮勿動。</div><div class="sentences" data-sentences="1-p3-17">」</div><div class="sentences" data-sentences="1-p3-18">顏淵曰：「</div><div class="sentences" data-sentences="1-p3-19">回雖不敏,</div><div class="sentences" data-sentences="1-p3-20">請事斯語矣。</div><div class="sentences" data-sentences="1-p3-21">」(《顏淵》第十二)</div></div>
-			<div class="translation"><div class="sentences" data-sentences="1-p3-1">顏淵問怎樣實行仁。</div><div class="sentences" data-sentences="1-p3-2">孔子道:「</div><div class="sentences" data-sentences="1-p3-3">約束自我,使言語行為都合於禮,就是仁。</div><div class="sentences" data-sentences="1-p3-4">一旦做到這樣,</div><div class="sentences" data-sentences="1-p3-5">天下間的人都會讚許他是仁人。</div><div class="sentences" data-sentences="1-p3-6">實行仁德要靠自己,</div><div class="sentences" data-sentences="1-p3-7">難道靠別人嗎?</div><div class="sentences" data-sentences="1-p3-8">」</div><div class="sentences" data-sentences="1-p3-9">顏淵道:「</div><div class="sentences" data-sentences="1-p3-10">請告訴我一些實行仁德的條目。</div><div class="sentences" data-sentences="1-p3-11">」</div><div class="sentences" data-sentences="1-p3-12">孔子道:「</div><div class="sentences" data-sentences="1-p3-13">不合禮的事不去看,</div><div class="sentences" data-sentences="1-p3-14">不合禮的話不去聽,</div><div class="sentences" data-sentences="1-p3-15">不合禮的話不去說,</div><div class="sentences" data-sentences="1-p3-16">不合禮的事不去做。</div><div class="sentences" data-sentences="1-p3-17">」</div><div class="sentences" data-sentences="1-p3-18">顏淵道:「</div><div class="sentences" data-sentences="1-p3-19">我雖然遲鈍,</div><div class="sentences" data-sentences="1-p3-20">請你允許我去實行這番話。</div><div class="sentences" data-sentences="1-p3-21">」</div></div>
-			<div class="questions"></div>
-			</div>
-			<div class="paragraphs" data-subtitle="">
-			<div class="original"><div class="sentences" data-sentences="1-p4-1">子曰：「</div><div class="sentences" data-sentences="1-p4-2">志士仁人,</div><div class="sentences" data-sentences="1-p4-3">無求生以害仁,</div><div class="sentences" data-sentences="1-p4-4">有殺身以成仁。</div><div class="sentences" data-sentences="1-p4-5">」《衛(靈公》第十五)</div></div>
-			<div class="translation"><div class="sentences" data-sentences="1-p4-1">孔子說:「</div><div class="sentences" data-sentences="1-p4-2">有節操的人和有仁德的人,</div><div class="sentences" data-sentences="1-p4-3">不因為貪生而損害仁義,</div><div class="sentences" data-sentences="1-p4-4">只有犧牲自己的生命來成全仁義。</div><div class="sentences" data-sentences="1-p4-5">」</div></div>
-			<div class="questions"></div>
-			</div>
-			<div class="paragraphs" data-subtitle="論孝">
-			<div class="original"><div class="sentences" data-sentences="1-p5-1">孟懿子問孝。</div><div class="sentences" data-sentences="1-p5-2">子曰：「</div><div class="sentences" data-sentences="1-p5-3">無違。</div><div class="sentences" data-sentences="1-p5-4">」</div><div class="sentences" data-sentences="1-p5-5">樊遲御,</div><div class="sentences" data-sentences="1-p5-6">子告之曰：「</div><div class="sentences" data-sentences="1-p5-7">孟孫問孝於我,</div><div class="sentences" data-sentences="1-p5-8">我對曰,</div><div class="sentences" data-sentences="1-p5-9">無違。</div><div class="sentences" data-sentences="1-p5-10">」</div><div class="sentences" data-sentences="1-p5-11">樊遲曰：「</div><div class="sentences" data-sentences="1-p5-12">何謂也?</div><div class="sentences" data-sentences="1-p5-13">」</div><div class="sentences" data-sentences="1-p5-14">子曰：「</div><div class="sentences" data-sentences="1-p5-15">生事之以禮;</div><div class="sentences" data-sentences="1-p5-16">死葬之以禮,</div><div class="sentences" data-sentences="1-p5-17">祭之以禮。</div><div class="sentences" data-sentences="1-p5-18">」（《為政》第二）</div></div>
-			<div class="translation"><div class="sentences" data-sentences="1-p5-1">孟懿子問如何是孝。</div><div class="sentences" data-sentences="1-p5-2">孔子說:「</div><div class="sentences" data-sentences="1-p5-3">不要違背禮節。</div><div class="sentences" data-sentences="1-p5-4">」</div><div class="sentences" data-sentences="1-p5-5">樊遲替孔子駕車,</div><div class="sentences" data-sentences="1-p5-6">孔子告訴他說:「</div><div class="sentences" data-sentences="1-p5-7">孟孫問我盡孝之道,</div><div class="sentences" data-sentences="1-p5-8">我回答說,</div><div class="sentences" data-sentences="1-p5-9">不要違背禮節。</div><div class="sentences" data-sentences="1-p5-10">」</div><div class="sentences" data-sentences="1-p5-11">樊遲說:「</div><div class="sentences" data-sentences="1-p5-12">這是甚麼意思呢?</div><div class="sentences" data-sentences="1-p5-13">」</div><div class="sentences" data-sentences="1-p5-14">孔子說:「</div><div class="sentences" data-sentences="1-p5-15">父母健在時,依規定的禮節侍奉他們;</div><div class="sentences" data-sentences="1-p5-16">父母去世,依規定的禮節安葬他們、</div><div class="sentences" data-sentences="1-p5-17">祭祀他們。</div><div class="sentences" data-sentences="1-p5-18">」</div></div>
-			<div class="questions"></div>
-			</div>
-			<div class="paragraphs" data-subtitle="">
-			<div class="original"><div class="sentences" data-sentences="1-p6-1">子游問孝。</div><div class="sentences" data-sentences="1-p6-2">子曰：「</div><div class="sentences" data-sentences="1-p6-3">今之孝者,</div><div class="sentences" data-sentences="1-p6-4">是謂能<span data-mean="供養">養</span>。</div><div class="sentences" data-sentences="1-p6-5">至於犬馬,</div><div class="sentences" data-sentences="1-p6-6">皆能有<span data-mean="飼養">養</span>;</div><div class="sentences" data-sentences="1-p6-7">不敬,</div><div class="sentences" data-sentences="1-p6-8">何以別乎!</div><div class="sentences" data-sentences="1-p6-9">」（《為政》第二）</div></div>
-			<div class="translation"><div class="sentences" data-sentences="1-p6-1">子游問如何是孝。</div><div class="sentences" data-sentences="1-p6-2">孔子說:「</div><div class="sentences" data-sentences="1-p6-3">現在的所謂孝子,</div><div class="sentences" data-sentences="1-p6-4">只說能事奉供養(父母)。</div><div class="sentences" data-sentences="1-p6-5">至於狗、馬,</div><div class="sentences" data-sentences="1-p6-6">都能夠得到(食物來)飼養,</div><div class="sentences" data-sentences="1-p6-7">如果對父母不恭敬,</div><div class="sentences" data-sentences="1-p6-8">這跟飼養狗、馬有甚麼分別呢?</div><div class="sentences" data-sentences="1-p6-9">」</div></div>
-			<div class="questions"></div>
-			</div>
-			<div class="paragraphs" data-subtitle="">
-			<div class="original"><div class="sentences" data-sentences="1-p7-1">子曰：「</div><div class="sentences" data-sentences="1-p7-2">事父母<span data-mean="輕微、婉轉">幾</span>諫,</div><div class="sentences" data-sentences="1-p7-3">見志不從,</div><div class="sentences" data-sentences="1-p7-4">又敬不<span data-mean="觸忤、冒犯">違</span>,</div><div class="sentences" data-sentences="1-p7-5"><span data-mean="擔憂">勞</span>而不怨。</div><div class="sentences" data-sentences="1-p7-6">」(《里仁》第四)</div></div>
-			<div class="translation"><div class="sentences" data-sentences="1-p7-1">孔子說:「</div><div class="sentences" data-sentences="1-p7-2">侍奉父母,(如果父母有不對的地方,)要婉言勸諫;</div><div class="sentences" data-sentences="1-p7-3">看到自己的規勸沒有獲父母接納,</div><div class="sentences" data-sentences="1-p7-4">仍要恭敬地對待他們,不冒犯他們;</div><div class="sentences" data-sentences="1-p7-5">因多次勸諫父母而勞苦,但不會怨恨。</div><div class="sentences" data-sentences="1-p7-6">」</div></div>
-			<div class="questions"></div>
-			</div>
-			<div class="paragraphs" data-subtitle="">
-			<div class="original"><div class="sentences" data-sentences="1-p8-1">子曰：「</div><div class="sentences" data-sentences="1-p8-2">父母之年,</div><div class="sentences" data-sentences="1-p8-3">不可不知也。</div><div class="sentences" data-sentences="1-p8-4">一則以喜,</div><div class="sentences" data-sentences="1-p8-5">一則以懼。</div><div class="sentences" data-sentences="1-p8-6">」(《里仁》第四)</div></div>
-			<div class="translation"><div class="sentences" data-sentences="1-p8-1">孔子說:「</div><div class="sentences" data-sentences="1-p8-2">父母的年齡,</div><div class="sentences" data-sentences="1-p8-3">不能夠不時時刻刻記掛心上。</div><div class="sentences" data-sentences="1-p8-4">一方面因(父母長壽)而高興,</div><div class="sentences" data-sentences="1-p8-5">一方面因(父母年事已高)而恐懼。</div><div class="sentences" data-sentences="1-p8-6">」</div></div>
-			<div class="questions"></div>
-			</div>
-			<div class="paragraphs" data-subtitle="論君子">
-			<div class="original"><div class="sentences" data-sentences="1-p9-1">子曰：「</div><div class="sentences" data-sentences="1-p9-2"><span data-mean="有德之人">君子</span><span data-mean="不莊重">不重</span>則不威;</div><div class="sentences" data-sentences="1-p9-3"><span data-mean="即使讀書，所學也不會牢固;學了就不會閉塞淺陋。">學則不固</span>。</div><div class="sentences" data-sentences="1-p9-4">主忠信。</div><div class="sentences" data-sentences="1-p9-5">無友不如己者。</div><div class="sentences" data-sentences="1-p9-6"><span data-mean="過錯">過</span>則勿<span data-mean="害怕、畏懼">憚</span>改。</div><div class="sentences" data-sentences="1-p9-7">」(《學而》第一)</div></div>
-			<div class="translation"><div class="sentences" data-sentences="1-p9-1">孔子說:「</div><div class="sentences" data-sentences="1-p9-2">君子不莊重,就沒有威嚴,</div><div class="sentences" data-sentences="1-p9-3">所學的也不穩固。</div><div class="sentences" data-sentences="1-p9-4">(行事)以忠誠和信實為主,</div><div class="sentences" data-sentences="1-p9-5">不要結交(品德)比不上自己的人。</div><div class="sentences" data-sentences="1-p9-6">有了過錯,就不要害怕改正。</div><div class="sentences" data-sentences="1-p9-7">」</div></div>
-			<div class="questions"></div>
-			</div>
-			<div class="paragraphs" data-subtitle="">
-			<div class="original"><div class="sentences" data-sentences="1-p10-1">子曰：「</div><div class="sentences" data-sentences="1-p10-2">君子坦蕩蕩,</div><div class="sentences" data-sentences="1-p10-3">小人長戚戚。</div><div class="sentences" data-sentences="1-p10-4">」(《述而》第七)</div></div>
-			<div class="translation"><div class="sentences" data-sentences="1-p10-1">孔子說:「</div><div class="sentences" data-sentences="1-p10-2">君子心境舒坦寬廣,</div><div class="sentences" data-sentences="1-p10-3">小人經常憂愁恐懼。</div><div class="sentences" data-sentences="1-p10-4">」</div></div>
-			<div class="questions"></div>
-			</div>
-			<div class="paragraphs" data-subtitle="">
-			<div class="original"><div class="sentences" data-sentences="1-p11-1">司馬牛問君子。</div><div class="sentences" data-sentences="1-p11-2">子曰：「</div><div class="sentences" data-sentences="1-p11-3">君子不憂不懼。</div><div class="sentences" data-sentences="1-p11-4">」</div><div class="sentences" data-sentences="1-p11-5">曰：「</div><div class="sentences" data-sentences="1-p11-6">不憂不懼,</div><div class="sentences" data-sentences="1-p11-7">斯謂之君子矣乎?</div><div class="sentences" data-sentences="1-p11-8">」</div><div class="sentences" data-sentences="1-p11-9">子曰：「</div><div class="sentences" data-sentences="1-p11-10">內省不疚,</div><div class="sentences" data-sentences="1-p11-11">夫何憂何懼?</div><div class="sentences" data-sentences="1-p11-12">」(《顏淵》第十二)</div></div>
-			<div class="translation"><div class="sentences" data-sentences="1-p11-1">司馬牛問怎樣才算是君子。</div><div class="sentences" data-sentences="1-p11-2">孔子說:「</div><div class="sentences" data-sentences="1-p11-3">君子不憂愁,不恐懼。</div><div class="sentences" data-sentences="1-p11-4">」</div><div class="sentences" data-sentences="1-p11-5">司馬牛再問:「</div><div class="sentences" data-sentences="1-p11-6">不憂愁,不恐懼,</div><div class="sentences" data-sentences="1-p11-7">這就是君子了嗎?</div><div class="sentences" data-sentences="1-p11-8">」</div><div class="sentences" data-sentences="1-p11-9">孔子說:「</div><div class="sentences" data-sentences="1-p11-10">自我反省而不感到羞愧,</div><div class="sentences" data-sentences="1-p11-11">有甚麼值得憂愁恐懼呢?</div><div class="sentences" data-sentences="1-p11-12">」</div></div>
-			<div class="questions"></div>
-			</div>
-			<div class="paragraphs" data-subtitle="">
-			<div class="original"><div class="sentences" data-sentences="1-p12-1">子曰：「</div><div class="sentences" data-sentences="1-p12-2">君子成人之美,</div><div class="sentences" data-sentences="1-p12-3">不成人之惡。</div><div class="sentences" data-sentences="1-p12-4">小人反是。</div><div class="sentences" data-sentences="1-p12-5">」(《顏淵》第十二)</div></div>
-			<div class="translation"><div class="sentences" data-sentences="1-p12-1">孔子說:「</div><div class="sentences" data-sentences="1-p12-2">君子成全別人做好事,</div><div class="sentences" data-sentences="1-p12-3">不幫助別人做壞事。</div><div class="sentences" data-sentences="1-p12-4">小人與此相反。</div><div class="sentences" data-sentences="1-p12-5">」</div></div>
-			<div class="questions"></div>
-			</div>
-			<div class="paragraphs" data-subtitle="">
-			<div class="original"><div class="sentences" data-sentences="1-p13-1">子曰：「</div><div class="sentences" data-sentences="1-p13-2">君子恥其言而過其<span data-mean="行為、品行">行</span>。</div><div class="sentences" data-sentences="1-p13-3">」(《憲問》第十四)</div></div>
-			<div class="translation"><div class="sentences" data-sentences="1-p13-1">孔子說:「</div><div class="sentences" data-sentences="1-p13-2">君子以說得多,做得少為恥。</div><div class="sentences" data-sentences="1-p13-3">」</div></div>
-			<div class="questions"></div>
-			</div>
-			<div class="paragraphs" data-subtitle="">
-			<div class="original"><div class="sentences" data-sentences="1-p14-1">子曰：「</div><div class="sentences" data-sentences="1-p14-2">君子義以為質,</div><div class="sentences" data-sentences="1-p14-3">禮以行之,</div><div class="sentences" data-sentences="1-p14-4"><span data-mean="通「遜」，謙遜">孫</span>以出之,</div><div class="sentences" data-sentences="1-p14-5">信以成之。</div><div class="sentences" data-sentences="1-p14-6">君子哉!</div><div class="sentences" data-sentences="1-p14-7">」(《衛靈公》第十五)</div></div>
-			<div class="translation"><div class="sentences" data-sentences="1-p14-1">孔子說:「</div><div class="sentences" data-sentences="1-p14-2">君子做事以合義為原則,</div><div class="sentences" data-sentences="1-p14-3">依照禮節來實行它,</div><div class="sentences" data-sentences="1-p14-4">以謙遜的語言說出它,</div><div class="sentences" data-sentences="1-p14-5">以誠實的態度完成它。</div><div class="sentences" data-sentences="1-p14-6">此乃是君子啊!</div><div class="sentences" data-sentences="1-p14-7">」</div></div>
-			<div class="questions"></div>
-			</div>
-			<div class="paragraphs" data-subtitle="">
-			<div class="original"><div class="sentences" data-sentences="1-p15-1">子曰：「</div><div class="sentences" data-sentences="1-p15-2">君子<span data-mean="慚愧、抱怨">病</span>無能焉,</div><div class="sentences" data-sentences="1-p15-3">不病人之不己知也。</div><div class="sentences" data-sentences="1-p15-4">」(《衛靈公》第十五)</div></div>
-			<div class="translation"><div class="sentences" data-sentences="1-p15-1">孔子說:「</div><div class="sentences" data-sentences="1-p15-2">君子擔憂自己沒有才能,</div><div class="sentences" data-sentences="1-p15-3">不擔心別人不賞識自己。</div><div class="sentences" data-sentences="1-p15-4">」</div></div>
-			<div class="questions"></div>
-			</div>
-			<div class="paragraphs" data-subtitle="">
-			<div class="original"><div class="sentences" data-sentences="1-p16-1">子曰：「</div><div class="sentences" data-sentences="1-p16-2">君子求諸己,</div><div class="sentences" data-sentences="1-p16-3">小人求諸人。</div><div class="sentences" data-sentences="1-p16-4">」(《衛靈公》第十五)</div></div>
-			<div class="translation"><div class="sentences" data-sentences="1-p16-1">孔子說:「</div><div class="sentences" data-sentences="1-p16-2">君子要求自己,</div><div class="sentences" data-sentences="1-p16-3">小人要求別人。</div><div class="sentences" data-sentences="1-p16-4">」</div></div>
-			<div class="questions"></div>
-			</div>
-			</div>
-		<!-- ------------------------------------------------------------- -->
-	</div>
-	<footer>
-		<div title="資料來源" class="Source">
-			<strong>資料來源</strong><br>
-			原文:<a
-				href="https://www.edb.gov.hk/tc/curriculum-development/kla/chi-edu/nss-lang/settext-reference.html">指定文言經典學習材料教師參考資料選編</a><br>
-			譯文:牛津大學出版社•文言選讀•課文語譯<a href="#"></a><br>
-			字譯:<a
-				href="https://www.edb.gov.hk/tc/curriculum-development/kla/chi-edu/nss-lang/settext-reference.html">指定文言經典學習材料教師參考資料選編</a><br>
-			主旨:<a
-				href="https://www.edb.gov.hk/tc/curriculum-development/kla/chi-edu/nss-lang/settext-reference.html">指定文言經典學習材料教師參考資料選編</a><br>
-			作法:啓思出版社•指定文言經典精編<a href="#"></a><br>
-			題庫:<a href="https://dsepp.com/resource_centre/chinese/">DSEPP</a><br>
-		</div>
-		<div title="反饋" class="Feedback">
-			<strong>反饋</strong><br>
-			<textarea placeholder="我有疑問關於..."></textarea>
-			<div class="SendFeedback" title="發送反饋"></div>
-		</div>
-		<div class="LastUpDate">
-			最後更新時間: 2021/08/18
-		</div>
-	</footer>
-	<div class="NavigationList" title="目錄内容">
-		<div title="文言文">
-			<a href="#論仁、論孝、論君子" title="論仁、論孝、論君子">論仁、論孝、論君子</a><br>
-			<a href="https://docs.google.com/viewer?url=https://ldwise.github.io/web/wyw/魚我所欲也.pdf" title="魚我所欲也">魚我所欲也</a><br>
-			<a href="https://docs.google.com/viewer?url=https://ldwise.github.io/web/wyw/逍遙遊(節錄).pdf" title="逍遙遊(節錄)">逍遙遊(節錄)</a><br>
-			<a href="https://docs.google.com/viewer?url=https://ldwise.github.io/web/wyw/勸學(節錄).pdf" title="勸學(節錄)">勸學(節錄)</a><br>
-			<a href="https://docs.google.com/viewer?url=https://ldwise.github.io/web/wyw/廉頗藺相如列傳(節錄).pdf" title="廉頗藺相如列傳(節錄)">廉頗藺相如列傳(節錄)</a><br>
-			<a href="https://docs.google.com/viewer?url=https://ldwise.github.io/web/wyw/%E5%87%BA%E5%B8%AB%E8%A1%A8.pdf" title="出師表">出師表</a><br>
-			<a href="https://docs.google.com/viewer?url=https://ldwise.github.io/web/wyw/師說.pdf" title="師說">師說</a><br>
-			<a href="https://docs.google.com/viewer?url=https://ldwise.github.io/web/wyw/始得西山宴遊記.pdf" title="始得西山宴遊記">始得西山宴遊記</a><br>
-			<a href="https://docs.google.com/viewer?url=https://ldwise.github.io/web/wyw/岳陽樓記.pdf" title="岳陽樓記">岳陽樓記</a><br>
-			<a href="https://docs.google.com/viewer?url=https://ldwise.github.io/web/wyw/六國論.pdf" title="六國論">六國論</a><br>
-			<a href="https://docs.google.com/viewer?url=https://ldwise.github.io/web/wyw/山居秋暝.pdf" title="山居秋暝">山居秋暝</a><br>
-			<a href="https://docs.google.com/viewer?url=https://ldwise.github.io/web/wyw/月下獨酌(其一).pdf" title="月下獨酌(其一">月下獨酌(其一)</a><br>
-			<a href="https://docs.google.com/viewer?url=https://ldwise.github.io/web/wyw/登樓.pdf" title="登樓">登樓</a><br>
-			<a href="https://docs.google.com/viewer?url=https://ldwise.github.io/web/wyw/念奴嬌·赤壁懷古(大江東去).pdf" title="念奴嬌 赤壁懷古 (大江東去)">念奴嬌 赤壁懷古 (大江東去)</a><br>
-			<a href="https://docs.google.com/viewer?url=https://ldwise.github.io/web/wyw/聲聲慢·秋情(尋尋覓覓).pdf" title="聲聲慢 秋情 (尋尋覓覓)">聲聲慢 秋情 (尋尋覓覓)</a><br>
-			<a href="https://docs.google.com/viewer?url=https://ldwise.github.io/web/wyw/青玉案·元夕(東風夜放花千樹).pdf" title="青玉案 元夕 (東風夜放花千樹)">青玉案 元夕 (東風夜放花千樹)</a><br>
-		</div>
-		<div title="歷届試題">
-			<a href="#2021" title="2021">2021</a><br>
-			<a href="#2020" title="2020">2020</a><br>
-			<a href="#2019" title="2019">2019</a><br>
-			<a href="#2018" title="2018"></a><br>
-		</div>
-	</div>
-	<script>
-		document.body.oncopy = function(){event.returnValue=false;};
-		// FunctionChange
-		// Dark/NightMode
-		$('div[title="白天/黑夜模式"]').click(function () {
-			if ($(this).attr('class') === 'LightMode') {
-				$('body').css({
-					'color': 'rgba(255, 255, 255, 1)',
-					'background-color': 'rgba(0, 0 , 0, 1)',
-				});
-				$(this).attr('class', 'DarkMode');
-			} else {
-				$('body').css({
-					'color': 'rgba(0, 0 , 0, 1)',
-					'background-color': 'rgba(255, 255, 255, 1)',
-				});
-				$(this).attr('class', 'LightMode');
-			};
-			$('.NavigationList').css({
-				'background-color': $('body').css('background-color'),
-				'color': $('body').css('color'),
-			});
-			$('.NavigationList a').css({
-				'color': $('body').css('color'),
-			});
-			if ($('div[title="顯示/隱藏所有答案"]').attr('class') === 'HideAllAnswear') {
-				$('.main>.article>.paragraphs>.original span').css({
-					'color': $('body').css('color'),
-				})
-			};
-		});
-		// HideAllAnswear/ShowAllAnswear
-		$('div[title="顯示/隱藏所有答案"]').click(function () {
-			if ($(this).attr('class') === 'HideAllAnswear') {
-				$('.main>.article>.paragraphs>.original span').css({
-					'color': 'rgba(255, 0, 0, 1)',
-				})
-				$(this).attr('class', 'ShowAllAnswear');
-			} else {
-				$('.main>.article>.paragraphs>.original span').css({
-					'color': $('body').css('color'),
-				})
-				$(this).attr('class', 'HideAllAnswear');
-			};
-		});
-		// HideAllAnswear/ShowAllAnswear
-		$('div[title="顯示/隱藏目錄"]').click(function () {
-			if ($(this).attr('class') === 'Navigation') {
-				$('div[title="目錄内容"]').css({
-					'display': 'block',
-				});
-				$(this).attr('class', 'NavigationClose');
-			} else {
-				$('div[title="目錄内容"]').css({
-					'display': 'none',
-				});
-				$(this).attr('class', 'Navigation');
-			};
-		});
-		// Sentences HighLight
-		$('div.sentences').hover(function () {
-			$('div[data-sentences="' + $(this).attr('data-sentences') + '"]').css({
-				'background-color': 'rgb(50, 205, 50)',
-			});
-		}, function () {
-			$('div[data-sentences="' + $(this).attr('data-sentences') + '"]').css({
-				'background-color': 'unset',
-			});
-		});
-	</script>
+    <header>
+        <button class="head_tools none">
+            <svg aria-hidden="true" height="24" viewBox="0 0 16 16" version="1.1" width="24" data-view-component="true"
+                class="octicon octicon-three-bars">
+                <path fill-rule="evenodd"
+                    d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z">
+                </path>
+            </svg>
+        </button>
+        <h1 class="page_title">指定文言經典精編</h1>
+        <nav class="none">
+            <div>
+                <svg class="Q6yead QJZfhe " width="24" height="24" viewBox="0 0 24 24" focusable="false"><path d="M3 17v2h6v-2H3zM3 5v2h10V5H3zm10 16v-2h8v-2h-8v-2h-2v6h2zM7 9v2H3v2h4v2h2V9H7zm14 4v-2H11v2h10zm-6-4h2V7h4V5h-4V3h-2v6z"></path></svg>
+                <span>深淺色切換</span>
+            </div>
+            <div></div>
+            <div></div>
+        </nav>
+    </header>
+    <main>
+        <div class="article_list"></div>
+        <!-- <div class="article none">
+            <div class="title">
+                <h1 id="逍遙遊(節錄)">逍遙遊(節錄)</h1>
+                <span class="author">莊子</span>
+            </div>
+            <div class="paragraphs">
+                <div class="passage">
+                    <div class="passage_header">
+                        <span class="paragraphs_subtitle"></span>
+                        <button class="btn_relate">相關内容</button>
+                    </div>
+                    <div class="sentences">
+                        <div class="original">
+                            <span data-sentence="1-1">惠子謂莊子曰：「</span>
+                        </div>
+                        <div class="translation">
+                            <span data-sentence="1-1">惠施對莊子說：「 </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="related">
+                    <div class="relate_tools">
+                        <button class="none"></button>
+                    </div>
+                    <div class="relate_content"></div>
+                </div>
+            </div>
+        </div> -->
+    </main>
+    <footer>
+        <div title="資料來源" class="Source">
+            <strong>資料來源</strong><br>
+            原文:<a
+                href="https://www.edb.gov.hk/tc/curriculum-development/kla/chi-edu/nss-lang/settext-reference.html">指定文言經典學習材料教師參考資料選編</a><br>
+            譯文:牛津大學出版社•文言選讀•課文語譯<a href="#"></a><br>
+            字譯:<a
+                href="https://www.edb.gov.hk/tc/curriculum-development/kla/chi-edu/nss-lang/settext-reference.html">指定文言經典學習材料教師參考資料選編</a><br>
+            主旨:<a
+                href="https://www.edb.gov.hk/tc/curriculum-development/kla/chi-edu/nss-lang/settext-reference.html">指定文言經典學習材料教師參考資料選編</a><br>
+            作法:啓思出版社•指定文言經典精編<a href="#"></a><br>
+            題庫:<a href="https://dsepp.com/resource_centre/chinese/">DSEPP</a><br>
+        </div>
+        <div title="反饋" class="Feedback">
+            <strong>反饋</strong><br>
+            <textarea placeholder="我有疑問關於..."></textarea>
+            <div class="SendFeedback" title="發送反饋"></div>
+        </div>
+        <div class="LastUpDate">
+            最後更新時間: 2021/09/12
+        </div>
+    </footer>
+    <script type="text/javascript" charset="utf-8">
+        // get md file and import
+        function getdata(url = 'https://ldwise.github.io/web/wyw/index.md') {
+            // read text from URL location
+            const request = new XMLHttpRequest();
+            request.addEventListener("load", function () {
+                if (request["readyState"] === 4 && request["status"] === 200) {
+                    console.log('XMLHttpRequest is Done!');
+                };
+            });
+            request.open('GET', url, false);
+            request.send();
+            return request["responseText"];
+        };
+        // build html DOM
+        let data = getdata();
+
+        // replace each blank
+        // data = data.replace(/ +/g,'');
+
+        // replace each span
+        // data = data.replace(/\[(.+)\]\((.+)\)/g,'<span data-mean="$2">$1</span>');
+        // document.write(data);
+
+        // // match article
+        // let article = data.match(/\n# \W+/g);
+        // for (let index = 0; index < article.length; index++) {
+        //     const element = article[index];
+        //     const artdiv = document.createElement('div');
+        //     artdiv.setAttribute('class', 'article')
+        //     document.querySelector('main').appendChild(artdiv);
+        // };
+
+        // // match paragraphs
+        // let paragraphs = data.match(/\n# \W+/g);
+        // for (let index = 0; index < article.length; index++) {
+        //     const element = article[index];
+        //     const artdiv = document.createElement('div');
+        //     artdiv.setAttribute('class', 'article')
+        //     document.querySelector('main').appendChild(artdiv);
+        // };
+        // build each sentences
+        // const sentences = data.match(/(.+)\|(.+)/g);
+        // const oridiv = [];
+        // const tradiv = [];
+        // for (let index = 0; index < sentences.length; index++) {
+        //     const element = sentences[index];
+        //     oridiv.push('<span data-sentence="'+index+'">'+element.match(/(.+)\|(.+)/)[1]+'</span>');
+        //     tradiv.push('<span data-sentence="'+index+'">'+element.match(/(.+)\|(.+)/)[2]+'</span>');
+        // };
+        // document.querySelector('main').innerHTML = oridiv.join('\r\n');
+
+        // data = data.split(/#{1} (\W+)(?=#{1} )/g);
+        // for loop
+        // for (let index = 0; index < data.length; index++) {
+        //     const line = data[index];
+        //     switch (line) {
+        //         case /#{1} (.+)*(.+)*/g.test(line):
+        //             article = document.createElement('div');
+        //             article.setAttribute('class','article');
+        //             document.querySelector('header').appendChild(article);
+        //             console.log('add ari');
+        //             break;
+        //         case /#{2}/g.test:
+        //             break;
+        //         default:
+        //             break;
+        //     };
+        // };
+
+        // split data
+        data = data.split('\r\n');
+        let titau_count = 0;
+        let para_count = 0;
+        let sen_count = 0;
+        for (let index = 0; index < data.length; index++) {
+            element = data[index];
+            const titau = /^#{1}\s+(?<title>.+)\*(?<author>.+)\*\s*$/;
+            const para = /^#{2}\s+$|^#{2}\s+\*(?<parasubtitle>.+)\*\s*$/;
+            const sen = /^(?<ori_span>.+)\|(?<tra_span>.+)$/;
+            const mean = /\[([^\[\]\(\)]+)\]\(([^\[\]\(\)]+)\)/g;
+            // if (mean.test(element)) {
+            //     // mean_span
+            //     element = element.replace(mean, '<span data-mean="$2">$1</span>');
+            //     // mean_span = document.createElement('span');
+            //     // mean_span.setAttribute('data-mean',element.match(mean).groups['meaning']);
+            //     // mean_span.innerText = element.match(mean).groups['root'];
+            // } else
+            if (titau.test(element)) {
+                // add article
+                titau_count += 1;
+                // list append
+                alist = document.createElement('a');
+                alist.setAttribute('title', element.match(titau).groups['title']);
+                alist.setAttribute('href', '#' + element.match(titau).groups['title']);
+                alist.innerText = element.match(titau).groups['title'];
+                // article
+                article = document.createElement('div');
+                article.setAttribute('id', element.match(titau).groups['title']);
+                article.setAttribute('class', 'article none');
+                // title
+                title = document.createElement('div');
+                title.setAttribute('class', 'title');
+                // h1
+                h1 = document.createElement('h1');
+                h1.innerText = element.match(titau).groups['title'];
+                // author
+                author = document.createElement('span');
+                author.setAttribute('class', 'author');
+                author.innerText = element.match(titau).groups['author'];
+                // build DOM
+                document.querySelector(".article_list").appendChild(alist);
+                title.appendChild(h1);
+                title.appendChild(author);
+                article.appendChild(title);
+                document.querySelector('main').appendChild(article);
+            } else if (para.test(element)) {
+                // add paragraphs
+                para_count += 1;
+                // paragraphs
+                paragraphs = document.createElement('div');
+                paragraphs.setAttribute('class', 'paragraphs');
+                // passage
+                passage = document.createElement('div');
+                passage.setAttribute('class', 'passage');
+                // passage_header
+                passage_header = document.createElement('div');
+                passage_header.setAttribute('class', 'passage_header');
+                // paragraphs_subtitle
+                paragraphs_subtitle = document.createElement('span');
+                paragraphs_subtitle.setAttribute('class', 'paragraphs_subtitle');
+                if (element.match(para).groups['parasubtitle'] != undefined) {
+                    paragraphs_subtitle.innerText = element.match(para).groups['parasubtitle'];
+                };
+                // btn_relate
+                btn_relate = document.createElement('button');
+                btn_relate.setAttribute('class', 'btn_relate');
+                // btn_relate.innerText = '相關内容';
+                btn_relate.innerHTML = '<svg focusable="false" height="24px" viewBox="0 0 24 24" width="24px" xmlns="http://www.w3.org/2000/svg"><path d="M20.49,19l-5.73-5.73C15.53,12.2,16,10.91,16,9.5C16,5.91,13.09,3,9.5,3S3,5.91,3,9.5C3,13.09,5.91,16,9.5,16 c1.41,0,2.7-0.47,3.77-1.24L19,20.49L20.49,19z M5,9.5C5,7.01,7.01,5,9.5,5S14,7.01,14,9.5S11.99,14,9.5,14S5,11.99,5,9.5z"></path><path d="M0,0h24v24H0V0z" fill="none"></path></svg>';
+                // related
+                related = document.createElement('div');
+                related.setAttribute('class', 'related');
+                // relate_tools
+                relate_tools = document.createElement('div');
+                relate_tools.setAttribute('class', 'relate_tools');
+                // relate_button
+                relate_button = document.createElement('button');
+                relate_button.setAttribute('class', 'none');
+                // relate_content
+                relate_content = document.createElement('div');
+                relate_content.setAttribute('class', 'relate_content');
+                // sentences
+                sentences = document.createElement('div');
+                sentences.setAttribute('class', 'sentences');
+                // original
+                original = document.createElement('div');
+                original.setAttribute('class', 'original');
+                // translation
+                translation = document.createElement('div');
+                translation.setAttribute('class', 'translation');
+                // build DOM
+                passage_header.appendChild(paragraphs_subtitle);
+                passage_header.appendChild(btn_relate);
+                passage.appendChild(passage_header);
+
+                sentences.appendChild(original);
+                sentences.appendChild(translation);
+                passage.appendChild(sentences);
+
+                relate_tools.appendChild(relate_button);
+                related.appendChild(relate_tools);
+                related.appendChild(relate_content);
+
+                paragraphs.appendChild(passage);
+                paragraphs.appendChild(related);
+
+                article.appendChild(paragraphs);
+            } else if (sen.test(element)) {
+                // add sentences
+                sen_count += 1;
+                // ori_mean_span
+                mean_span = element.match(sen).groups['ori_span'].replace(mean, '<span data-mean="$2">$1</span>');
+                // orignal
+                original_span = document.createElement('span');
+                original_span.setAttribute('data-sentence', titau_count + '_' + para_count + '_' + sen_count);
+                original_span.innerHTML = mean_span;
+                // translation
+                translation_span = document.createElement('span');
+                translation_span.setAttribute('data-sentence', titau_count + '_' + para_count + '_' + sen_count);
+                translation_span.innerText = element.match(sen).groups['tra_span'];
+                // span
+                original.appendChild(original_span);
+                translation.appendChild(translation_span);
+            }
+            // switch (element) {
+            //     case /^# (.+)*(.+)*  $/.test(element):
+            //         console.log('title${$1}')
+            //         break;
+            //     default:
+            //         console.log(element)
+            //         break;
+            // };
+        };
+        // Sentences HighLight
+        $('span[data-sentence]').hover(function () {
+            $('span[data-sentence="' + $(this).attr('data-sentence') + '"]').addClass('span_hover');
+        }, function () {
+            $('span[data-sentence="' + $(this).attr('data-sentence') + '"]').removeClass('span_hover');
+        });
+        // .article_list link to display and hide
+        $('.article_list > a').click(function () {
+            $('.article').addClass('none');
+            $('.article[id="' + $(this).attr('title') + '"]').removeClass('none');
+            $('header > h1.page_title').innerText = $(this).attr('title');
+        });
+    </script>
 </body>
 
 </html>
