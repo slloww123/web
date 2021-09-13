@@ -18,16 +18,22 @@
         }
 
         header {
-            height: 5rem;
             background: linear-gradient(to bottom, rgba(0, 0, 0, 0.65) 0%, transparent 120%);
+        }
+
+        header>.header_items{
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
 
-        header>button.head_tools {
+        header>.header_items>.page_title{
+            text-shadow: 1px 1px rgb(255, 255, 255);
+        }
+
+        header>.header_items>button.btn_head_tools {
             margin: .5rem;
-            padding: .5rem;
+            padding: .3rem;
         }
 
         header>nav {
@@ -36,13 +42,14 @@
         }
 
         header>nav>* {
-            padding: .3rem;
+            padding: .5rem;
             margin: .2rem;
+            background-color: rgb(255, 255, 255);
             font-weight: 400;
             text-align: center;
             border-width: 0.0625rem;
             border-style: solid;
-            border-color: #dadce0;
+            border-color: rgb(218, 220, 224);
             -webkit-border-radius: 0.5rem;
             border-radius: 0.5rem;
         }
@@ -215,17 +222,18 @@
 
 <body>
     <header>
-        <button class="head_tools">
-            <svg aria-hidden="true" height="24" viewBox="0 0 16 16" version="1.1" width="24" data-view-component="true"
-                class="octicon octicon-three-bars">
-                <path fill-rule="evenodd"
-                    d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z">
-                </path>
-            </svg>
-        </button>
-        <h1 class="page_title">指定文言經典精編</h1>
-        <br>
-        <nav class="">
+        <div class="header_items">
+            <button class="btn_head_tools">
+                <svg aria-hidden="true" height="24" viewBox="0 0 16 16" version="1.1" width="24"
+                    data-view-component="true" class="octicon octicon-three-bars">
+                    <path fill-rule="evenodd"
+                        d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z">
+                    </path>
+                </svg>
+            </button>
+            <h1 class="page_title">指定文言經典精編</h1>
+        </div>
+        <nav class="none">
             <div class="none">
                 <svg class="Q6yead QJZfhe " width="24" height="24" viewBox="0 0 24 24" focusable="false">
                     <path
@@ -519,6 +527,15 @@
             $('.article').addClass('none');
             $('.article[id="' + $(this).attr('title') + '"]').removeClass('none');
             $('header > h1.page_title').innerText = $(this).attr('title');
+        });
+        // header links display or not
+        $('header>.header_items>button.btn_head_tools').click(function () {
+            const nav = $('header>nav');
+            if (nav.hasClass('none')) {
+                nav.removeClass('none');
+            } else {
+                nav.addClass('none');
+            };
         });
     </script>
 </body>
