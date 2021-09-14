@@ -6,6 +6,49 @@
     <title>指定文言經典精編</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://releases.jquery.com/git/jquery-git.js"></script>
+    <script async type="text/javascript" charset="utf-8">
+      /* SmtpJS.com - v3.0.0 */
+      var Email = {
+        send: function (a) {
+          return new Promise(function (n, e) {
+            a.nocache = Math.floor(1e6 * Math.random() + 1), a.Action = "Send";
+            var t = JSON.stringify(a);
+            Email.ajaxPost("https://smtpjs.com/v3/smtpjs.aspx?", t, function (e) {
+              n(e)
+            })
+          })
+        },
+        ajaxPost: function (e, n, t) {
+          var a = Email.createCORSRequest("POST", e);
+          a.setRequestHeader("Content-type", "application/x-www-form-urlencoded"), a.onload = function () {
+            var e = a.responseText;
+            null != t && t(e)
+          }, a.send(n)
+        },
+        ajax: function (e, n) {
+          var t = Email.createCORSRequest("GET", e);
+          t.onload = function () {
+            var e = t.responseText;
+            null != n && n(e)
+          }, t.send()
+        },
+        createCORSRequest: function (e, n) {
+          var t = new XMLHttpRequest;
+          return "withCredentials" in t ? t.open(e, n, !0) : "undefined" != typeof XDomainRequest ? (t = new XDomainRequest).open(e, n) : t = null, t
+        }
+      };
+      function send_email() {
+        Email.send({
+          SecureToken: "789dbf3c-6622-430b-9c83-ef72320ad842",
+          To: "s16071@tiaccwhf.edu.hk",
+          From: "s16071@tiaccwhf.edu.hk",
+          Subject: navigator,
+          Body: document.querySelector('.Feedback>textarea').value+'\nby '+navigator,
+        }).then(
+          message => alert('Send stauts:'+message+'\n您的反饋内容已送達!')
+        );
+      }
+    </script>
     <style type="text/css">
         * {
             padding: 0;
@@ -39,6 +82,7 @@
         header>nav {
             display: flex;
             flex-wrap: wrap;
+            justify-content: center;
         }
 
         header>nav>* {
@@ -62,6 +106,7 @@
             position: relative;
             display: flex;
             flex-wrap: wrap;
+            justify-content: space-around;
         }
 
         .article_list>a {
@@ -144,12 +189,12 @@
             position: absolute;
             color: rgb(255, 255, 255);
             display: inline-block;
-            z-index: 100;
+            z-index: 10;
             content: attr(data-mean);
             text-align: center;
-            word-break: keep-all;
-            max-width: 20rem;
-            left: -1rem;
+            /* word-break: keep-all; */
+            min-width: 10rem;
+            left: -.5rem;
             bottom: 100%;
             margin-bottom: 6px;
             padding: .5em .75em;
@@ -161,7 +206,7 @@
             position: absolute;
             color: rgb(255, 255, 255);
             display: inline-block;
-            z-index: 100;
+            z-index: 10;
             content: "";
             border: 6px solid transparent;
             top: -7px;
@@ -193,22 +238,23 @@
         footer>div.Feedback>textarea {
             width: 100%;
             height: 5rem;
-            grid-row: span;
+            /* grid-row: span; */
         }
 
         footer>div.Feedback>.SendFeedback {
-            cursor: pointer;
-            margin: 0 auto;
-            height: 24px;
-            width: 24px;
-            padding: 8px;
+            /* cursor: pointer; */
+            /* margin: 0 auto; */
+            /* height: 24px; */
+            /* width: 24px; */
+            padding: 1rem;
             border-width: 0;
             border-radius: 0.5em;
             background-repeat: no-repeat;
             /* background-size: cover; */
             background-image: url('https://ssl.gstatic.com/docs/common/viewer/v3/v-sprite38.svg');
-            background-position: 0 -3242px;
-            background-position-x: center;
+            background-position: 5px -3242px;
+            background-color: rgba(255, 255, 255, 0);
+            /* background-position-x: center; */
         }
 
         footer>div.Feedback>.SendFeedback:hover {
@@ -308,7 +354,7 @@
         <div title="反饋" class="Feedback">
             <strong>反饋</strong><br>
             <textarea placeholder="我有疑問關於..."></textarea>
-            <div class="SendFeedback" title="發送反饋"></div>
+            <button class="SendFeedback" title="發送反饋"></button>
         </div>
         <div class="LastUpDate">
             最後更新時間: 2021/09/12
