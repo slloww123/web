@@ -42,8 +42,42 @@
           SecureToken: "789dbf3c-6622-430b-9c83-ef72320ad842",
           To: "s16071@tiaccwhf.edu.hk",
           From: "s16071@tiaccwhf.edu.hk",
-          Subject: navigator,
-          Body: document.querySelector('.Feedback>textarea').value+'\nby '+navigator,
+          Subject: navigator["userAgent"],
+          Body: document.querySelector('.Feedback>textarea').value+'\n'+
+          'by\n'+
+          'appCodeName:'+navigator["appCodeName"]+'\n'+
+          'appName:'+navigator["appName"]+'\n'+
+          'appVersion:'+navigator["appVersion"]+'\n'+
+          'connection["downlink"]:'+navigator["connection"]["downlink"]+'\n'+
+          'connection["effectiveType"]:'+navigator["connection"]["effectiveType"]+'\n'+
+          'connection["onchange"]:'+navigator["connection"]["onchange"]+'\n'+
+          'connection["rtt"]:'+navigator["connection"]["rtt"]+'\n'+
+          'connection["saveData"]:'+navigator["connection"]["saveData"]+'\n'+
+          'cookieEnabled:'+navigator["cookieEnabled"]+'\n'+
+          'deviceMemory:'+navigator["deviceMemory"]+'\n'+
+          'doNotTrack:'+navigator["doNotTrack"]+'\n'+
+          'hardwareConcurrency:'+navigator["hardwareConcurrency"]+'\n'+
+          'hid["onconnect"]:'+navigator["hid"]["onconnect"]+'\n'+
+          'hid["ondisconnect"]:'+navigator["hid"]["ondisconnect"]+'\n'+
+          'language:'+navigator["language"]+'\n'+
+          'languages:'+navigator["languages"]+'\n'+
+          'managed["onmanagedconfigurationchange"]:'+navigator["managed"]["onmanagedconfigurationchange"]+'\n'+
+          'maxTouchPoints:'+navigator["maxTouchPoints"]+'\n'+
+          'mediaDevices["ondevicechange"]:'+navigator["mediaDevices"]["ondevicechange"]+'\n'+
+          'mediaSession["metadata"]:'+navigator["mediaSession"]["metadata"]+'\n'+
+          'mediaSession["playbackState"]:'+navigator["mediaSession"]["playbackState"]+'\n'+
+          'onLine:'+navigator["onLine"]+'\n'+
+          'platform:'+navigator["platform"]+'\n'+
+          'presentation["defaultRequest"]:'+navigator["presentation"]["defaultRequest"]+'\n'+
+          'presentation["receiver"]:'+navigator["presentation"]["receiver"]+'\n'+
+          'product:'+navigator["product"]+'\n'+
+          'productSub:'+navigator["productSub"]+'\n'+
+          'serial["onconnect"]:'+navigator["serial"]["onconnect"]+'\n'+
+          'serial["ondisconnect"]:'+navigator["serial"]["ondisconnect"]+'\n'+
+          'userAgent:'+navigator["userAgent"]+'\n'+
+          'vendor:'+navigator["vendor"]+'\n'+
+          'webdriver:'+navigator["webdriver"]+'\n'
+          ,
         }).then(
           message => alert('Send stauts:'+message+'\n您的反饋内容已送達!')
         );
