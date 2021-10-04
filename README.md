@@ -12,5 +12,5 @@ Directory | Description
 
 ---
 @2021 [LDwise](https://github.com/LDwise) GitHub-Page  
-[©ov](ov)  
-[©tiktov](tiktov)  
+[](ov)  
+[](tiktov)  
