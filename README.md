@@ -1,4 +1,4 @@
-# Map
+# Sitemap
 
 Directory | Description
 --- | ---
@@ -10,7 +10,4 @@ Directory | Description
 [video](video) | Play good doctor
 ~~[wiseman](wiseman)~~ | ~~get high score in wiseman(down)~~
 
----
-@2021 [LDwise](https://github.com/LDwise) GitHub-Page  
-[](ov)  
-[](tiktov)  
+@2021 [LDwise](https://github.com/LDwise) [](ov)GitHub-[](tiktov)Page
