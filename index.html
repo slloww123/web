@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Web | GitHub-Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge, chrome=1">
+    <!-- <link rel="preconnect" href=""> -->
+    <!-- <link rel="preload" href="" as="style" type="text/css" crossorigin=""> -->
+    <!-- icon -->
+    <link rel="stylesheet" disabled="" href="https://pro.fontawesome.com/releases/v6.0.0-beta2/css/all.css">
+    <!-- script -->
+    <script rel="preload" as="script" type="text/javascript" charset="utf-8" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script rel="preload" as="script" type="text/javascript" charset="utf-8" src="https://smtpjs.com/v3/smtp.js"></script>
+    <script as="script" type="text/javascript" charset="utf-8">
+        function send_email(to='s16071@tiaccwhf.edu.hk',subject='*[data-name="email_subject"]',body='*[data-name="email_body"]',respond='*[data-name="email_respond"]') {
+            Email.send({
+                SecureToken: "789dbf3c-6622-430b-9c83-ef72320ad842",
+                To: to,
+                From: "s16071@tiaccwhf.edu.hk",
+                Subject: document.querySelector(subject).value,
+                Body: document.querySelector(body).value,
+            }).then(
+                message => (document.querySelector(respond).innerHTML=('Information Stauts:'+message+'<br>Your email was sent successfully!'))
+            );
+        };
+    </script>
+    <!-- style -->
+    <style rel="preload" as="style" type="text/css">
+        * {
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+        }
+
+        nav {
+            white-space: nowrap;
+            overflow-x: auto;
+            padding-bottom: 1rem;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        nav > * {
+            padding: .2rem;
+        }
+
+        header > nav {
+            position: sticky;
+        }
+
+        main[id] {
+            display: none;
+        }
+
+        main[id]:target {
+            display: unset;
+        }
+
+        /* --------------------------wyw------------------------- */
+        .none {
+            display: none;
+        }
+
+        .title>h1 {
+            text-align: center;
+        }
+
+        .title>.author {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .passage_header {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .btn_relate {
+            /* background-image: url('https://ssl.gstatic.com/docs/common/viewer/v3/v-sprite38.svg')!important;
+            background-position: 0 -1784px;
+            background-repeat: no-repeat; */
+            background: none;
+            border: none;
+            border-radius: .5rem;
+            cursor: pointer;
+            outline: none;
+            padding: 0 .5rem;
+            /* width: 24px;
+            height: 24px; */
+        }
+
+        .btn_relate:hover {
+            background-color: rgba(128, 128, 128, 0.39);
+        }
+
+        .btn_relate>svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .sentences {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .sentences>div {
+            padding: 1rem;
+        }
+
+        .sentences .span_hover {
+            background-color: rgb(153, 205, 50);
+        }
+
+        .sentences>.original{
+            font-family: 'Noto Serif TC', serif;
+        }
+
+        .sentences>.original span[data-mean] {
+            position: relative;
+            color: rgb(255, 56, 56);
+        }
+
+        .sentences>.original span[data-mean]:hover {
+            background-color: rgb(157, 230, 255);
+        }
+
+        .sentences>.original span[data-mean]:hover::after {
+            position: absolute;
+            color: rgb(255, 255, 255);
+            display: inline-block;
+            z-index: 10;
+            content: attr(data-mean);
+            text-align: center;
+            /* word-break: keep-all; */
+            min-width: 10rem;
+            left: -.5rem;
+            bottom: 100%;
+            margin-bottom: 6px;
+            padding: .5em .75em;
+            border-radius: 6px;
+            background-color: gray;
+        }
+
+        .sentences>.original span[data-mean]:hover::before {
+            position: absolute;
+            color: rgb(255, 255, 255);
+            display: inline-block;
+            z-index: 10;
+            content: "";
+            border: 6px solid transparent;
+            top: -7px;
+            right: 50%;
+            margin-right: -6px;
+            border-top-color: gray;
+        }
+
+        /* --------------------------read------------------------- */
+        #reading > iframe {
+            min-height: 100vh;
+            width: 100%;
+        }
+
+        /* --------------------------video------------------------- */
+        #main_video {
+            width: 100%;
+            height: 18.375rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Web</h1>
+        <hr>
+        <nav>
+            <a href="#指定文言經典精編">指定文言經典精編</a>
+            <a href="#score">Score</a>
+            <a href="#email">Email</a>
+            <a href="#video">Video</a>
+            <a href="#reading">Reading</a>
+            <a href="#listening">Listening</a>
+            <a href="#sample">Sample</a>
+        </nav>
+    </header>
+    <main id="指定文言經典精編">
+        <span>十二篇指定文言經典精編</span>
+        <nav class="article_list">
+            <!-- <a title="出師表" href="wyw/出師表.pdf">出师表</a>
+            <a title="登樓" href="wyw/登樓.pdf">登樓</a>
+            <a title="廉頗藺相如列傳（節錄）" href="wyw/廉頗藺相如列傳（節錄）.pdf">廉頗藺相如列傳（節錄）</a>
+            <a title="六國論" href="wyw/六國論.pdf">六國論</a>
+            <a title="論仁、論孝、論君子" href="wyw/論仁、論孝、論君子.pdf">論仁、論孝、論君子</a>
+            <a title="念奴嬌·赤壁懷古（大江東去）" href="wyw/念奴嬌·赤壁懷古（大江東去）.pdf">念奴嬌·赤壁懷古（大江東去）</a>
+            <a title="青玉案·元夕" href="wyw/青玉案·元夕.pdf">青玉案·元夕</a>
+            <a title="勸學（節錄）" href="wyw/勸學（節錄）.pdf">勸學（節錄）</a>
+            <a title="山居秋暝" href="wyw/山居秋暝.pdf">山居秋暝</a>
+            <a title="聲聲慢·秋情（尋尋覓覓）" href="wyw/聲聲慢·秋情（尋尋覓覓）.pdf">聲聲慢·秋情（尋尋覓覓）</a>
+            <a title="師說" href="wyw/師說.pdf">師說</a>
+            <a title="始得西山宴遊記" href="wyw/始得西山宴遊記.pdf">始得西山宴遊記</a>
+            <a title="逍遙遊（節錄）" href="wyw/逍遙遊（節錄）.pdf">逍遙遊（節錄）</a>
+            <a title="魚我所欲也" href="wyw/魚我所欲也.pdf">魚我所欲也</a>
+            <a title="月下獨酌（其一）" href="wyw/月下獨酌（其一）.pdf">月下獨酌（其一）</a>
+            <a title="岳陽樓記" href="wyw/岳陽樓記.pdf">岳陽樓記</a> -->
+        </nav>
+        <!-- <div class="article none">
+            <div class="title">
+                <h1 id="逍遙遊(節錄)">逍遙遊(節錄)</h1>
+                <span class="author">莊子</span>
+            </div>
+            <div class="paragraphs">
+                <div class="passage">
+                    <div class="passage_header">
+                        <span class="paragraphs_subtitle"></span>
+                        <button class="btn_relate">相關内容</button>
+                    </div>
+                    <div class="sentences">
+                        <div class="original">
+                            <span data-sentence="1-1">惠子謂莊子曰：「</span>
+                        </div>
+                        <div class="translation">
+                            <span data-sentence="1-1">惠施對莊子說：「 </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="related">
+                    <div class="relate_tools">
+                        <button class="none"></button>
+                    </div>
+                    <div class="relate_content"></div>
+                </div>
+            </div>
+        </div> -->
+    </main>
+    <main id="score">
+        <img alt="wiseman_logo" src="">
+        <br>
+        <span>Description</span>
+    </main>
+    <main id="email">
+        <span>Send Email From s16071@tiaccwhf.edu.hk Gmail</span>
+        <form method="post" onsubmit="send_email();return false;">
+            <label>
+                Subject:
+                <input data-name="email_subject" type="text">
+            </label>
+            <br>
+            <label>
+                body:
+                <textarea data-name="email_body" type="text"></textarea>
+            </label>
+            <br>
+            <input type="submit"> 
+        </form>
+        <span data-name="email_respond"></span>
+    </main>
+    <main id="video">
+        <span>Play m3u8 File</span>
+        <header>
+            <video-js id='main_video' class="vjs-default-skin" controls></video-js>
+            <form method="post" onsubmit="change_m3u8(this.querySelector('input').value);return false;">
+                <label>
+                    <input type="text" placeholder="Input .m3u8 Link Here">
+                </label>
+                <input type="submit"> 
+            </form>
+        </header>
+        <main>
+            <h1>極速引爆</h1>
+            <div class="m3u8">
+                <button title="01" data-src="https://vod.bunediy.com/20210721//DCjDjCLx/index.m3u8">01</button>
+            </div>
+            <h1>S4</h1>
+            <div class="m3u8">
+                <button title="01" data-src="https://vod4.buycar5.cn/20201111/sGSCQZqc/index.m3u8">01</button>
+                <button title="02" data-src="https://vod4.buycar5.cn/20201111/OFe3tdy5/index.m3u8">02</button>
+                <button title="03" data-src="https://vod4.buycar5.cn/20201125/vYUP5X6W/index.m3u8">03</button>
+                <button title="04" data-src="https://vod4.buycar5.cn/20201125/ADJ7RKCz/index.m3u8">04</button>
+                <button title="05" data-src="https://vod4.buycar5.cn/20201202/xyJQnL0W/index.m3u8">05</button>
+                <button title="06" data-src="https://vod4.buycar5.cn/20210113/odGvIfSS/index.m3u8">06</button>
+                <button title="07" data-src="https://vod4.buycar5.cn/20210120/Nz7uvEhD/index.m3u8">07</button>
+                <button title="08" data-src="https://vod4.buycar5.cn/20210127/S1QqALJi/index.m3u8">08</button>
+                <button title="09" data-src="https://vod4.buycar5.cn/20210217/wM5YCUHM/index.m3u8">09</button>
+                <button title="10" data-src="https://vod5.wenshibaowenbei.com/20210224/Ta2Nlcyu/index.m3u8">10</button>
+                <button title="11" data-src="https://vod4.buycar5.cn/20210310/sT4o7Fao/index.m3u8">11</button>
+                <button title="12" data-src="https://vod4.buycar5.cn/20210324/I5D2CjhV/index.m3u8">12</button>
+                <button title="13" data-src="https://vod4.buycar5.cn/20210331/dW9vsKS4/index.m3u8">13</button>
+                <button title="14" data-src="https://vod4.buycar5.cn/20210421/nUFFBh6O/index.m3u8">14</button>
+                <button title="15" data-src="https://vod4.buycar5.cn/20210427/47yBHDB7/index.m3u8">15</button>
+                <button title="16" data-src="https://vod4.buycar5.cn/20210511/M77awlG3/index.m3u8">16</button>
+                <button title="17" data-src="https://vod4.buycar5.cn/20210519/mVoUkAFi/index.m3u8">17</button>
+                <button title="18" data-src="https://vod4.buycar5.cn/20210525/s9qxHtHm/index.m3u8">18</button>
+                <button title="19" data-src="https://vod4.buycar5.cn/20210602/ZKX3reTG/index.m3u8">19</button>
+                <button title="20" data-src="https://vod4.buycar5.cn/20210609/Bdgor5kz/index.m3u8">20</button>
+            </div>
+            <h1>S3</h1>
+            <div class="m3u8">
+                <button title="01" data-src="https://vod2.buycar5.cn/20201001/EU9iGYBU/index.m3u8">01</button>
+                <button title="02" data-src="https://vod2.buycar5.cn/20201001/wB6PPAIT/index.m3u8">02</button>
+                <button title="03" data-src="https://vod2.buycar5.cn/20201001/GuElLwYe/index.m3u8">03</button>
+                <button title="04" data-src="https://vod2.buycar5.cn/20201001/toZXYOR1/index.m3u8">04</button>
+                <button title="05" data-src="https://vod2.buycar5.cn/20201001/sbYBOLgl/index.m3u8">05</button>
+                <button title="06" data-src="https://vod2.buycar5.cn/20201001/TxsZNa2p/index.m3u8">06</button>
+                <button title="07" data-src="https://vod2.buycar5.cn/20201001/PAZpTORp/index.m3u8">07</button>
+                <button title="08" data-src="https://vod2.buycar5.cn/20201001/7Lqctagf/index.m3u8">08</button>
+                <button title="09" data-src="https://vod2.buycar5.cn/20201001/IlYnvbpx/index.m3u8">09</button>
+                <button title="10" data-src="https://vod2.buycar5.cn/20201001/Oe2g79ye/index.m3u8">10</button>
+                <button title="11" data-src="https://vod2.buycar5.cn/20201001/De6iuNaP/index.m3u8">11</button>
+                <button title="12" data-src="https://vod2.buycar5.cn/20201001/gYXSxyI3/index.m3u8">12</button>
+                <button title="13" data-src="https://vod2.buycar5.cn/20201001/dS2qs4V7/index.m3u8">13</button>
+                <button title="14" data-src="https://vod2.buycar5.cn/20201001/cZWPifav/index.m3u8">14</button>
+                <button title="15" data-src="https://vod2.buycar5.cn/20201001/cyhth071/index.m3u8">15</button>
+                <button title="16" data-src="https://vod2.buycar5.cn/20201001/jaArVb9p/index.m3u8">16</button>
+                <button title="17" data-src="https://vod2.buycar5.cn/20201001/6yJLozLW/index.m3u8">17</button>
+                <button title="18" data-src="https://vod2.buycar5.cn/20201001/wfvgX1Ch/index.m3u8">18</button>
+                <button title="19" data-src="https://vod2.buycar5.cn/20201001/HElKbco9/index.m3u8">19</button>
+                <button title="20" data-src="https://vod2.buycar5.cn/20201001/szYYeq1c/index.m3u8">20</button>
+            </div>
+            <h1>S2</h1>
+            <div class="m3u8">
+                <button title="01" data-src="https://cdn13.pztv.ca/upload/20190111/abfcda6445b767487d06ea95504561fc/abfcda6445b767487d06ea95504561fc.m3u8">01</button>
+                <button title="02" data-src="https://cdn13.pztv.ca/upload/20190111/1928d0827457a5a6da0c6ffb89e03b5c/1928d0827457a5a6da0c6ffb89e03b5c.m3u8">02</button>
+                <button title="03" data-src="https://cdn13.pztv.ca/upload/20190111/5b88fa50a624452a62daa8cfac12ede0/5b88fa50a624452a62daa8cfac12ede0.m3u8">03</button>
+                <button title="04" data-src="https://cdn13.pztv.ca/upload/20190111/5c29b1b4dd78d6bc0bef32ed97546a63/5c29b1b4dd78d6bc0bef32ed97546a63.m3u8">04</button>
+                <button title="05" data-src="https://cdn13.pztv.ca/upload/20190111/ae3f666518f1d31f5fc9fd5338459c81/ae3f666518f1d31f5fc9fd5338459c81.m3u8">05</button>
+                <button title="06" data-src="https://cdn13.pztv.ca/upload/20190111/f652d13b38709109bfc598414ebcfdff/f652d13b38709109bfc598414ebcfdff.m3u8">06</button>
+                <button title="07" data-src="https://cdn13.pztv.ca/upload/20190111/a96a5b2f95f969d47c12497882055e1b/a96a5b2f95f969d47c12497882055e1b.m3u8">07</button>
+                <button title="08" data-src="https://cdn13.pztv.ca/upload/20190111/56be85c6a89d9735f6c4d4da9c52bfa1/56be85c6a89d9735f6c4d4da9c52bfa1.m3u8">08</button>
+                <button title="09" data-src="https://cdn13.pztv.ca/upload/20190111/74bc36f3f74d3145fc46ece961ab1370/74bc36f3f74d3145fc46ece961ab1370.m3u8">09</button>
+                <button title="10" data-src="https://cdn13.pztv.ca/upload/20190111/8651070263ce8f91c9364ff03cbdddd2/8651070263ce8f91c9364ff03cbdddd2.m3u8">10</button>
+                <button title="11" data-src="https://cdn13.pztv.ca/upload/20190111/2cfe4b35358066b5a0f7da883a304044/2cfe4b35358066b5a0f7da883a304044.m3u8">11</button>
+                <button title="12" data-src="https://cdn13.pztv.ca/upload/20190111/571aabba748d72e02f5236101b231d2b/571aabba748d72e02f5236101b231d2b.m3u8">12</button>
+                <button title="13" data-src="https://cdn13.pztv.ca/upload/20190111/d728fec26174e47e61621b0f6f268662/d728fec26174e47e61621b0f6f268662.m3u8">13</button>
+                <button title="14" data-src="https://cdn13.pztv.ca/upload/20190111/8287d6b1cc9dc0f03f3ac2552a478433/8287d6b1cc9dc0f03f3ac2552a478433.m3u8">14</button>
+                <button title="15" data-src="https://cdn13.pztv.ca/upload/20190111/7e9bde0373f77dd68a0763ef7bb4d07d/7e9bde0373f77dd68a0763ef7bb4d07d.m3u8">15</button>
+                <button title="16" data-src="https://cdn13.pztv.ca/upload/20190111/87f70ba4ca2f9834e1b792f71c0370f4/87f70ba4ca2f9834e1b792f71c0370f4.m3u8">16</button>
+                <button title="17" data-src="https://cdn13.pztv.ca/upload/20190111/c408e8c0dd384ea0698014c0e66e249d/c408e8c0dd384ea0698014c0e66e249d.m3u8">17</button>
+                <button title="18" data-src="https://cdn13.pztv.ca/upload/20190111/474021e46417c65039638c4b56ebbad0/474021e46417c65039638c4b56ebbad0.m3u8">18</button>
+                <button title="15" data-src="https://vod.bunediy.com/20210104/FgxEIoo6/index.m3u8">15</button>
+                <button title="16" data-src="https://vod.bunediy.com/20210105/OfvyGSKj/index.m3u8">16</button>
+                <button title="17" data-src="https://vod.bunediy.com/20210106/M4lzUpEQ/index.m3u8">17</button>
+                <button title="18" data-src="https://vod.bunediy.com/20210107/EGumx7YE/index.m3u8">18</button>
+            </div>
+        </main>
+    </main>
+    <main id="reading">
+        <span>English Reading Past Paper Vocabulary</span>
+        <nav></nav>
+        <iframe name="dictpage" frameborder="0"></iframe>
+    </main>
+    <main id="listening"></main>
+    <main id="sample"></main>
+    <script charset="utf-8">
+        // default target display
+        document.querySelector("body > header > nav > a[href='#指定文言經典精編']").click();
+        // $('a').click(function () {
+        //     document.title=this.textContent;
+        // })
+    </script>
+    <script type="text/javascript" charset="utf-8">
+        // get md file and import
+        function getdata(url = 'https://ldwise.github.io/web/wyw/index.md') {
+            // read text from URL location
+            const request = new XMLHttpRequest();
+            request.addEventListener("load", function () {
+                if (request["readyState"] === 4 && request["status"] === 200) {
+                    console.log('XMLHttpRequest is Done!');
+                };
+            });
+            request.open('GET', url, false);
+            request.send();
+            return request["responseText"];
+        };
+        // build html DOM
+        let data = getdata();
+
+        // replace each blank
+        // data = data.replace(/ +/g,'');
+
+        // replace each span
+        // data = data.replace(/\[(.+)\]\((.+)\)/g,'<span data-mean="$2">$1</span>');
+        // document.write(data);
+
+        // // match article
+        // let article = data.match(/\n# \W+/g);
+        // for (let index = 0; index < article.length; index++) {
+        //     const element = article[index];
+        //     const artdiv = document.createElement('div');
+        //     artdiv.setAttribute('class', 'article')
+        //     document.querySelector('main').appendChild(artdiv);
+        // };
+
+        // // match paragraphs
+        // let paragraphs = data.match(/\n# \W+/g);
+        // for (let index = 0; index < article.length; index++) {
+        //     const element = article[index];
+        //     const artdiv = document.createElement('div');
+        //     artdiv.setAttribute('class', 'article')
+        //     document.querySelector('main').appendChild(artdiv);
+        // };
+        // build each sentences
+        // const sentences = data.match(/(.+)\|(.+)/g);
+        // const oridiv = [];
+        // const tradiv = [];
+        // for (let index = 0; index < sentences.length; index++) {
+        //     const element = sentences[index];
+        //     oridiv.push('<span data-sentence="'+index+'">'+element.match(/(.+)\|(.+)/)[1]+'</span>');
+        //     tradiv.push('<span data-sentence="'+index+'">'+element.match(/(.+)\|(.+)/)[2]+'</span>');
+        // };
+        // document.querySelector('main').innerHTML = oridiv.join('\r\n');
+
+        // data = data.split(/#{1} (\W+)(?=#{1} )/g);
+        // for loop
+        // for (let index = 0; index < data.length; index++) {
+        //     const line = data[index];
+        //     switch (line) {
+        //         case /#{1} (.+)*(.+)*/g.test(line):
+        //             article = document.createElement('div');
+        //             article.setAttribute('class','article');
+        //             document.querySelector('header').appendChild(article);
+        //             console.log('add ari');
+        //             break;
+        //         case /#{2}/g.test:
+        //             break;
+        //         default:
+        //             break;
+        //     };
+        // };
+
+        // split data
+        data = data.split('\r\n');
+        let titau_count = 0;
+        let para_count = 0;
+        let sen_count = 0;
+        for (let index = 0; index < data.length; index++) {
+            element = data[index];
+            const titau = /^#{1}\s+(?<title>.+)\*(?<author>.+)\*\s*$/;
+            const para = /^#{2}\s+$|^#{2}\s+\*(?<parasubtitle>.+)\*\s*$/;
+            const sen = /^(?<ori_span>.+)\|(?<tra_span>.+)$/;
+            const mean = /\[([^\[\]\(\)]+)\]\(([^\[\]\(\)]+)\)/g;
+            // if (mean.test(element)) {
+            //     // mean_span
+            //     element = element.replace(mean, '<span data-mean="$2">$1</span>');
+            //     // mean_span = document.createElement('span');
+            //     // mean_span.setAttribute('data-mean',element.match(mean).groups['meaning']);
+            //     // mean_span.innerText = element.match(mean).groups['root'];
+            // } else
+            if (titau.test(element)) {
+                // add article
+                titau_count += 1;
+                // list append
+                alist = document.createElement('a');
+                alist.setAttribute('title', element.match(titau).groups['title']);
+                alist.setAttribute('href', '#' + element.match(titau).groups['title']);
+                alist.innerText = element.match(titau).groups['title'];
+                // article
+                article = document.createElement('div');
+                article.setAttribute('id', element.match(titau).groups['title']);
+                article.setAttribute('class', 'article none');
+                // title
+                title = document.createElement('div');
+                title.setAttribute('class', 'title');
+                // a link to pdf
+                ahref = document.createElement('a');
+                ahref.href = 'wyw/'+element.match(titau).groups['title']+'.pdf';
+                ahref.innerText = element.match(titau).groups['title'];
+                // h1
+                h1 = document.createElement('h1');
+                // author
+                author = document.createElement('span');
+                author.setAttribute('class', 'author');
+                author.innerText = element.match(titau).groups['author'];
+                // build DOM
+                document.querySelector(".article_list").appendChild(alist);
+                h1.appendChild(ahref);
+                title.appendChild(h1);
+                title.appendChild(author);
+                article.appendChild(title);
+                document.querySelector('main[id="指定文言經典精編"]').appendChild(article);
+            } else if (para.test(element)) {
+                // add paragraphs
+                para_count += 1;
+                // paragraphs
+                paragraphs = document.createElement('div');
+                paragraphs.setAttribute('class', 'paragraphs');
+                // passage
+                passage = document.createElement('div');
+                passage.setAttribute('class', 'passage');
+                // passage_header
+                passage_header = document.createElement('div');
+                passage_header.setAttribute('class', 'passage_header');
+                // paragraphs_subtitle
+                paragraphs_subtitle = document.createElement('span');
+                paragraphs_subtitle.setAttribute('class', 'paragraphs_subtitle');
+                if (element.match(para).groups['parasubtitle'] != undefined) {
+                    paragraphs_subtitle.innerText = element.match(para).groups['parasubtitle'];
+                };
+                // btn_relate
+                btn_relate = document.createElement('button');
+                btn_relate.setAttribute('class', 'btn_relate');
+                // btn_relate.innerText = '相關内容';
+                btn_relate.innerHTML = '<svg focusable="false" height="24px" viewBox="0 0 24 24" width="24px" xmlns="http://www.w3.org/2000/svg"><path d="M20.49,19l-5.73-5.73C15.53,12.2,16,10.91,16,9.5C16,5.91,13.09,3,9.5,3S3,5.91,3,9.5C3,13.09,5.91,16,9.5,16 c1.41,0,2.7-0.47,3.77-1.24L19,20.49L20.49,19z M5,9.5C5,7.01,7.01,5,9.5,5S14,7.01,14,9.5S11.99,14,9.5,14S5,11.99,5,9.5z"></path><path d="M0,0h24v24H0V0z" fill="none"></path></svg>';
+                // related
+                related = document.createElement('div');
+                related.setAttribute('class', 'related');
+                // relate_tools
+                relate_tools = document.createElement('div');
+                relate_tools.setAttribute('class', 'relate_tools');
+                // relate_button
+                relate_button = document.createElement('button');
+                relate_button.setAttribute('class', 'none');
+                // relate_content
+                relate_content = document.createElement('div');
+                relate_content.setAttribute('class', 'relate_content');
+                // sentences
+                sentences = document.createElement('div');
+                sentences.setAttribute('class', 'sentences');
+                // original
+                original = document.createElement('div');
+                original.setAttribute('class', 'original');
+                // translation
+                translation = document.createElement('div');
+                translation.setAttribute('class', 'translation');
+                // build DOM
+                passage_header.appendChild(paragraphs_subtitle);
+                passage_header.appendChild(btn_relate);
+                passage.appendChild(passage_header);
+
+                sentences.appendChild(original);
+                sentences.appendChild(translation);
+                passage.appendChild(sentences);
+
+                relate_tools.appendChild(relate_button);
+                related.appendChild(relate_tools);
+                related.appendChild(relate_content);
+
+                paragraphs.appendChild(passage);
+                paragraphs.appendChild(related);
+
+                article.appendChild(paragraphs);
+            } else if (sen.test(element)) {
+                // add sentences
+                sen_count += 1;
+                // ori_mean_span
+                mean_span = element.match(sen).groups['ori_span'].replace(mean, '<span data-mean="$2">$1</span>');
+                // orignal
+                original_span = document.createElement('span');
+                original_span.setAttribute('data-sentence', titau_count + '_' + para_count + '_' + sen_count);
+                original_span.innerHTML = mean_span;
+                // translation
+                translation_span = document.createElement('span');
+                translation_span.setAttribute('data-sentence', titau_count + '_' + para_count + '_' + sen_count);
+                translation_span.innerText = element.match(sen).groups['tra_span'];
+                // span
+                original.appendChild(original_span);
+                translation.appendChild(translation_span);
+            }
+            // switch (element) {
+            //     case /^# (.+)*(.+)*  $/.test(element):
+            //         console.log('title${$1}')
+            //         break;
+            //     default:
+            //         console.log(element)
+            //         break;
+            // };
+        };
+        // Sentences HighLight
+        $('span[data-sentence]').hover(function () {
+            $('span[data-sentence="' + $(this).attr('data-sentence') + '"]').addClass('span_hover');
+        }, function () {
+            $('span[data-sentence="' + $(this).attr('data-sentence') + '"]').removeClass('span_hover');
+        });
+        // .article_list link to display and hide
+        $('.article_list > a').click(function () {
+            $('.article').addClass('none');
+            $('.article[id="' + $(this).attr('title') + '"]').removeClass('none');
+            $('header > h1.page_title').innerText = $(this).attr('title');
+            return false;
+        });
+    </script>
+    <script type="text/javascript" charset="utf-8">
+        // <script charset="utf-8">
+        // get md file and import
+        function getdata(url='https://ldwise.github.io/web/dict/vocas.md') {
+            // read text from URL location
+            const request = new XMLHttpRequest();
+            request.addEventListener("load", function () {
+                if (request["readyState"] === 4 && request["status"] === 200) {
+                    console.log('XMLHttpRequest is Done!');
+                };
+            });
+            request.open('GET', url, false);
+            request.send();
+            return request["responseText"];
+        };
+        // build html DOM
+        // match md list style
+        let vocas = getdata().match(/\w+/gi);
+        // vocas list loop
+        for (let index = 0; index < vocas.length; index++) {
+            // each voca
+            const voca = vocas[index];
+            // create element
+            const a = document.createElement('a');
+            // set index for recognize easily
+            if (index % 5 === 0) {
+                a.setAttribute('data-index', index);
+            }
+            // set target
+            a.setAttribute('target', 'dictpage');
+            // set herf
+            a.setAttribute('href', 'https://dictionary.cambridge.org/dictionary/english-chinese-traditional/'+voca+'#caldcnt-1-1');
+            // set text
+            a.textContent = voca;
+            // add element on header
+            document.querySelector('#reading > nav').appendChild(a);
+        };
+    </script>
+    <!--------------------------------------------------------------------------
+    --                      videojs-http-streaming setup                       --
+    ------------------------------------------------------------------------
+    --Make sure to include the video.js CSS. This could go in the <head>, too.-->
+    <link href="https://unpkg.com/video.js/dist/video-js.css" rel="stylesheet">
+    <!--Include video.js and videojs-http-streaming in your page-->
+    <script src="https://unpkg.com/video.js/dist/alt/video.core.js"></script>
+    <script src="https://unpkg.com/@videojs/http-streaming@1/dist/videojs-http-streaming.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        var player = videojs('main_video');
+        function change_m3u8(m3u8) {
+            player.src({
+                src: m3u8,
+                type: 'application/x-mpegURL',
+            });
+            player.play();
+        };
+        $('#video > main button').on('click', change_m3u8(this.getAttribute('data-src')));
+    </script>
+</body>
+</html>
