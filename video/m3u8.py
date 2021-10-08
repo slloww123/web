@@ -4,7 +4,7 @@
 from re import compile,search
 from requests import get,codes
 from bs4 import BeautifulSoup
-from IPython.display import HTML
+# from IPython.display import HTML
 from urllib.parse import unquote
 from time import sleep
 
