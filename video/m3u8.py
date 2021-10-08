@@ -1,4 +1,4 @@
-#coding=uts-8
+#coding=utf-8
 #https://www.movieffm.net/cats/popular-movies/
 
 from re import compile,search
