@@ -12,7 +12,7 @@ while True:
   all = []
   for page_num in range(1,35+1):
     # Movieffm
-    r = get('https://www.movieffm.net/cats/popular-movies/page/%d/'%(page_num), params = {'orderby':'view'})
+    r = get('https://www.movieffm.net/cats/popular-movies/page/%d/'%(page_num))#, params = {'orderby':'view'})
     soup = BeautifulSoup(r.text, 'html.parser')
     # display(HTML(soup.prettify()))
 
@@ -23,7 +23,7 @@ while True:
       if box_link not in details:
         details.append(box_link)
     for detail in details:
-      b=get(detail)
+      b = get(detail)
       box_soup = BeautifulSoup(b.text, 'html.parser')
       m3u8 = []
       line = box_soup.prettify().split('\n')
@@ -31,10 +31,10 @@ while True:
         try:
           m3u8.append(unquote(search(r'=http.*m3u8',line).group()).replace('=',''))
           info = {'title':box_soup.find('title').get_text().replace(' - Movieffm電影線上看',''),'m3u8':m3u8}
-          print(info['title'],info['m3u8'])
           all.append(info)
         except:
           pass
+      print(info['title'],info['m3u8'])
   with open('m3u8.js','w',encoding='utf-8') as f:
     f.write('m3u8 = \n',str(all))
-  sleep(3600)
+  sleep(1800)
