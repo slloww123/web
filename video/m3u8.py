@@ -30,11 +30,11 @@ while True:
       for line in line:
         try:
           m3u8.append(unquote(search(r'=http.*m3u8',line).group()).replace('=',''))
+          info = {'title':box_soup.find('title').get_text().replace(' - Movieffm電影線上看',''),'m3u8':m3u8}
+          print(info['title'],info['m3u8'])
+          all.append(info)
         except:
           pass
-      info = {'title':box_soup.find('title').get_text().replace(' - Movieffm電影線上看',''),'m3u8':m3u8}
-      print(info['title'],info['m3u8'][0])
-      all.append(info)
   with open('m3u8.js','w',encoding='utf-8') as f:
     f.write('m3u8 = \n',str(all))
   sleep(3600)
