@@ -6,7 +6,7 @@ from requests import get,codes
 from bs4 import BeautifulSoup
 # from IPython.display import HTML
 from urllib.parse import unquote
-from time import sleep
+from time import sleep,time
 
 while True:
   all = []
@@ -38,4 +38,6 @@ while True:
         print(info)
   with open('m3u8.js','w',encoding='utf-8') as f:
     f.write('m3u8 = \n%s'%str(all))
-  sleep(1800)
+  start = time()
+  while (time()-start) <= 1800:
+    print("%s's waiting..."%str(time()-start),end='\r')
