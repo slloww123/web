@@ -47,6 +47,9 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}# optional, default is ${{ github.token }}
       - name: tree
         run : tree
+      - name : Install requirments
+        run : |
+          pip install requests
+          pip install beautifulsoup4
       - name: Get m3u8 links
         run : python3 video/m3u8.py
-        
