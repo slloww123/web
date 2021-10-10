@@ -5,12 +5,12 @@ name: movie update
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+#   push:
+#     branches: [ main ]
+#   pull_request:
+#     branches: [ main ]
   schedule:
-  - cron: "0 0-23 * * *"
+  - cron: "0 0-23/2 * * *"
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -18,7 +18,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  update_in_hours:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -45,11 +45,14 @@ jobs:
           architecture: x64 # optional
           # Used to pull python distributions from actions/python-versions. Since there's a default, this is typically not supplied by the user.
           token: ${{ secrets.GITHUB_TOKEN }}# optional, default is ${{ github.token }}
+          
       - name: tree
         run : tree
+        
       - name : Install requirments
         run : |
           pip install requests
           pip install beautifulsoup4
+          
       - name: Get m3u8 links
         run : python3 video/m3u8.py
