@@ -56,12 +56,15 @@ for page_num in range(1,35+1):
         m3u8.append(unquote(search(r'=http.*m3u8',line).group()).replace('=',''))
       except:
         pass
-    img = box_soup.select('div.sheader > div.poster > img[src]')[0]
-    h1 = box_soup.select('div.sheader > div.data > h1')[0]
-    if len(m3u8) > 0:
-      info = {'title':h1.get_text(),'poster':img.get('src'),'m3u8':m3u8}
-      all.append(info)
-      print(info)
+    try:
+      img = box_soup.select('div.sheader > div.poster > img[src]')[0]
+      h1 = box_soup.select('div.sheader > div.data > h1')[0]
+      if len(m3u8) > 0:
+        info = {'title':h1.get_text(),'poster':img.get('src'),'m3u8':m3u8}
+        all.append(info)
+        print(info)
+    except:
+      pass
 with open('m3u8.js','w',encoding='utf-8') as f:
   f.write('m3u8 = \n%s'%str(all))
 # start = time()
