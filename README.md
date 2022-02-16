@@ -9,6 +9,6 @@ Directory | Description
 [std_sample](std_sample) | Students sample paper(CHI & ENG)
 [video](video) | Play good doctor
 ~~[wiseman](wiseman)~~ | ~~get high score in wiseman(down)~~
-[LiberalStudies](LiberalStudies/Notes.md) | LiberalStudies Notes
+[LiberalStudies](LiberalStudies) | LiberalStudies Notes
 
 @2021 [LDwise](https://github.com/LDwise) [](ov)GitHub-[](tiktov)Page
