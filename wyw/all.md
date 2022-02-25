@@ -18,13 +18,12 @@
 綸:○粵 [關],[gwaan1];○漢 [guɑ̄n]。
 1. [<span id="nnji5">^</span>](#nnjy5) 檣櫓:檣,船的桅杆;櫓,船槳。此處借為戰船。檣櫓: ○粵 [場老],
 [coeng4lou5];○漢 [qiɑ́nglǔ]。
-1. [<span id="nnji6">^</span>](#nnjy6) 檣櫓:檣,船的桅杆;櫓,船槳。此處借為戰船。檣櫓: ○粵 [場老],
+1. [<span id="nnji6">^</span>](#nnjy6) 故國:代指赤壁故地。
 [coeng4lou5];○漢 [qiɑ́nglǔ]。
-1. [<span id="nnji7">^</span>](#nnjy7) 檣櫓:檣,船的桅杆;櫓,船槳。此處借為戰船。檣櫓: ○粵 [場老],
+1. [<span id="nnji7">^</span>](#nnjy7) 華髮:半白的頭髮。華通「花」。
 [coeng4lou5];○漢 [qiɑ́nglǔ]。
-1. [<span id="nnji8">^</span>](#nnjy8) 檣櫓:檣,船的桅杆;櫓,船槳。此處借為戰船。檣櫓: ○粵 [場老],[coeng4lou5];○漢 [qiɑ́nglǔ]。
-1. [<span id="nnji9">^</span>](#nnjy9) 檣櫓:檣,船的桅杆;櫓,船槳。此處借為戰船。檣櫓: ○粵 [場老],[coeng4lou5];○漢 [qiɑ́nglǔ]。
-
+1. [<span id="nnji8">^</span>](#nnjy8) 尊:通「樽」,借作酒。
+1. [<span id="nnji9">^</span>](#nnjy9) 酹:以酒灑地而祭。○粵 [賴],[laai6];○漢 [lèi]。
 
 
 ## 作者簡介
