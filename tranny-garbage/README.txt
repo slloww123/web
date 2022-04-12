@@ -1,4 +1,4 @@
-Tranny Garbage 0.71.3 Extended Warranty
+Tranny Garbage 0.71.3
 
 - Step 1: Run GTA and fully load sp or online
 - Step 2: Run 'tranny-garbage.exe'
