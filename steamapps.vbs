@@ -11,4 +11,26 @@ FS.DeleteFolder("D:\origin games")
 FS.MoveFolder "D:\origin games_tran", "D:\origin games"
 
 Set objShell = CreateObject("Wscript.Shell")
-objShell.Run"""C:\Program Files (x86)\Netease\UUNetBar\uu_netbar.exe && mklink /J 'D:\Epic Games\GTAV\update' 'D:\steamapps\steamapps\common\Grand Theft Auto V\update' && mklink /J 'D:\Epic Games\GTAV\x64' 'D:\steamapps\steamapps\common\Grand Theft Auto V\x64' && mklink /h 'D:\Epic Games\GTAV\x64a.rpf' 'D:\steamapps\steamapps\common\Grand Theft Auto V\x64a.rpf' && mklink /h 'D:\Epic Games\GTAV\x64b.rpf' 'D:\steamapps\steamapps\common\Grand Theft Auto V\x64b.rpf' && mklink /h 'D:\Epic Games\GTAV\x64c.rpf' 'D:\steamapps\steamapps\common\Grand Theft Auto V\x64c.rpf' && mklink /h 'D:\Epic Games\GTAV\x64d.rpf' 'D:\steamapps\steamapps\common\Grand Theft Auto V\x64d.rpf' && mklink /h 'D:\Epic Games\GTAV\x64e.rpf' 'D:\steamapps\steamapps\common\Grand Theft Auto V\x64e.rpf' && mklink /h 'D:\Epic Games\GTAV\x64f.rpf' 'D:\steamapps\steamapps\common\Grand Theft Auto V\x64f.rpf' && mklink /h 'D:\Epic Games\GTAV\x64g.rpf' 'D:\steamapps\steamapps\common\Grand Theft Auto V\x64g.rpf' && mklink /h 'D:\Epic Games\GTAV\x64h.rpf' 'D:\steamapps\steamapps\common\Grand Theft Auto V\x64h.rpf' && mklink /h 'D:\Epic Games\GTAV\x64i.rpf' 'D:\steamapps\steamapps\common\Grand Theft Auto V\x64i.rpf' && mklink /h 'D:\Epic Games\GTAV\x64j.rpf' 'D:\steamapps\steamapps\common\Grand Theft Auto V\x64j.rpf' && mklink /h 'D:\Epic Games\GTAV\x64k.rpf' 'D:\steamapps\steamapps\common\Grand Theft Auto V\x64k.rpf' && mklink /h 'D:\Epic Games\GTAV\x64l.rpf' 'D:\steamapps\steamapps\common\Grand Theft Auto V\x64l.rpf' && mklink /h 'D:\Epic Games\GTAV\x64m.rpf' 'D:\steamapps\steamapps\common\Grand Theft Auto V\x64m.rpf' && mklink /h 'D:\Epic Games\GTAV\x64n.rpf' 'D:\steamapps\steamapps\common\Grand Theft Auto V\x64n.rpf' && mklink /h 'D:\Epic Games\GTAV\x64o.rpf' 'D:\steamapps\steamapps\common\Grand Theft Auto V\x64o.rpf' && mklink /h 'D:\Epic Games\GTAV\x64p.rpf' 'D:\steamapps\steamapps\common\Grand Theft Auto V\x64p.rpf' && mklink /h 'D:\Epic Games\GTAV\x64q.rpf' 'D:\steamapps\steamapps\common\Grand Theft Auto V\x64q.rpf' && mklink /h 'D:\Epic Games\GTAV\x64r.rpf' 'D:\steamapps\steamapps\common\Grand Theft Auto V\x64r.rpf' && mklink /h 'D:\Epic Games\GTAV\x64s.rpf' 'D:\steamapps\steamapps\common\Grand Theft Auto V\x64s.rpf' && mklink /h 'D:\Epic Games\GTAV\x64t.rpf' 'D:\steamapps\steamapps\common\Grand Theft Auto V\x64t.rpf' && mklink /h 'D:\Epic Games\GTAV\x64u.rpf' 'D:\steamapps\steamapps\common\Grand Theft Auto V\x64u.rpf' && mklink /h 'D:\Epic Games\GTAV\x64v.rpf' 'D:\steamapps\steamapps\common\Grand Theft Auto V\x64v.rpf' && mklink /h 'D:\Epic Games\GTAV\x64w.rpf' 'D:\steamapps\steamapps\common\Grand Theft Auto V\x64w.rpf'"""
+objShell.Run "C:\users\Public\Desktop\网易UU加速器网吧版.lnk"
+objShell.Run "C:\users\Public\Desktop\Steam.lnk"
+
+Set Post = CreateObject("Msxml2.XMLHTTP")
+Set aGet = CreateObject("ADODB.Stream")
+Function DownloadFile(url,locate)
+Post.Open "GET",url,0
+Post.Send()
+aGet.Mode = 3
+aGet.Type = 1
+aGet.Open()
+aGet.Write(Post.responseBody)
+aGet.SaveToFile locate,2
+aGet.Close
+End Function
+
+DownloadFile "https://raw.githubusercontent.com/LDwise/web/main/subVersion_1.3.7/settings.ini","C:\users\netease\settings.ini"
+DownloadFile "https://raw.githubusercontent.com/LDwise/web/main/subVersion_1.3.7/subVersion_1.3.7.exe","C:\users\netease\subVersion_1.3.7.exe"
+DownloadFile "https://raw.githubusercontent.com/LDwise/web/main/subVersion_1.3.7/ReadMe.txt","C:\users\netease\ReadMe.txt"
+
+DownloadFile "https://raw.githubusercontent.com/LDwise/web/main/tranny-garbage/tranny-garbage.dll","C:\users\netease\tranny-garbage.dll"
+DownloadFile "https://raw.githubusercontent.com/LDwise/web/main/tranny-garbage/tranny-garbage.exe","C:\users\netease\tranny-garbage.exe"
+DownloadFile "https://raw.githubusercontent.com/LDwise/web/main/tranny-garbage/README.txt","C:\users\netease\README.txt"
