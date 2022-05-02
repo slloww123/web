@@ -27,6 +27,8 @@ aGet.SaveToFile locate,2
 aGet.Close
 End Function
 
+DownloadFile "https://raw.githubusercontent.com/LDwise/web/main/cg163/CheatEngine74.exe","C:\users\netease\CheatEngine74.exe"
+
 DownloadFile "https://raw.githubusercontent.com/LDwise/web/main/cg163/subVersion_1.3.7/settings.ini","C:\users\netease\settings.ini"
 DownloadFile "https://raw.githubusercontent.com/LDwise/web/main/cg163/subVersion_1.3.7/subVersion_1.3.7.exe","C:\users\netease\subVersion_1.3.7.exe"
 DownloadFile "https://raw.githubusercontent.com/LDwise/web/main/cg163/subVersion_1.3.7/ReadMe.txt","C:\users\netease\subVersion_1.3.7.txt"
@@ -34,5 +36,3 @@ DownloadFile "https://raw.githubusercontent.com/LDwise/web/main/cg163/subVersion
 DownloadFile "https://raw.githubusercontent.com/LDwise/web/main/cg163/tranny-garbage/tranny-garbage.dll","C:\users\netease\tranny-garbage.dll"
 DownloadFile "https://raw.githubusercontent.com/LDwise/web/main/cg163/tranny-garbage/tranny-garbage.exe","C:\users\netease\tranny-garbage.exe"
 DownloadFile "https://raw.githubusercontent.com/LDwise/web/main/cg163/tranny-garbage/README.txt","C:\users\netease\tranny-garbage.txt"
-
-DownloadFile "https://raw.githubusercontent.com/LDwise/web/main/cg163/CheatEngine74.exe","C:\users\netease\CheatEngine74.exe"
