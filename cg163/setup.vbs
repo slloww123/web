@@ -27,12 +27,10 @@ aGet.SaveToFile locate,2
 aGet.Close
 End Function
 
-DownloadFile "https://raw.githubusercontent.com/LDwise/web/main/cg163/CheatEngine74.exe","C:\users\netease\CheatEngine74.exe"
+DownloadFile "https://github.com/Heroic-Games-Launcher/HeroicGamesLauncher/releases/download/v2.2.6/Heroic-Setup-2.2.6.exe","C:\users\netease\Heroic-Setup-2.2.6.exe"
 
-DownloadFile "https://raw.githubusercontent.com/LDwise/web/main/cg163/subVersion_1.3.7/settings.ini","C:\users\netease\settings.ini"
-DownloadFile "https://raw.githubusercontent.com/LDwise/web/main/cg163/subVersion_1.3.7/subVersion_1.3.7.exe","C:\users\netease\subVersion_1.3.7.exe"
-DownloadFile "https://raw.githubusercontent.com/LDwise/web/main/cg163/subVersion_1.3.7/ReadMe.txt","C:\users\netease\subVersion_1.3.7.txt"
+DownloadFile "https://github.com/cheat-engine/cheat-engine/releases/download/7.4/CheatEngine74.exe","C:\users\netease\CheatEngine74.exe"
 
-DownloadFile "https://raw.githubusercontent.com/LDwise/web/main/cg163/tranny-garbage/tranny-garbage.dll","C:\users\netease\tranny-garbage.dll"
-DownloadFile "https://raw.githubusercontent.com/LDwise/web/main/cg163/tranny-garbage/tranny-garbage.exe","C:\users\netease\tranny-garbage.exe"
-DownloadFile "https://raw.githubusercontent.com/LDwise/web/main/cg163/tranny-garbage/README.txt","C:\users\netease\tranny-garbage.txt"
+DownloadFile "https://github.com/AmazingPP/subVerison_GTAV_Hack/releases/download/v1.3.5.2/subVersion_1.3.5.2.zip","C:\users\netease\subVersion_1.3.5.2.zip"
+
+DownloadFile "https://cdn.discordapp.com/attachments/925878429054820402/928635764693168128/tranny-garbage.zip","C:\users\netease\tranny-garbage.zip"
