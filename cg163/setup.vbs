@@ -14,10 +14,10 @@ Set objShell = CreateObject("Wscript.Shell")
 objShell.Run "C:\users\Public\Desktop\网易UU加速器网吧版.lnk"
 objShell.Run "C:\users\Public\Desktop\Steam.lnk"
 
-Set Post = CreateObject("Msxml2.XMLHTTP")
+Set Post = CreateObject("Msxml2.ServerXMLHTTP")
 Set aGet = CreateObject("ADODB.Stream")
 Function DownloadFile(url,locate)
-Post.Open "GET",url,0
+Post.Open "GET",url,false
 Post.Send()
 aGet.Mode = 3
 aGet.Type = 1
