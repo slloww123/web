@@ -34,3 +34,5 @@ DownloadFile "https://github.com/cheat-engine/cheat-engine/releases/download/7.4
 DownloadFile "https://github.com/AmazingPP/subVerison_GTAV_Hack/releases/download/v1.3.5.2/subVersion_1.3.5.2.zip","C:\users\netease\subVersion_1.3.5.2.zip"
 
 DownloadFile "https://cdn.discordapp.com/attachments/925878429054820402/928635764693168128/tranny-garbage.zip","C:\users\netease\tranny-garbage.zip"
+
+DownloadFile "https://stand.gg/dl/launchpad/1.8/Stand%20Launchpad.exe","C:\users\netease\Stand_Launchpad.exe"
