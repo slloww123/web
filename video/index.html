@@ -121,7 +121,7 @@
             <button title="18" data-src="https://vod.bunediy.com/20210107/EGumx7YE/index.m3u8">18</button>
         </div>
     </main>
-    <pre>javascript:javascript:regex = /(http[^"']+\.m3u8[^"']+)/g;  str = document.getElementsByTagName('html')[0].innerHTML.toString();  var m; output_html = ""; while ((m = regex.exec(str)) !== null) {     if (m.index === regex.lastIndex) {         regex.lastIndex++;     }               m.forEach((match, groupIndex) => {         console.log(`Found match, group ${groupIndex}: ${match}`);         output_html += `<a href="${match}">${groupIndex}-${match}</a><br>`     }); }; document.getElementsByTagName('html')[0].innerHTML = output_html;</pre>
+    <code>javascript:regex = /(http[^"']+\.m3u8[^"']+)/g;  str = document.getElementsByTagName('html')[0].innerHTML.toString();  var m; output_html = ""; while ((m = regex.exec(str)) !== null) {     if (m.index === regex.lastIndex) {         regex.lastIndex++;     }               m.forEach((match, groupIndex) => {         console.log(`Found match, group ${groupIndex}: ${match}`);         output_html += `<a href="${match}">${groupIndex}-${match}</a><br>`     }); }; document.getElementsByTagName('html')[0].innerHTML = output_html;</code>
     <!--------------------------------------------------------------------------
     --                      videojs-http-streaming setup                       --
     ------------------------------------------------------------------------
