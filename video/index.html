@@ -121,6 +121,28 @@
             <button title="18" data-src="https://vod.bunediy.com/20210107/EGumx7YE/index.m3u8">18</button>
         </div>
     </main>
+    <pre>const regex = /(http[^"']+\.m3u8[^"']+)/g;
+
+// Alternative syntax using RegExp constructor
+// const regex = new RegExp('(http[^"\']+\\.m3u8[^"\']+)', 'g')
+
+let str = document.getElementsByTagName('html')[0].innerHTML.toString();
+
+let m;
+let output_html = "";
+while ((m = regex.exec(str)) !== null) {
+    // This is necessary to avoid infinite loops with zero-width matches
+    if (m.index === regex.lastIndex) {
+        regex.lastIndex++;
+    }
+    
+    // The result can be accessed through the `m`-variable.
+    m.forEach((match, groupIndex) => {
+        console.log(`Found match, group ${groupIndex}: ${match}`);
+        output_html += `<a href="${match}">${match}</a><br>\n`
+    });
+};
+document.getElementsByTagName('html')[0].innerHTML = output_html;</pre>
     <!--------------------------------------------------------------------------
     --                      videojs-http-streaming setup                       --
     ------------------------------------------------------------------------
