@@ -74,12 +74,9 @@
 Javascript for show m3u8 links:
 ```javascript
 regex = /(http[^"']+\.m3u8[^"']+)/g;
-
 // Alternative syntax using RegExp constructor
 // const regex = new RegExp('(http[^"\']+\\.m3u8[^"\']+)', 'g')
-
 str = document.getElementsByTagName('html')[0].innerHTML.toString();
-
 var m;
 output_html = "";
 while ((m = regex.exec(str)) !== null) {
@@ -97,7 +94,7 @@ while ((m = regex.exec(str)) !== null) {
 document.getElementsByTagName('html')[0].innerHTML = output_html;
 ```
 ```javascript
-regex = /(http[^"']+\.m3u8[^"']+)/g;
+regex = /(http[^"']+.m3u8[^"']+)/g;
 str = document.getElementsByTagName('html')[0].innerHTML.toString();
 var m;
 output_html = "";
@@ -111,7 +108,4 @@ while ((m = regex.exec(str)) !== null) {
     });
 };
 document.getElementsByTagName('html')[0].innerHTML = output_html;
-```
-```javascript
-regex=/(http[^"']+\.m3u8[^"']+)/g;str=document.getElementsByTagName('html')[0].innerHTML.toString();varm;output_html="";while((m=regex.exec(str))!==null){if(m.index===regex.lastIndex){regex.lastIndex++;}m.forEach((match,groupIndex)=>{console.log(`Foundmatch,group${groupIndex}:${match}`);output_html+=`<ahref="${match}">${groupIndex}-${match}</a><br>`});};document.getElementsByTagName('html')[0].innerHTML=output_html;
 ```
