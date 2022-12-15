@@ -76,7 +76,7 @@ Javascript for show m3u8 links:
 regex = /(http[^"']+\.m3u8[^"']+)/g;
 // Alternative syntax using RegExp constructor
 // const regex = new RegExp('(http[^"\']+\\.m3u8[^"\']+)', 'g')
-str = document.getElementsByTagName('html')[0].innerHTML.toString();
+str = document.getElementsByTagName('html')[0].innerHTML.toString().replaceAll('\\','').replaceAll(' ','');
 var m;
 output_html = "";
 while ((m = regex.exec(str)) !== null) {
@@ -95,7 +95,7 @@ document.getElementsByTagName('html')[0].innerHTML = output_html;
 ```
 ```javascript
 regex = /(http[^"']+.m3u8[^"']+)/g;
-str = document.getElementsByTagName('html')[0].innerHTML.toString();
+str = document.getElementsByTagName('html')[0].innerHTML.toString().replaceAll('\\','').replaceAll(' ','');
 var m;
 output_html = "";
 while ((m = regex.exec(str)) !== null) {
