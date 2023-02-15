@@ -1,14 +1,11 @@
-# Sitemap
+# I'm LDwise, this repo's owner
 
-Directory | Description
---- | ---
-[wyw](wyw) | 指定文言經典精編
-[dictionary](dict) | Remember some English words
-[google_mail](google_mail) | Send email through Gmail s16071
-[speak](speak) | Play English words & Write it Correct
-[std_sample](std_sample) | Students sample paper(CHI & ENG)
-[video](video) | Play good doctor
-~~[wiseman](wiseman)~~ | ~~get high score in wiseman(down)~~
-[LiberalStudies](LiberalStudies) | LiberalStudies Notes
+I just decide make this repo become private
 
-@2021 [LDwise](https://github.com/LDwise) [](ov)GitHub-[](tiktov)Page
+As kindly remind, you should delete this repo for my rights
+
+I'll trying to share this repo with you in private way(you could be an collabrators) if you still willing to 
+
+my email address: ld000000000002@gmail.com
+
+@2021 [LDwise](https://github.com/LDwise)
